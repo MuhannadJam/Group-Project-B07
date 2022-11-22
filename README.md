@@ -1,3 +1,4 @@
 # Group-Project-B07
 Hello
-Hi my name is Hamim
+Bye!
+Ethan was here
