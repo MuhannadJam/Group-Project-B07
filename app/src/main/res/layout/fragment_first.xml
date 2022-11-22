@@ -45,7 +45,9 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Name"
-        tools:layout_editor_absoluteX="95dp"
-        tools:layout_editor_absoluteY="272dp" />
+        app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textview_first" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
