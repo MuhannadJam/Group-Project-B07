@@ -6,6 +6,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.view.MotionEvent;
 import android.view.View;
 
 import androidx.navigation.NavController;
@@ -52,11 +53,23 @@ public class MainActivity extends AppCompatActivity {
         EditText username = (EditText)findViewById(R.id.editTextTextPersonName);
         EditText password = (EditText) findViewById(R.id.editTextTextPassword);
 
+        username.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                username.setText("");
+                return false;
+            }
+        });
+
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (username.getText().toString().equals("name")){
                             navController.navigate(R.id.action_FirstFragment_to_SecondFragment);
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "Invalid Credentials!",
+                            Toast.LENGTH_SHORT).show();
                 }
 
             }
