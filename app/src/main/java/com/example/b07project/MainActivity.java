@@ -58,6 +58,10 @@ public class MainActivity extends AppCompatActivity {
                 if (username.getText().toString().equals("name")){
                             navController.navigate(R.id.action_FirstFragment_to_SecondFragment);
                 }
+                else{
+                    Toast.makeText(getApplicationContext(), "Invalid Credentials!",
+                            Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
