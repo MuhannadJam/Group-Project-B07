@@ -11,7 +11,6 @@ import android.view.View;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
@@ -23,8 +22,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -52,9 +49,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button login_button = (Button)findViewById(R.id.button_first);
-        EditText username = (EditText)findViewById(R.id.editTextTextPersonName);
-        EditText password = (EditText) findViewById(R.id.editTextTextPassword);
+        Button login_button = (Button)findViewById(R.id.login);
+        EditText username = (EditText)findViewById(R.id.usernameInput);
+        EditText password = (EditText) findViewById(R.id.passwordInput);
 
         username.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -78,12 +75,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        TextView signup = (TextView) findViewById(R.id.textView4);
+        TextView signup = (TextView) findViewById(R.id.signup);
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                navController.navigate(R.id.action_FirstFragment_to_signup);
+                navController.navigate(R.id.action_FirstFragment_to_SecondFragment);
             }
         });
 
