@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                navController.navigate(R.id.action_FirstFragment_to_SecondFragment);
+                navController.navigate(R.id.action_FirstFragment_to_signupFragment);
             }
         });
 
