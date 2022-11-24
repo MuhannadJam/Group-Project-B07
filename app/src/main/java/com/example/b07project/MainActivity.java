@@ -21,7 +21,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -74,6 +77,17 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        TextView signup = (TextView) findViewById(R.id.textView4);
+
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navController.navigate(R.id.action_FirstFragment_to_signup);
+            }
+        });
+
+
     }
 
     @Override
