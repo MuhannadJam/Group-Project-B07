@@ -23,6 +23,7 @@
         android:name="com.example.b07project.SecondFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_main_page_no_courses">
+        tools:layout="@layout/fragment_main_page">
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
