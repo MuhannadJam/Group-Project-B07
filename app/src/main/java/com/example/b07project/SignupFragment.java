@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import com.example.b07project.databinding.FragmentSignupBinding;
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link SignupFragment#newInstance} factory method to
@@ -23,7 +23,7 @@ public class SignupFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    private SignupFragment binding;
     public SignupFragment() {
         // Required empty public constructor
     }
