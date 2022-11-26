@@ -10,10 +10,12 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.b07project.databinding.FragmentMainPageNoCoursesBinding;
+import com.example.b07project.databinding.FragmentMainPageBinding;
 
 public class SecondFragment extends Fragment {
 
     private FragmentMainPageNoCoursesBinding binding;
+    private FragmentMainPageBinding binding;
 
     @Override
     public View onCreateView(
@@ -22,6 +24,7 @@ public class SecondFragment extends Fragment {
     ) {
 
         binding = FragmentMainPageNoCoursesBinding.inflate(inflater, container, false);
+        binding = FragmentMainPageBinding.inflate(inflater, container, false);
         return binding.getRoot();
 
     }
