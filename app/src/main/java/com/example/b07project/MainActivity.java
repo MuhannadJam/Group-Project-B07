@@ -49,42 +49,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button login_button = (Button)findViewById(R.id.login);
-        EditText username = (EditText)findViewById(R.id.usernameInput);
-        EditText password = (EditText) findViewById(R.id.passwordInput);
-
-        username.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                username.setText("");
-                return false;
-            }
-        });
-
-        login_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (username.getText().toString().equals("name")){
-                            navController.navigate(R.id.action_FirstFragment_to_SecondFragment);
-                }
-                else{
-                    Toast.makeText(getApplicationContext(), "Invalid Credentials!",
-                            Toast.LENGTH_SHORT).show();
-                }
-
-            }
-        });
-
-        TextView signup = (TextView) findViewById(R.id.signup);
-
-        signup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                navController.navigate(R.id.action_FirstFragment_to_signupFragment);
-            }
-        });
-
-
     }
 
     @Override

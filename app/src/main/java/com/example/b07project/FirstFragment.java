@@ -3,6 +3,7 @@ package com.example.b07project;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -66,6 +67,14 @@ public class FirstFragment extends Fragment {
                     Toast.makeText(view.getContext(), "Invalid Credentials!",
                             Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        username.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                username.setText("");
+                return false;
             }
         });
     }
