@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class FirstFragment extends Fragment {
 
     private FragmentFirstBinding binding;
-    private EditText username;
+    private EditText email;
     private EditText password;
     private Button login_button;
     private View view;
@@ -34,7 +34,7 @@ public class FirstFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_first, container, false);
 
         login_button = (Button) view.findViewById(R.id.login);
-        username = (EditText) view.findViewById(R.id.emailInput);
+        email = (EditText) view.findViewById(R.id.emailInput);
         password = (EditText) view.findViewById(R.id.passwordInput);
 
         mAuth = FirebaseAuth.getInstance();
@@ -76,9 +76,9 @@ public class FirstFragment extends Fragment {
 
     public void loginUser() {
 
-        if (username.getText().toString().equals("")) {
-            username.setError("Username required");
-            username.requestFocus();
+        if (email.getText().toString().equals("")) {
+            email.setError("Email required");
+            email.requestFocus();
             return;
         }
         if (password.getText().toString().equals("")) {
@@ -86,7 +86,7 @@ public class FirstFragment extends Fragment {
             password.requestFocus();
             return;
         }
-        if (username.getText().toString().equals("name")) {
+        if (email.getText().toString().equals("name")) {
             NavHostFragment.findNavController(FirstFragment.this
             ).navigate(R.id.action_FirstFragment_to_SecondFragment);
         }

@@ -18,7 +18,7 @@ public class SignupFragment extends Fragment {
     private SignupFragment binding;
 
     private View view;
-    private EditText name, username, password, c_password;
+    private EditText name, email, password, c_password;
     private Button signup;
 
     private FirebaseAuth mAuth;
@@ -41,9 +41,9 @@ public class SignupFragment extends Fragment {
             name.requestFocus();
             return;
         }
-        if (username.getText().toString().equals("")) {
-            username.setError("Username required");
-            username.requestFocus();
+        if (email.getText().toString().equals("")) {
+            email.setError("Email required");
+            email.requestFocus();
             return;
         }
         if (password.getText().toString().equals("")) {
@@ -72,7 +72,7 @@ public class SignupFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_signup, container, false);
 
         name = (EditText) view.findViewById(R.id.signup_name);
-        username = (EditText) view.findViewById(R.id.signup_email);
+        email = (EditText) view.findViewById(R.id.signup_email);
         password = (EditText) view.findViewById(R.id.signup_password);
         c_password = (EditText) view.findViewById(R.id.signup_passwordconfirmation);
 
