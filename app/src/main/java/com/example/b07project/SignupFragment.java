@@ -40,7 +40,7 @@ public class SignupFragment extends Fragment {
             return;
         }
         if (username.getText().toString().equals("")) {
-            username.setError("UserName required");
+            username.setError("Username required");
             username.requestFocus();
             return;
         }
