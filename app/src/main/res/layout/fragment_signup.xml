@@ -26,7 +26,7 @@
         app:layout_constraintVertical_bias="0.07" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button"
+        android:id="@+id/signup_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="104dp"
@@ -43,7 +43,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <EditText
-        android:id="@+id/Signup_name"
+        android:id="@+id/signup_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/roundstyle"
@@ -52,13 +52,13 @@
         android:hint="Name"
         android:inputType="textPersonName"
         android:padding="14dp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/signup_username"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signuptext" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/signup_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/roundstyle"
@@ -71,7 +71,7 @@
         app:layout_constraintBottom_toTopOf="@+id/signup_password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Signup_name" />
+        app:layout_constraintTop_toBottomOf="@+id/signup_name" />
 
     <EditText
         android:id="@+id/signup_password"
@@ -86,7 +86,7 @@
         app:layout_constraintBottom_toTopOf="@+id/signup_passwordconfirmation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintTop_toBottomOf="@+id/signup_username" />
 
     <EditText
         android:id="@+id/signup_passwordconfirmation"
@@ -99,7 +99,7 @@
 
         android:inputType="textPassword"
         android:padding="14dp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/signup_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signup_password" />
