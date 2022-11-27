@@ -68,11 +68,36 @@ public class FirstFragment extends Fragment {
         view.findViewById(R.id.login).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 loginUser();
+
+                if(username.getText().toString().equals("admin")){
+                loginAdmin();}
+                else{
+                loginUser();}
+
+
             }
         });
 
     }
+    public void loginAdmin(){
+        if (password.getText().toString().equals("")) {
+            password.setError("Password required");
+            password.requestFocus();
+            return;}
+         if (password.getText().toString().equals("admin")){
+            NavHostFragment.findNavController(FirstFragment.this)
+                    .navigate(R.id.action_FirstFragment_to_blankFragment);}
+        else{
+            password.setError("Incorrect Password");
+            password.requestFocus();
+            }
+
+
+        }
+
+
 
     public void loginUser() {
 

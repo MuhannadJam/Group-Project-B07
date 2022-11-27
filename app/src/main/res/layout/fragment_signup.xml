@@ -33,7 +33,7 @@
         android:background="@drawable/roundstyle"
         android:backgroundTint="@color/MediumBlue"
         android:padding="20dp"
-        android:text="Sign UP"
+        android:text="Sign Up"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
