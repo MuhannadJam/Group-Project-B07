@@ -68,34 +68,13 @@ public class FirstFragment extends Fragment {
         view.findViewById(R.id.login).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 loginUser();
-
-                if(username.getText().toString().equals("admin")){
-                loginAdmin();}
-                else{
-                loginUser();}
-
-
             }
         });
 
+
     }
-    public void loginAdmin(){
-        if (password.getText().toString().equals("")) {
-            password.setError("Password required");
-            password.requestFocus();
-            return;}
-         if (password.getText().toString().equals("admin")){
-            NavHostFragment.findNavController(FirstFragment.this)
-                    .navigate(R.id.action_FirstFragment_to_blankFragment);}
-        else{
-            password.setError("Incorrect Password");
-            password.requestFocus();
-            }
 
-
-        }
 
 
 
@@ -111,14 +90,20 @@ public class FirstFragment extends Fragment {
             password.requestFocus();
             return;
         }
+        if (email.getText().toString().equals("admin") &&
+                password.getText().toString().equals("admin")) {
+            NavHostFragment.findNavController(FirstFragment.this)
+                    .navigate(R.id.action_FirstFragment_to_blankFragment);
+        }
         if (email.getText().toString().equals("name")) {
             NavHostFragment.findNavController(FirstFragment.this
             ).navigate(R.id.action_FirstFragment_to_SecondFragment);
-        }
-        else{
+        } else {
             Toast.makeText(view.getContext(), "Invalid Credentials!",
                     Toast.LENGTH_SHORT).show();
         }
+
+
     }
 
     @Override
