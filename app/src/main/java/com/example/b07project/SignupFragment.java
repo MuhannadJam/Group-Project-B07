@@ -40,22 +40,22 @@ public class SignupFragment extends Fragment {
             return;
         }
         if (username.getText().toString().equals("")) {
-            username.setError("Name required");
+            username.setError("UserName required");
             username.requestFocus();
             return;
         }
         if (password.getText().toString().equals("")) {
-            password.setError("Name required");
+            password.setError("Password required");
             password.requestFocus();
             return;
         }
         if (c_password.getText().toString().equals("")) {
-            c_password.setError("Name required");
+            c_password.setError("Password Confirmation required");
             c_password.requestFocus();
             return;
         }
         if (!(password.getText().toString().equals(c_password.getText().toString()))){
-            c_password.setError("Passwords do not match");
+            c_password.setError("Password does not match");
             c_password.requestFocus();
             return;
         }
