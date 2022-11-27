@@ -69,14 +69,7 @@ public class FirstFragment extends Fragment {
                 }
             }
         });
-
-        username.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                username.setText("");
-                return false;
-            }
-        });
+        
     }
 
     @Override
