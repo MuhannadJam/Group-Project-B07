@@ -2,58 +2,62 @@ package com.example.b07project;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+
 import com.example.b07project.databinding.FragmentSignupBinding;
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link SignupFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class SignupFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
     private SignupFragment binding;
 
     private View view;
-    public SignupFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Signup.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static SignupFragment newInstance(String param1, String param2) {
-        SignupFragment fragment = new SignupFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    private EditText name, username, password, c_password;
+    private Button signup;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                registerUser();
+            }
+        });
+    }
+
+    public void registerUser() {
+        if (name.getText().toString().equals("")) {
+            name.setError("Name required");
+            name.requestFocus();
+            return;
+        }
+        if (username.getText().toString().equals("")) {
+            username.setError("Name required");
+            username.requestFocus();
+            return;
+        }
+        if (password.getText().toString().equals("")) {
+            password.setError("Name required");
+            password.requestFocus();
+            return;
+        }
+        if (c_password.getText().toString().equals("")) {
+            c_password.setError("Name required");
+            c_password.requestFocus();
+            return;
+        }
+        if (!(password.getText().toString().equals(c_password.getText().toString()))){
+            c_password.setError("Passwords do not match");
+            c_password.requestFocus();
+            return;
         }
     }
 
@@ -63,6 +67,18 @@ public class SignupFragment extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_signup, container, false);
 
+        name = (EditText) view.findViewById(R.id.signup_name);
+        username = (EditText) view.findViewById(R.id.signup_username);
+        password = (EditText) view.findViewById(R.id.signup_password);
+        c_password = (EditText) view.findViewById(R.id.signup_passwordconfirmation);
+
+        signup = (Button) view.findViewById(R.id.signup_button);
+
         return view;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
     }
 }

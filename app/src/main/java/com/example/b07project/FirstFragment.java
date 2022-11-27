@@ -92,7 +92,7 @@ public class FirstFragment extends Fragment {
             password.requestFocus();
             return;
         }
-        if (username.getText().toString().equals("name")){
+        if (username.getText().toString().equals("name")) {
             NavHostFragment.findNavController(FirstFragment.this
             ).navigate(R.id.action_FirstFragment_to_SecondFragment);
         }
