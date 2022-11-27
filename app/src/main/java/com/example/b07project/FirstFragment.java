@@ -21,6 +21,11 @@ import java.io.BufferedReader;
 public class FirstFragment extends Fragment {
 
     private FragmentFirstBinding binding;
+    private EditText username;
+    private EditText password;
+    private Button login_button;
+    private View view;
+
 
     @Override
     public View onCreateView(
@@ -28,16 +33,11 @@ public class FirstFragment extends Fragment {
             Bundle savedInstanceState
     ) {
 
-        View view = inflater.inflate(R.layout.fragment_first, container, false);
+        view = inflater.inflate(R.layout.fragment_first, container, false);
 
-        Button login_button = (Button) view.findViewById(R.id.login);
-
-        login_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), MainActivity.class);
-            }
-        });
+        login_button = (Button) view.findViewById(R.id.login);
+        username = (EditText) view.findViewById(R.id.usernameInput);
+        password = (EditText) view.findViewById(R.id.passwordInput);
 
         return view;
 
@@ -55,21 +55,32 @@ public class FirstFragment extends Fragment {
             }
         });
 
-        EditText username = (EditText) view.findViewById(R.id.usernameInput);
+
         view.findViewById(R.id.login).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (username.getText().toString().equals("name")){
-                    NavHostFragment.findNavController(FirstFragment.this
-                    ).navigate(R.id.action_FirstFragment_to_SecondFragment);
-                }
-                else{
-                    Toast.makeText(view.getContext(), "Invalid Credentials!",
-                            Toast.LENGTH_SHORT).show();
-                }
+                loginUser();
+
             }
         });
-        
+
+    }
+
+    public void loginUser() {
+
+        if (username.getText().toString().equals("")) {
+            username.setError("Username required");
+            username.requestFocus();
+            return;
+        }
+        if (username.getText().toString().equals("name")){
+            NavHostFragment.findNavController(FirstFragment.this
+            ).navigate(R.id.action_FirstFragment_to_SecondFragment);
+        }
+        else{
+            Toast.makeText(view.getContext(), "Invalid Credentials!",
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
