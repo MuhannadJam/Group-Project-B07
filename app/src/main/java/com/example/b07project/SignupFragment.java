@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.b07project.databinding.FragmentSignupBinding;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class SignupFragment extends Fragment {
 
@@ -20,6 +21,8 @@ public class SignupFragment extends Fragment {
     private View view;
     private EditText name, username, password, c_password;
     private Button signup;
+
+    private FirebaseAuth mAuth;
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
@@ -59,6 +62,8 @@ public class SignupFragment extends Fragment {
             c_password.requestFocus();
             return;
         }
+
+
     }
 
     @Override

@@ -74,7 +74,6 @@ public class FirstFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 loginUser();
-
             }
         });
 
