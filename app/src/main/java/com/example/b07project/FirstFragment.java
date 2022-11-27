@@ -15,6 +15,8 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.b07project.databinding.FragmentFirstBinding;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.BufferedReader;
 
@@ -26,6 +28,7 @@ public class FirstFragment extends Fragment {
     private Button login_button;
     private View view;
 
+    private FirebaseAuth mAuth;
 
     @Override
     public View onCreateView(
@@ -39,8 +42,19 @@ public class FirstFragment extends Fragment {
         username = (EditText) view.findViewById(R.id.usernameInput);
         password = (EditText) view.findViewById(R.id.passwordInput);
 
+        mAuth = FirebaseAuth.getInstance();
+
         return view;
 
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        if (mAuth.getCurrentUser() != null) {
+            return;
+        }
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
@@ -71,6 +85,11 @@ public class FirstFragment extends Fragment {
         if (username.getText().toString().equals("")) {
             username.setError("Username required");
             username.requestFocus();
+            return;
+        }
+        if (password.getText().toString().equals("")) {
+            password.setError("Password required");
+            password.requestFocus();
             return;
         }
         if (username.getText().toString().equals("name")){

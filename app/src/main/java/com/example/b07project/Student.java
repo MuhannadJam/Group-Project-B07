@@ -6,7 +6,12 @@ public class Student extends User{
 
     ArrayList <Student> students = new ArrayList<Student>();
 
-    public Student(String name, String username, String password) {
+    public Student () {
+
+    }
+
+    public Student(String name, String username) {
+        this.name = name;
         this.username = username;
     }
 
