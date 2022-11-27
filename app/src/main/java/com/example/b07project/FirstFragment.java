@@ -1,9 +1,7 @@
 package com.example.b07project;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -16,9 +14,6 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.b07project.databinding.FragmentFirstBinding;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.FirebaseDatabase;
-
-import java.io.BufferedReader;
 
 public class FirstFragment extends Fragment {
 
@@ -39,7 +34,7 @@ public class FirstFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_first, container, false);
 
         login_button = (Button) view.findViewById(R.id.login);
-        username = (EditText) view.findViewById(R.id.usernameInput);
+        username = (EditText) view.findViewById(R.id.emailInput);
         password = (EditText) view.findViewById(R.id.passwordInput);
 
         mAuth = FirebaseAuth.getInstance();

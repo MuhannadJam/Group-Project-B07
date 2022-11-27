@@ -52,19 +52,19 @@
         android:hint="Name"
         android:inputType="textPersonName"
         android:padding="14dp"
-        app:layout_constraintBottom_toTopOf="@+id/signup_username"
+        app:layout_constraintBottom_toTopOf="@+id/signup_email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signuptext" />
 
     <EditText
-        android:id="@+id/signup_username"
+        android:id="@+id/signup_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/roundstyle"
         android:backgroundTint="@color/MediumBlue"
         android:ems="11"
-        android:hint="Username"
+        android:hint="Email"
         android:inputType="textPersonName"
 
         android:padding="14dp"
@@ -86,7 +86,7 @@
         app:layout_constraintBottom_toTopOf="@+id/signup_passwordconfirmation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signup_username" />
+        app:layout_constraintTop_toBottomOf="@+id/signup_email" />
 
     <EditText
         android:id="@+id/signup_passwordconfirmation"

@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.b07project.databinding.FragmentSignupBinding;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class SignupFragment extends Fragment {
@@ -73,7 +72,7 @@ public class SignupFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_signup, container, false);
 
         name = (EditText) view.findViewById(R.id.signup_name);
-        username = (EditText) view.findViewById(R.id.signup_username);
+        username = (EditText) view.findViewById(R.id.signup_email);
         password = (EditText) view.findViewById(R.id.signup_password);
         c_password = (EditText) view.findViewById(R.id.signup_passwordconfirmation);
 
