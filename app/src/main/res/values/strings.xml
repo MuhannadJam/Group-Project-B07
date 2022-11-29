@@ -6,13 +6,15 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="login">Login</string>
     <string name="previous">Previous</string>
-
+    <string name="logout">Log out</string>
     <string name="hello_first_fragment">Login</string>
     <string name="course_menu">Course Menu</string>
     <string name="signup">Sign Up</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="expected_course_timeline">Expected course timeline</string>
+    <string name="add_course">Add course</string>
+    <string name="add">+add</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_student_add_course">Student_Add_Course</string>
-    <string name="next">Next</string>
+    <string name="settings">Settings</string>
 </resources>

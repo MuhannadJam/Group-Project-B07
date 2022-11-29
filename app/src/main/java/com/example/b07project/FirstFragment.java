@@ -1,6 +1,7 @@
 package com.example.b07project;
 
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,8 +52,10 @@ public class FirstFragment extends Fragment {
         super.onStart();
 
         if (mAuth.getCurrentUser() != null) {
-            return;
+            NavHostFragment.findNavController(FirstFragment.this
+            ).navigate(R.id.action_FirstFragment_to_SecondFragment);
         }
+
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
@@ -83,29 +86,42 @@ public class FirstFragment extends Fragment {
 
     public void loginUser() {
 
-        if (email.getText().toString().equals("")) {
+        String login_email = email.getText().toString().trim();
+        String login_password = password.getText().toString().trim();
+
+        if (login_email.equals("")) {
             email.setError("Email required");
             email.requestFocus();
             return;
         }
-        if (password.getText().toString().equals("")) {
+        if (!Patterns.EMAIL_ADDRESS.matcher(login_email).matches()) {
+            email.setError("Invalid Email");
+            email.requestFocus();
+            return;
+        }
+        if (login_password.equals("")) {
             password.setError("Password required");
             password.requestFocus();
             return;
         }
-        if (email.getText().toString().equals("admin") &&
+        if (login_password.equals("admin") &&
                 password.getText().toString().equals("admin")) {
             NavHostFragment.findNavController(FirstFragment.this)
                     .navigate(R.id.action_FirstFragment_to_blankFragment);
         }
-        if (email.getText().toString().equals("name")) {
-            NavHostFragment.findNavController(FirstFragment.this
-            ).navigate(R.id.action_FirstFragment_to_SecondFragment);
-        } else {
-            Toast.makeText(view.getContext(), "Invalid Credentials!",
-                    Toast.LENGTH_SHORT).show();
-        }
-
+        mAuth.signInWithEmailAndPassword(login_email, login_password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    NavHostFragment.findNavController(FirstFragment.this
+                    ).navigate(R.id.action_FirstFragment_to_SecondFragment);
+                }
+                else{
+                    Toast.makeText(view.getContext(), "Invalid Credentials!",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     @Override

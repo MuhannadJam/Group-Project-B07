@@ -33,8 +33,6 @@ public class SignupFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mAuth = FirebaseAuth.getInstance();
-
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,7 +69,7 @@ public class SignupFragment extends Fragment {
         }
 
 
-        mAuth.signInWithEmailAndPassword(email.getText().toString().trim(),
+        mAuth.createUserWithEmailAndPassword(email.getText().toString().trim(),
                 password.getText().toString().trim()).
                 addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -104,7 +102,7 @@ public class SignupFragment extends Fragment {
                             });
                 }
                 else {
-                    Toast.makeText(view.getContext(), "User Registration Failed",
+                    Toast.makeText(view.getContext(), "User O Registration Failed",
                             Toast.LENGTH_SHORT).show();
                 }
             }
@@ -124,6 +122,8 @@ public class SignupFragment extends Fragment {
         c_password = (EditText) view.findViewById(R.id.signup_passwordconfirmation);
 
         signup = (Button) view.findViewById(R.id.signup_button);
+
+        mAuth = FirebaseAuth.getInstance();
 
         return view;
     }

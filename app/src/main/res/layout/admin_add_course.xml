@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/LightBlue"
+    android:backgroundTint="@color/LightBlue"
+    tools:context="admin_add_course">
+
+    <TextView
+        android:id="@+id/add_course"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_course"
+        android:textColor="@color/DarkBlue"
+        android:textSize="60sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.087" />
+
+    <EditText
+        android:id="@+id/addcourse_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/roundstyle"
+        android:backgroundTint="@color/AlternateBlue"
+        android:ems="11"
+        android:hint="Course code"
+        android:padding="14dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.378" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_admin_summer"
+        android:layout_width="70dp"
+        android:layout_height="48dp"
+        android:background="@drawable/roundstyle"
+        android:backgroundTint="@color/MediumBlue"
+        android:text="Summer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_admin_winter"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.509" />
+
+    <ImageButton
+        android:id="@+id/imageButton4"
+        android:layout_width="53dp"
+        android:layout_height="53dp"
+        android:background="@color/LightBlue"
+        android:backgroundTint="@color/LightBlue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/addcourse_prereq"
+        app:layout_constraintTop_toBottomOf="@+id/button_admin_summer"
+        app:layout_constraintVertical_bias="0.251"
+        app:srcCompat="@drawable/add_circle_logo" />
+
+    <EditText
+        android:id="@+id/addcourse_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/roundstyle"
+        android:backgroundTint="@color/AlternateBlue"
+        android:ems="11"
+        android:hint="Course name"
+        android:padding="14dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.25" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_admin_fall"
+        android:layout_width="70dp"
+        android:layout_height="48dp"
+        android:background="@drawable/roundstyle"
+        android:backgroundTint="@color/MediumBlue"
+        android:text="Fall"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button_admin_winter"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.509" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_add"
+        android:layout_width="150dp"
+        android:layout_height="57dp"
+        android:background="@drawable/roundstyle"
+        android:backgroundTint="@color/MediumBlue"
+        android:padding="20dp"
+        android:text="@string/add_course"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.83" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_admin_winter"
+        android:layout_width="70dp"
+        android:layout_height="48dp"
+        android:background="@drawable/roundstyle"
+        android:backgroundTint="@color/MediumBlue"
+        android:text="Winter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button_admin_summer"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_admin_fall"
+        app:layout_constraintTop_toTopOf="@+id/add_course"
+        app:layout_constraintVertical_bias="0.464" />
+
+    <EditText
+        android:id="@+id/addcourse_prereq"
+        android:layout_width="179dp"
+        android:layout_height="51dp"
+        android:layout_marginBottom="28dp"
+        android:background="@drawable/roundstyle"
+        android:backgroundTint="@color/AlternateBlue"
+        android:ems="11"
+        android:hint="Prerequisites"
+        android:inputType="textPersonName"
+        android:padding="14dp"
+        app:layout_constraintBottom_toTopOf="@+id/button_add"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_admin_fall"
+        app:layout_constraintVertical_bias="0.87" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
