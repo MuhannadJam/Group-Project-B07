@@ -30,6 +30,9 @@
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
+        <action
+            android:id="@+id/action_SecondFragment_to_course_menu"
+            app:destination="@id/course_menu" />
     </fragment>
     <fragment
         android:id="@+id/signupFragment"
@@ -54,4 +57,8 @@
         android:name="com.example.b07project.admin_add_course"
         android:label="admin_add_course"
         tools:layout="@layout/admin_add_course" />
+    <fragment
+        android:id="@+id/course_menu"
+        android:name="com.example.b07project.course_menu"
+        android:label="course_menu" />
 </navigation>
