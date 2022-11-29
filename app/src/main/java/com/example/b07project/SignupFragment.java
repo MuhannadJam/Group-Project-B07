@@ -21,6 +21,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+
 public class SignupFragment extends Fragment {
 
     private SignupFragment binding;
@@ -92,8 +94,9 @@ public class SignupFragment extends Fragment {
             public void onComplete(@NonNull Task<AuthResult> task) {
 
                 if(task.isSuccessful()) {
+
                     Student student = new Student(name.getText().toString().trim(),
-                            email.getText().toString().trim());
+                            email.getText().toString().trim(), new ArrayList<>());
 
                     FirebaseDatabase.getInstance().getReference("Students").child(FirebaseAuth.getInstance()
                                     .getCurrentUser().getUid()).

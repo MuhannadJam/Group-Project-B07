@@ -1,6 +1,8 @@
 package com.example.b07project;
 
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +20,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class FirstFragment extends Fragment {
 
@@ -26,7 +35,7 @@ public class FirstFragment extends Fragment {
     private EditText password;
     private Button login_button;
     private View view;
-
+    private ArrayList<String> admins = new ArrayList<>();
     private FirebaseAuth mAuth;
 
     @Override
@@ -42,6 +51,20 @@ public class FirstFragment extends Fragment {
         password = (EditText) view.findViewById(R.id.passwordInput);
 
         mAuth = FirebaseAuth.getInstance();
+
+        DatabaseReference ref = FirebaseDatabase
+                .getInstance("https://bo7-project-default-rtdb.firebaseio.com/")
+                .getReference("Admin");
+        ref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                for(DataSnapshot id: task.getResult().getChildren()) {
+                   admins.add(id.getValue().toString());
+                }
+            }
+        });
+
+
 
         return view;
 
@@ -113,8 +136,15 @@ public class FirstFragment extends Fragment {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    NavHostFragment.findNavController(FirstFragment.this
-                    ).navigate(R.id.action_FirstFragment_to_SecondFragment);
+                    if (admins.indexOf(mAuth.getCurrentUser().getUid()) != -1) {
+                        NavHostFragment.findNavController(FirstFragment.this)
+                                .navigate(R.id.action_FirstFragment_to_blankFragment);
+                    }
+                    else{
+                        NavHostFragment.findNavController(FirstFragment.this)
+                                .navigate(R.id.action_FirstFragment_to_SecondFragment);
+                    }
+
                 }
                 else{
                     Toast.makeText(view.getContext(), "Invalid Credentials!",
