@@ -18,7 +18,7 @@
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_course_button" />
+        app:layout_constraintTop_toBottomOf="@+id/button_add_course" />
 
     <TextView
         android:id="@+id/textView12"
@@ -50,7 +50,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/add_course_button"
+        android:id="@+id/button_add_course"
         android:layout_width="305dp"
         android:layout_height="48dp"
         android:layout_marginStart="50dp"
@@ -91,7 +91,7 @@
         android:contentDescription="@string/settings"
         android:src="@drawable/settings_logo_svg"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_course_button" />
+        app:layout_constraintTop_toBottomOf="@+id/button_add_course" />
 
     <!--<ScrollView
         android:layout_width="409dp"
