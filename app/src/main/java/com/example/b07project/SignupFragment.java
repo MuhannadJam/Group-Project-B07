@@ -4,14 +4,20 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class SignupFragment extends Fragment {
 
@@ -26,6 +32,8 @@ public class SignupFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        mAuth = FirebaseAuth.getInstance();
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +70,45 @@ public class SignupFragment extends Fragment {
             return;
         }
 
+
+        mAuth.signInWithEmailAndPassword(email.getText().toString().trim(),
+                password.getText().toString().trim()).
+                addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+
+                if(task.isSuccessful()) {
+                    Student student = new Student(name.getText().toString().trim(),
+                            email.getText().toString().trim());
+
+
+                    FirebaseDatabase.getInstance().getReference("Students").
+                            child(FirebaseAuth.getInstance().getCurrentUser().getUid()).
+                            setValue(student).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(view.getContext(),
+                                                "User Registered Successfully",
+                                                Toast.LENGTH_SHORT).show();
+                                        NavHostFragment.findNavController(SignupFragment.
+                                                this).navigate(R.id.
+                                                action_signupFragment_to_SecondFragment);
+                                    }
+                                    else {
+                                        Toast.makeText(view.getContext(),
+                                                "User Registration Failed",
+                                                Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                }
+                else {
+                    Toast.makeText(view.getContext(), "User Registration Failed",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
     }
 
