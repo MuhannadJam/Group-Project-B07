@@ -19,7 +19,7 @@
             app:destination="@id/signupFragment" />
         <action
             android:id="@+id/action_FirstFragment_to_blankFragment"
-            app:destination="@id/blankFragment" />
+            app:destination="@id/admin_page" />
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
@@ -41,8 +41,17 @@
             app:destination="@id/SecondFragment" />
     </fragment>
     <fragment
-        android:id="@+id/blankFragment"
+        android:id="@+id/admin_page"
         android:name="com.example.b07project.admin_page"
         android:label="fragment_blank"
-        tools:layout="@layout/admin_page" />
+        tools:layout="@layout/admin_page" >
+        <action
+            android:id="@+id/action_admin_page_to_admin_add_course2"
+            app:destination="@id/admin_add_course" />
+    </fragment>
+    <fragment
+        android:id="@+id/admin_add_course"
+        android:name="com.example.b07project.admin_add_course"
+        android:label="admin_add_course"
+        tools:layout="@layout/admin_add_course" />
 </navigation>

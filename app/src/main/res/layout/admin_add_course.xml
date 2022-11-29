@@ -5,69 +5,132 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/LightBlue"
-    android:backgroundTint="@color/LightBlue">
+    android:backgroundTint="@color/LightBlue"
+    tools:context="admin_add_course">
 
     <TextView
         android:id="@+id/add_course"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="52dp"
         android:text="@string/add_course"
         android:textColor="@color/DarkBlue"
         android:textSize="60sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/addcourse_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="90dp"
-        android:layout_marginTop="13dp"
-        android:layout_marginEnd="91dp"
-        android:layout_marginBottom="21dp"
-        android:background="@drawable/roundstyle"
-        android:backgroundTint="@color/AlternateBlue"
-        android:ems="11"
-        android:hint="Course name"
-        android:padding="14dp"
-        app:layout_constraintBottom_toTopOf="@+id/addcourse_code"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_course" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.087" />
 
     <EditText
         android:id="@+id/addcourse_code"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="90dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="91dp"
-        android:layout_marginBottom="16dp"
         android:background="@drawable/roundstyle"
         android:backgroundTint="@color/AlternateBlue"
         android:ems="11"
         android:hint="Course code"
         android:padding="14dp"
-        app:layout_constraintBottom_toTopOf="@+id/button_admin_winter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.378" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_admin_summer"
+        android:layout_width="70dp"
+        android:layout_height="48dp"
+        android:background="@drawable/roundstyle"
+        android:backgroundTint="@color/MediumBlue"
+        android:text="Summer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_admin_winter"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.509" />
+
+    <ImageButton
+        android:id="@+id/imageButton4"
+        android:layout_width="53dp"
+        android:layout_height="53dp"
+        android:background="@color/LightBlue"
+        android:backgroundTint="@color/LightBlue"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/addcourse_prereq"
+        app:layout_constraintTop_toBottomOf="@+id/button_admin_summer"
+        app:layout_constraintVertical_bias="0.251"
+        app:srcCompat="@drawable/add_circle_logo" />
+
+    <EditText
+        android:id="@+id/addcourse_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/roundstyle"
+        android:backgroundTint="@color/AlternateBlue"
+        android:ems="11"
+        android:hint="Course name"
+        android:padding="14dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addcourse_name" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.25" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_admin_fall"
+        android:layout_width="70dp"
+        android:layout_height="48dp"
+        android:background="@drawable/roundstyle"
+        android:backgroundTint="@color/MediumBlue"
+        android:text="Fall"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button_admin_winter"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.509" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_add"
+        android:layout_width="150dp"
+        android:layout_height="57dp"
+        android:background="@drawable/roundstyle"
+        android:backgroundTint="@color/MediumBlue"
+        android:padding="20dp"
+        android:text="@string/add_course"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.83" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_admin_winter"
+        android:layout_width="70dp"
+        android:layout_height="48dp"
+        android:background="@drawable/roundstyle"
+        android:backgroundTint="@color/MediumBlue"
+        android:text="Winter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button_admin_summer"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_admin_fall"
+        app:layout_constraintTop_toTopOf="@+id/add_course"
+        app:layout_constraintVertical_bias="0.464" />
 
     <EditText
         android:id="@+id/addcourse_prereq"
         android:layout_width="179dp"
         android:layout_height="51dp"
-        android:layout_marginStart="91dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="26dp"
+        android:layout_marginBottom="28dp"
         android:background="@drawable/roundstyle"
         android:backgroundTint="@color/AlternateBlue"
         android:ems="11"
@@ -75,86 +138,10 @@
         android:inputType="textPersonName"
         android:padding="14dp"
         app:layout_constraintBottom_toTopOf="@+id/button_add"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_admin_winter" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button_add"
-        android:layout_width="150dp"
-        android:layout_height="57dp"
-        android:layout_marginStart="157dp"
-        android:layout_marginEnd="157dp"
-        android:layout_marginBottom="244dp"
-        android:background="@drawable/roundstyle"
-        android:backgroundTint="@color/MediumBlue"
-        android:padding="20dp"
-        android:text="@string/add_course"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addcourse_prereq" />
+        app:layout_constraintTop_toBottomOf="@+id/button_admin_fall"
+        app:layout_constraintVertical_bias="0.87" />
 
-    <ImageButton
-        android:id="@+id/imageButton4"
-        android:layout_width="53dp"
-        android:layout_height="53dp"
-        android:layout_marginEnd="88dp"
-        android:layout_marginBottom="26dp"
-        android:background="@color/LightBlue"
-        android:backgroundTint="@color/LightBlue"
-        app:layout_constraintBottom_toTopOf="@+id/button_add"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/addcourse_prereq"
-        app:srcCompat="@drawable/add_circle_logo" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button_admin_winter"
-        android:layout_width="70dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="27dp"
-        android:background="@drawable/roundstyle"
-        android:backgroundTint="@color/MediumBlue"
-        android:text="Winter"
-        app:layout_constraintBottom_toTopOf="@+id/addcourse_prereq"
-        app:layout_constraintEnd_toStartOf="@+id/button_admin_summer"
-        app:layout_constraintStart_toEndOf="@+id/button_admin_fall"
-        app:layout_constraintTop_toBottomOf="@+id/addcourse_code" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button_admin_fall"
-        android:layout_width="70dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="90dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="27dp"
-        android:background="@drawable/roundstyle"
-        android:backgroundTint="@color/MediumBlue"
-        android:text="Fall"
-        app:layout_constraintBottom_toTopOf="@+id/addcourse_prereq"
-        app:layout_constraintEnd_toStartOf="@+id/button_admin_winter"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addcourse_code" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button_admin_summer"
-        android:layout_width="70dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="90dp"
-        android:layout_marginBottom="25dp"
-        android:background="@drawable/roundstyle"
-        android:backgroundTint="@color/MediumBlue"
-        android:text="Summer"
-        app:layout_constraintBottom_toTopOf="@+id/imageButton4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button_admin_winter"
-        app:layout_constraintTop_toBottomOf="@+id/addcourse_code"
-        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
