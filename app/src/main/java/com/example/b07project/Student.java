@@ -4,19 +4,16 @@ import java.util.ArrayList;
 
 public class Student extends User{
 
-    ArrayList <Student> students = new ArrayList<Student>();
+    static ArrayList <Student> students = new ArrayList<Student>();
 
     public Student () {
 
     }
 
-    public Student(String name, String username) {
+    public Student(String name, String email)  {
         this.name = name;
-        this.username = username;
-    }
+        this.email = email;
 
-    public String getUsername() {
-        return username;
     }
 
     public void addStudent() {
