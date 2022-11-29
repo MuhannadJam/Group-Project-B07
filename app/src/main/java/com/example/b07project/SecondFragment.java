@@ -10,10 +10,13 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.b07project.databinding.FragmentMainPageBinding;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class SecondFragment extends Fragment {
 
     private FragmentMainPageBinding binding;
+    FirebaseAuth mAuth;
 
     @Override
     public View onCreateView(
@@ -21,8 +24,11 @@ public class SecondFragment extends Fragment {
             Bundle savedInstanceState
     ) {
 
+        mAuth = FirebaseAuth.getInstance();
+
         binding = FragmentMainPageBinding.inflate(inflater, container, false);
         return binding.getRoot();
+
 
     }
 
@@ -32,6 +38,8 @@ public class SecondFragment extends Fragment {
         binding.buttonLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                mAuth.signOut();
                 NavHostFragment.findNavController(SecondFragment.this)
                         .navigate(R.id.action_SecondFragment_to_FirstFragment);
             }
