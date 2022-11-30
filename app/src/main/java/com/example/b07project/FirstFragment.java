@@ -1,8 +1,6 @@
 package com.example.b07project;
 
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,10 +19,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -74,9 +70,15 @@ public class FirstFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-        if (mAuth.getCurrentUser() != null) {
-            NavHostFragment.findNavController(FirstFragment.this
-            ).navigate(R.id.action_FirstFragment_to_SecondFragment);
+        if(mAuth.getCurrentUser() != null){
+            if (!(admins.indexOf(mAuth.getCurrentUser().getUid()) != -1)) {
+                NavHostFragment.findNavController(FirstFragment.this
+                ).navigate(R.id.action_FirstFragment_to_AdminFragment);
+            }
+            else {
+                NavHostFragment.findNavController(FirstFragment.this
+                ).navigate(R.id.action_FirstFragment_to_SecondFragment);
+            }
         }
 
     }
@@ -130,7 +132,7 @@ public class FirstFragment extends Fragment {
         if (login_password.equals("admin") &&
                 password.getText().toString().equals("admin")) {
             NavHostFragment.findNavController(FirstFragment.this)
-                    .navigate(R.id.action_FirstFragment_to_blankFragment);
+                    .navigate(R.id.action_FirstFragment_to_AdminFragment);
         }
         mAuth.signInWithEmailAndPassword(login_email, login_password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -138,7 +140,7 @@ public class FirstFragment extends Fragment {
                 if (task.isSuccessful()) {
                     if (admins.indexOf(mAuth.getCurrentUser().getUid()) != -1) {
                         NavHostFragment.findNavController(FirstFragment.this)
-                                .navigate(R.id.action_FirstFragment_to_blankFragment);
+                                .navigate(R.id.action_FirstFragment_to_AdminFragment);
                     }
                     else{
                         NavHostFragment.findNavController(FirstFragment.this)

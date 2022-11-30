@@ -18,7 +18,7 @@
             android:id="@+id/action_FirstFragment_to_signupFragment"
             app:destination="@id/signupFragment" />
         <action
-            android:id="@+id/action_FirstFragment_to_blankFragment"
+            android:id="@+id/action_FirstFragment_to_AdminFragment"
             app:destination="@id/admin_page" />
     </fragment>
     <fragment
