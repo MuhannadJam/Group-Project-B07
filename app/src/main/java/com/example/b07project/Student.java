@@ -37,7 +37,7 @@ public class Student {
         int j = s.coursesPlanned.size();
         while (j > 0) {
             for (int i =0; i < s.coursesPlanned.size(); i++) {
-                if ((s.coursesPlanned.get(i).prereq.isEmpty() || s.coursesPlanned.get(i).prereq.containsAll(s.coursesTaken)) && (s.coursesPlanned.get(i).session.contains("F"))) {
+                if ((s.coursesPlanned.get(i).prereq.isEmpty() || s.coursesPlanned.get(i).prereq.containsAll(s.coursesTaken)) && (s.coursesPlanned.get(i).session.contains("F")) && !(timetable.contains(s.coursesPlanned.get(i)))) {
                     //assume that user is making a timetable before Fall Session
                     s.coursesTaken.add(s.coursesPlanned.get(i));//
                     timetable.add(s.coursesPlanned.get(i));
@@ -46,7 +46,7 @@ public class Student {
                 }
             }
             for (int i =0; i < s.coursesPlanned.size(); i++) {
-                if ((s.coursesPlanned.get(i).prereq.isEmpty() || s.coursesPlanned.get(i).prereq.containsAll(s.coursesTaken)) && (s.coursesPlanned.get(i).session.contains("W"))) {
+                if ((s.coursesPlanned.get(i).prereq.isEmpty() || s.coursesPlanned.get(i).prereq.containsAll(s.coursesTaken)) && (s.coursesPlanned.get(i).session.contains("W"))&& !(timetable.contains(s.coursesPlanned.get(i)))) {
                     s.coursesTaken.add(s.coursesPlanned.get(i));
                     timetable.add(s.coursesPlanned.get(i));
                     s.coursesPlanned.remove(s.coursesPlanned.get(i));
@@ -54,7 +54,7 @@ public class Student {
                 }
             }
             for (int i =0; i < s.coursesPlanned.size(); i++) {
-                if ((s.coursesPlanned.get(i).prereq.isEmpty() || s.coursesPlanned.get(i).prereq.containsAll(s.coursesTaken)) && (s.coursesPlanned.get(i).session.contains("S"))) {
+                if ((s.coursesPlanned.get(i).prereq.isEmpty() || s.coursesPlanned.get(i).prereq.containsAll(s.coursesTaken)) && (s.coursesPlanned.get(i).session.contains("S"))&& !(timetable.contains(s.coursesPlanned.get(i)))) {
                     s.coursesTaken.add(s.coursesPlanned.get(i));
                     timetable.add(s.coursesPlanned.get(i));
                     s.coursesPlanned.remove(s.coursesPlanned.get(i));
