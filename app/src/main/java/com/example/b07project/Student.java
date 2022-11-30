@@ -31,6 +31,15 @@ public class Student {
                     coursesPlanned.add((course.prereq.get(k)));
                 }
             }
+            for (int i = 0; i < coursesPlanned.size(); i++)
+            {
+                for (int k = 0; k < course.prereq.size(); k++) {
+                    if ((!(coursesPlanned.contains(coursesPlanned.get(i).prereq.get(k)))) && !(coursesTaken.contains(coursesPlanned.get(i).prereq.get(k)))) {
+                        coursesPlanned.add((coursesPlanned.get(i).prereq.get(k)));
+                    }
+                }
+            }
+
         }
 
     }
