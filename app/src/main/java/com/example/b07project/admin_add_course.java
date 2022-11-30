@@ -13,8 +13,11 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 
 import com.example.b07project.databinding.AdminAddCourseBinding;
 
@@ -33,6 +36,8 @@ public class admin_add_course extends Fragment {
     boolean fall_clicked;
     boolean winter_clicked;
     boolean summer_clicked;
+
+    String[] items = {"BO7", "BO7", "BO7", "BO7", "BO7", "BO7", "BO7"};
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -62,7 +67,9 @@ public class admin_add_course extends Fragment {
         courseName = (EditText) view.findViewById(R.id.addcourse_name);
         courseCode = (EditText) view.findViewById(R.id.addcourse_code);
         fall_button = (Button) view.findViewById(R.id.button_admin_fall);
-
+        ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, items);
+        ListView listView = (ListView) view.findViewById(R.id.prereq_list);
+        listView.setAdapter(itemsAdapter);
         return view;
     }
 

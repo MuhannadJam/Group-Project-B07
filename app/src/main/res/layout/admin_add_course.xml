@@ -95,16 +95,15 @@
         android:id="@+id/button_add"
         android:layout_width="147dp"
         android:layout_height="65dp"
-        android:layout_marginStart="132dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="132dp"
         android:background="@drawable/roundstyle"
         android:backgroundTint="@color/MediumBlue"
         android:padding="20dp"
         android:text="@string/add_course"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton4" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.914" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_admin_winter"
@@ -136,5 +135,21 @@
         app:layout_constraintEnd_toStartOf="@+id/imageButton4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_admin_winter" />
+
+    <LinearLayout
+        android:layout_width="243dp"
+        android:layout_height="84dp"
+        android:layout_marginTop="290dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ListView
+            android:id="@+id/prereq_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
