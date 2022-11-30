@@ -23,17 +23,19 @@ public class Student {
 
     }
 
-    public ArrayList<Course> generateTimetable(Student s) {
-        ArrayList<Course> timetable = new ArrayList<Course>();
-        for (int i = 0; i < s.coursesPlanned.size(); i++) {
-            for (int k = 0; k < s.coursesTaken.size(); k++) {
-                if (!(s.coursesTaken.contains(s.coursesPlanned.get(i).prereq.get(k)))) {
-                    if (!(s.coursesPlanned.contains(s.coursesPlanned.get(i).prereq.get(k)))) {
-                        s.coursesPlanned.add((s.coursesPlanned.get(i).prereq.get(k)));
-                    }
+    public void addCourseToPlanned(Course course){
+        coursesPlanned.add(course);
+        if (!(coursesTaken.containsAll(course.prereq))) {
+            for (int k = 0; k < course.prereq.size(); k++) {
+                if ((!(coursesPlanned.contains(course.prereq.get(k)))) && !(coursesTaken.contains(course.prereq.get(k)))) {
+                    coursesPlanned.add((course.prereq.get(k)));
                 }
             }
         }
+
+    }
+    public ArrayList<Course> generateTimetable(Student s) {
+        ArrayList<Course> timetable = new ArrayList<Course>();
         int j = s.coursesPlanned.size();
         while (j > 0) {
             for (int i =0; i < s.coursesPlanned.size(); i++) {
