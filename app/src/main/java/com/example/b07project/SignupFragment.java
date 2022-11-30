@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +18,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
 
 public class SignupFragment extends Fragment {
 
@@ -42,18 +46,32 @@ public class SignupFragment extends Fragment {
     }
 
     public void registerUser() {
-        if (name.getText().toString().equals("")) {
+        String signup_name = name.getText().toString().trim();
+        String signup_email = email.getText().toString().trim();
+        String signup_password = password.getText().toString().trim();
+
+        if (signup_name.equals("")) {
             name.setError("Name required");
             name.requestFocus();
             return;
         }
-        if (email.getText().toString().equals("")) {
+        if (signup_email.equals("")) {
             email.setError("Email required");
             email.requestFocus();
             return;
         }
-        if (password.getText().toString().equals("")) {
+        if (!Patterns.EMAIL_ADDRESS.matcher(signup_email).matches()) {
+            email.setError("Invalid Email");
+            email.requestFocus();
+            return;
+        }
+        if (signup_password.equals("")) {
             password.setError("Password required");
+            password.requestFocus();
+            return;
+        }
+        if (signup_password.length() < 6) {
+            password.setError("Password too short");
             password.requestFocus();
             return;
         }
@@ -62,7 +80,7 @@ public class SignupFragment extends Fragment {
             c_password.requestFocus();
             return;
         }
-        if (!(password.getText().toString().equals(c_password.getText().toString()))){
+        if (!(signup_password.equals(c_password.getText().toString().trim()))){
             c_password.setError("Password does not match");
             c_password.requestFocus();
             return;
@@ -76,12 +94,12 @@ public class SignupFragment extends Fragment {
             public void onComplete(@NonNull Task<AuthResult> task) {
 
                 if(task.isSuccessful()) {
+
                     Student student = new Student(name.getText().toString().trim(),
-                            email.getText().toString().trim());
+                            email.getText().toString().trim(), new ArrayList<>());
 
-
-                    FirebaseDatabase.getInstance().getReference("Students").
-                            child(FirebaseAuth.getInstance().getCurrentUser().getUid()).
+                    FirebaseDatabase.getInstance().getReference("Students").child(FirebaseAuth.getInstance()
+                                    .getCurrentUser().getUid()).
                             setValue(student).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
