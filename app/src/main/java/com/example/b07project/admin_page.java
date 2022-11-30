@@ -12,10 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.example.b07project.databinding.AdminPageBinding;
 import com.example.b07project.databinding.FragmentMainPageBinding;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class admin_page extends Fragment {
 
     View view;
+    FirebaseAuth mAuth;
+
     private android.app.Fragment binding;
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
@@ -26,6 +29,15 @@ public class admin_page extends Fragment {
             public void onClick(View view) {
                 NavHostFragment.findNavController(admin_page.this)
                         .navigate(R.id.action_admin_page_to_admin_add_course2);
+            }
+        });
+        view.findViewById(R.id.log_out_button_admin).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                mAuth.signOut();
+                NavHostFragment.findNavController(admin_page.this)
+                        .navigate(R.id.action_admin_page_to_FirstFragment);
             }
         });
 
@@ -40,6 +52,8 @@ public class admin_page extends Fragment {
         // Inflate the layout for this fragment
 
         view = inflater.inflate(R.layout.admin_page, container, false);
+
+        mAuth = FirebaseAuth.getInstance();
 
         return view;
 

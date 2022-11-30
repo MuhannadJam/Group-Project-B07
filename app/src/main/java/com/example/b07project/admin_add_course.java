@@ -43,6 +43,7 @@ public class admin_add_course extends Fragment {
 
     String[] items = {"BO7", "BO7", "BO7", "BO7", "BO7", "BO7", "BO7"};
 
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -97,6 +98,7 @@ public class admin_add_course extends Fragment {
                 }
             }
         });
+
 
     }
 
