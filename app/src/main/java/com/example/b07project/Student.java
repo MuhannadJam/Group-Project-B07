@@ -34,32 +34,32 @@ public class Student {
         }
 
     }
-    public ArrayList<Course> generateTimetable(Student s) {
+    public ArrayList<Course> generateTimetable() {
         ArrayList<Course> timetable = new ArrayList<Course>();
-        int j = s.coursesPlanned.size();
+        int j = coursesPlanned.size();
         while (j > 0) {
-            for (int i =0; i < s.coursesPlanned.size(); i++) {
-                if ((s.coursesPlanned.get(i).prereq.isEmpty() || s.coursesTaken.containsAll(s.coursesPlanned.get(i).prereq)) && (s.coursesPlanned.get(i).session.contains("F")) && !(timetable.contains(s.coursesPlanned.get(i)))) {
+            for (int i =0; i < coursesPlanned.size(); i++) {
+                if ((coursesPlanned.get(i).prereq.isEmpty() || coursesTaken.containsAll(coursesPlanned.get(i).prereq)) && (coursesPlanned.get(i).session.contains("F")) && !(timetable.contains(coursesPlanned.get(i)))) {
                     //assume that user is making a timetable before Fall Session
-                    s.coursesTaken.add(s.coursesPlanned.get(i));//instead of doing this i can duplicate courses taken and use another one
-                    timetable.add(s.coursesPlanned.get(i));
-                    s.coursesPlanned.remove(s.coursesPlanned.get(i));
+                    coursesTaken.add(coursesPlanned.get(i));//instead of doing this i can duplicate courses taken and use another one
+                    timetable.add(coursesPlanned.get(i));
+                    coursesPlanned.remove(coursesPlanned.get(i));
                     j--;
                 }
             }
-            for (int i =0; i < s.coursesPlanned.size(); i++) {
-                if ((s.coursesPlanned.get(i).prereq.isEmpty() || s.coursesTaken.containsAll(s.coursesPlanned.get(i).prereq)) && (s.coursesPlanned.get(i).session.contains("W"))&& !(timetable.contains(s.coursesPlanned.get(i)))) {
-                    s.coursesTaken.add(s.coursesPlanned.get(i));
-                    timetable.add(s.coursesPlanned.get(i));
-                    s.coursesPlanned.remove(s.coursesPlanned.get(i));
+            for (int i =0; i < coursesPlanned.size(); i++) {
+                if ((coursesPlanned.get(i).prereq.isEmpty() || coursesTaken.containsAll(coursesPlanned.get(i).prereq)) && (coursesPlanned.get(i).session.contains("W"))&& !(timetable.contains(coursesPlanned.get(i)))) {
+                    coursesTaken.add(coursesPlanned.get(i));
+                    timetable.add(coursesPlanned.get(i));
+                    coursesPlanned.remove(coursesPlanned.get(i));
                     j--;
                 }
             }
-            for (int i =0; i < s.coursesPlanned.size(); i++) {
-                if ((s.coursesPlanned.get(i).prereq.isEmpty() || s.coursesTaken.containsAll(s.coursesPlanned.get(i).prereq)) && (s.coursesPlanned.get(i).session.contains("S"))&& !(timetable.contains(s.coursesPlanned.get(i)))) {
-                    s.coursesTaken.add(s.coursesPlanned.get(i));
-                    timetable.add(s.coursesPlanned.get(i));
-                    s.coursesPlanned.remove(s.coursesPlanned.get(i));
+            for (int i =0; i < coursesPlanned.size(); i++) {
+                if ((coursesPlanned.get(i).prereq.isEmpty() || coursesTaken.containsAll(coursesPlanned.get(i).prereq)) && (coursesPlanned.get(i).session.contains("S"))&& !(timetable.contains(coursesPlanned.get(i)))) {
+                    coursesTaken.add(coursesPlanned.get(i));
+                    timetable.add(coursesPlanned.get(i));
+                    coursesPlanned.remove(coursesPlanned.get(i));
                     j--;
                 }
             }
