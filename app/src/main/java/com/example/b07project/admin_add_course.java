@@ -20,49 +20,19 @@ import com.example.b07project.databinding.AdminAddCourseBinding;
 
 import java.util.ArrayList;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link admin_add_course#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class admin_add_course extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+
     View view;
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     EditText courseName;
     EditText courseCode;
     Button fall_button;
     ArrayList <Course> prereq;
 
-
-    public admin_add_course() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment admin_add_course.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static admin_add_course newInstance(String param1, String param2) {
-        admin_add_course fragment = new admin_add_course();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    boolean fall_clicked;
+    boolean winter_clicked;
+    boolean summer_clicked;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -71,17 +41,15 @@ public class admin_add_course extends Fragment {
         fall_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (true) {
+                if (fall_clicked) {
                     fall_button.setBackgroundResource(R.drawable.roundstyle);
                     fall_button.setBackgroundTintList(getContext().getResources().getColorStateList(R.color.MediumBlue));
                 } else {
                     fall_button.setBackgroundResource(R.drawable.roundstyle);
                     fall_button.setBackgroundTintList(getContext().getResources().getColorStateList(R.color.DarkBlue));
-
                 }
             }
         });
-
 
     }
 
@@ -97,4 +65,12 @@ public class admin_add_course extends Fragment {
 
         return view;
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+    }
+
 }
+
+
