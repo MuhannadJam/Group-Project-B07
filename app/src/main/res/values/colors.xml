@@ -12,4 +12,5 @@
     <color name="DarkBlue">#282359</color>
     <color name="AlternateBlue">#BCCBEE</color>
     <color name="BlueGrey">#5E6274</color>
+    <color name="SelectedBlue">#063970</color>
 </resources>

@@ -30,7 +30,11 @@ public class admin_add_course extends Fragment {
 
     EditText courseName;
     EditText courseCode;
+
     Button fall_button;
+    Button winter_button;
+    Button summer_button;
+
     ArrayList <Course> prereq;
 
     boolean fall_clicked;
@@ -48,10 +52,48 @@ public class admin_add_course extends Fragment {
             public void onClick(View view) {
                 if (fall_clicked) {
                     fall_button.setBackgroundResource(R.drawable.roundstyle);
-                    fall_button.setBackgroundTintList(getContext().getResources().getColorStateList(R.color.MediumBlue));
+                    fall_button.setBackgroundTintList(getContext().getResources()
+                            .getColorStateList(R.color.MediumBlue));
+                    fall_clicked = false;
                 } else {
                     fall_button.setBackgroundResource(R.drawable.roundstyle);
-                    fall_button.setBackgroundTintList(getContext().getResources().getColorStateList(R.color.DarkBlue));
+                    fall_button.setBackgroundTintList(getContext().getResources()
+                            .getColorStateList(R.color.SelectedBlue));
+                    fall_clicked = true;
+                }
+            }
+        });
+
+        winter_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (winter_clicked) {
+                    winter_button.setBackgroundResource(R.drawable.roundstyle);
+                    winter_button.setBackgroundTintList(getContext().getResources()
+                            .getColorStateList(R.color.MediumBlue));
+                    winter_clicked = false;
+                } else {
+                    winter_button.setBackgroundResource(R.drawable.roundstyle);
+                    winter_button.setBackgroundTintList(getContext().getResources()
+                            .getColorStateList(R.color.SelectedBlue));
+                    winter_clicked = true;
+                }
+            }
+        });
+
+        summer_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (summer_clicked) {
+                    summer_button.setBackgroundResource(R.drawable.roundstyle);
+                    summer_button.setBackgroundTintList(getContext().getResources()
+                            .getColorStateList(R.color.MediumBlue));
+                    summer_clicked = false;
+                } else {
+                    summer_button.setBackgroundResource(R.drawable.roundstyle);
+                    summer_button.setBackgroundTintList(getContext().getResources()
+                            .getColorStateList(R.color.SelectedBlue));
+                    summer_clicked = true;
                 }
             }
         });
@@ -64,9 +106,14 @@ public class admin_add_course extends Fragment {
         // Inflate the layout for this fragment
 
         view = inflater.inflate(R.layout.admin_add_course, container, false);
+
         courseName = (EditText) view.findViewById(R.id.addcourse_name);
         courseCode = (EditText) view.findViewById(R.id.addcourse_code);
+
         fall_button = (Button) view.findViewById(R.id.button_admin_fall);
+        winter_button = (Button) view.findViewById(R.id.button_admin_winter);
+        summer_button = (Button) view.findViewById(R.id.button_admin_summer);
+
         ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, items);
         ListView listView = (ListView) view.findViewById(R.id.prereq_list);
         listView.setAdapter(itemsAdapter);
