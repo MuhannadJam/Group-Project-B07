@@ -51,6 +51,7 @@ public class admin_add_course extends Fragment {
 
     String[] items = {"BO7", "BO7", "BO7", "BO7", "BO7", "BO7", "BO7"};
 
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -107,6 +108,7 @@ public class admin_add_course extends Fragment {
         });
 
 
+<<<<<<< HEAD
 
 
         addCourse.setOnClickListener(new View.OnClickListener() {
@@ -165,6 +167,8 @@ public class admin_add_course extends Fragment {
             }
 
         });
+=======
+>>>>>>> f61edb9e4dd2a405da2759f889cd56cfec95846b
     }
 
     @Override
