@@ -71,7 +71,7 @@ public class LoginFragment extends Fragment {
         super.onStart();
 
         if(mAuth.getCurrentUser() != null){
-            if (!(admins.indexOf(mAuth.getCurrentUser().getUid()) != -1)) {
+            if (admins.indexOf(mAuth.getCurrentUser().getUid()) != -1) {
                 NavHostFragment.findNavController(LoginFragment.this
                 ).navigate(R.id.action_FirstFragment_to_AdminFragment);
             }
