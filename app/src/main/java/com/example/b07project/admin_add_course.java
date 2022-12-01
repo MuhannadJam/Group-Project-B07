@@ -24,6 +24,7 @@ import android.widget.Toast;
 import com.example.b07project.databinding.AdminAddCourseBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -130,7 +131,7 @@ public class admin_add_course extends Fragment {
                 }
 
                 if (!(fall_clicked || winter_clicked || summer_clicked)) {
-                    Toast.makeText(getContext(), "Please Select a Session", Toast.LENGTH_SHORT)
+                    Snackbar.make(view, "Please Select a Session", Snackbar.LENGTH_SHORT)
                             .show();
                     return;
                 }
@@ -147,8 +148,7 @@ public class admin_add_course extends Fragment {
 
                 Course course = new Course(name, code, sessions, prereq);
 
-                FirebaseDatabase.getInstance().getReference("Courses").child(FirebaseAuth.getInstance()
-                                .getCurrentUser().getUid()).
+                FirebaseDatabase.getInstance().getReference("Courses").child(code).
                         setValue(course).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
