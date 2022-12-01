@@ -104,17 +104,16 @@ public class LoginFragment extends Fragment {
             email.setError("Email required");
             email.requestFocus();
             return;
-        }
-        if (!Patterns.EMAIL_ADDRESS.matcher(login_email).matches()) {
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(login_email).matches()) {
             email.setError("Invalid Email");
             email.requestFocus();
             return;
-        }
-        if (login_password.equals("")) {
+        } else if (login_password.equals("")) {
             password.setError("Password required");
             password.requestFocus();
             return;
         }
+
         if (login_password.equals("admin") &&
                 password.getText().toString().equals("admin")) {
             NavHostFragment.findNavController(LoginFragment.this)
