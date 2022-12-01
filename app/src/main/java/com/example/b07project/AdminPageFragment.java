@@ -10,13 +10,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+
+
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import com.example.b07project.databinding.AdminPageBinding;
+import com.example.b07project.databinding.FragmentMainPageBinding;
+
 import com.google.firebase.auth.FirebaseAuth;
 
 public class AdminPageFragment extends Fragment {
 
     View view;
     FirebaseAuth mAuth;
-
+    String[] items = {"BO7", "BO7", "BO7", "BO7", "BO7", "BO7", "BO7"};
     private android.app.Fragment binding;
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
@@ -52,6 +60,9 @@ public class AdminPageFragment extends Fragment {
 
         mAuth = FirebaseAuth.getInstance();
 
+        ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, items);
+        ListView listView = (ListView) view.findViewById(R.id.course_list);
+        listView.setAdapter(itemsAdapter);
         return view;
 
 
