@@ -108,7 +108,6 @@ public class admin_add_course extends Fragment {
         });
 
 
-<<<<<<< HEAD
 
 
         addCourse.setOnClickListener(new View.OnClickListener() {
@@ -167,8 +166,7 @@ public class admin_add_course extends Fragment {
             }
 
         });
-=======
->>>>>>> f61edb9e4dd2a405da2759f889cd56cfec95846b
+
     }
 
     @Override
