@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class Course {
     public String name;
     public String code;
-    public ArrayList<String> session= new ArrayList<>(); //F, W, S for fall, winter and summer
+    public ArrayList<String> session= new ArrayList<>(); //Fall, Winter, Summer
     public ArrayList<Course> prereq = new ArrayList<>();
 
     public Course(String name, String code, ArrayList<String> session,

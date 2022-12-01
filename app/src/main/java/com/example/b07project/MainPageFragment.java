@@ -1,6 +1,7 @@
 package com.example.b07project;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +13,12 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.b07project.databinding.FragmentMainPageBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainPageFragment extends Fragment {
 
@@ -26,6 +32,7 @@ public class MainPageFragment extends Fragment {
     Button manageCourses;
     Button manageTimeline;
     Button logout;
+
 
     View view;
 
@@ -44,8 +51,10 @@ public class MainPageFragment extends Fragment {
 
         mAuth = FirebaseAuth.getInstance();
 
-        studentName = mAuth.getCurrentUser().getDisplayName();
         displayName =  view.findViewById(R.id.student_name);
+
+
+
 
         return view;
 
@@ -55,7 +64,17 @@ public class MainPageFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        //displayName.setText(studentName);
+        DatabaseReference ref = FirebaseDatabase
+                .getInstance("https://bo7-project-default-rtdb.firebaseio.com/")
+                .getReference("Students").child(mAuth.getCurrentUser().getUid()).child("name");
+        ref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (task.isSuccessful()) {
+                    displayName.setText(task.getResult().getValue().toString());
+                }
+            }
+        });
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
