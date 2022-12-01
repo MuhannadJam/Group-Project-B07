@@ -35,4 +35,9 @@ public class CourseMenuFragment extends Fragment {
         listView.setAdapter(itemsAdapter);
         return view;
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+    }
 }

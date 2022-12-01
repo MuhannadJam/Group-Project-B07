@@ -68,4 +68,9 @@ public class AdminPageFragment extends Fragment {
 
 
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+    }
 }

@@ -71,7 +71,8 @@ public class MainPageFragment extends Fragment {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if (task.isSuccessful()) {
-                    displayName.setText(task.getResult().getValue().toString());
+                    if(task.getResult().getValue() != null)
+                        displayName.setText(task.getResult().getValue().toString());
                 }
             }
         });
@@ -98,7 +99,7 @@ public class MainPageFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        binding = null;
+        view = null;
     }
 
 }
