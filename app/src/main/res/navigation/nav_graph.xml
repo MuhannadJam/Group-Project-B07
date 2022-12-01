@@ -56,7 +56,11 @@
         android:id="@+id/admin_add_course"
         android:name="com.example.b07project.admin_add_course"
         android:label="admin_add_course"
-        tools:layout="@layout/admin_add_course" />
+        tools:layout="@layout/admin_add_course" >
+        <action
+            android:id="@+id/action_admin_add_course_to_admin_page"
+            app:destination="@id/admin_page" />
+    </fragment>
     <fragment
         android:id="@+id/course_menu"
         android:name="com.example.b07project.course_menu"

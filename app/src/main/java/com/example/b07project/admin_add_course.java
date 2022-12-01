@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.view.TintableBackgroundView;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,8 +19,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.b07project.databinding.AdminAddCourseBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -34,8 +40,10 @@ public class admin_add_course extends Fragment {
     Button fall_button;
     Button winter_button;
     Button summer_button;
+    Button addCourse;
 
-    ArrayList <Course> prereq;
+    ArrayList <String> sessions = new ArrayList<>();
+    ArrayList <Course> prereq = new ArrayList<>();
 
     boolean fall_clicked;
     boolean winter_clicked;
@@ -98,6 +106,65 @@ public class admin_add_course extends Fragment {
             }
         });
 
+
+
+
+        addCourse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String name = courseName.getText().toString().trim();
+                String code = courseCode.getText().toString().trim();
+
+
+                if (name.equals("")) {
+                    courseName.setError("Course Name Required");
+                    courseName.requestFocus();
+                    return;
+                }
+                if (code.equals("")) {
+                    courseCode.setError("Course Code Required");
+                    courseCode.requestFocus();
+                    return;
+                }
+
+                if (!(fall_clicked || winter_clicked || summer_clicked)) {
+                    Toast.makeText(getContext(), "Please Select a Session", Toast.LENGTH_SHORT)
+                            .show();
+                    return;
+                }
+                if (fall_clicked) {
+                    sessions.add("Fall");
+                }
+                if (winter_clicked) {
+                    sessions.add("Winter");
+                }
+                if (summer_clicked) {
+                    sessions.add("Winter");
+                }
+
+
+                Course course = new Course(name, code, sessions, prereq);
+
+                FirebaseDatabase.getInstance().getReference("Courses").child(FirebaseAuth.getInstance()
+                                .getCurrentUser().getUid()).
+                        setValue(course).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    NavHostFragment.findNavController(admin_add_course.this)
+                                            .navigate(R.id.action_admin_add_course_to_admin_page);
+                                }
+                                else {
+                                    Toast.makeText(getContext(), "Failed to Add Course", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+
+
+            }
+
+        });
     }
 
     @Override
@@ -113,6 +180,7 @@ public class admin_add_course extends Fragment {
         fall_button = (Button) view.findViewById(R.id.button_admin_fall);
         winter_button = (Button) view.findViewById(R.id.button_admin_winter);
         summer_button = (Button) view.findViewById(R.id.button_admin_summer);
+        addCourse = (Button) view.findViewById(R.id.button_add);
 
         ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, items);
         ListView listView = (ListView) view.findViewById(R.id.prereq_list);

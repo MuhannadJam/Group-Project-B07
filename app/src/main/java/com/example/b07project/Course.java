@@ -18,7 +18,7 @@ public class Course {
     public ArrayList<String> session= new ArrayList<>(); //F, W, S for fall, winter and summer
     public ArrayList<Course> prereq = new ArrayList<>();
 
-    public Course(String name, String code, String level, ArrayList<String> session,
+    public Course(String name, String code, ArrayList<String> session,
                   ArrayList<Course> prereq) {
         this.name = name;
         this.code = code;
