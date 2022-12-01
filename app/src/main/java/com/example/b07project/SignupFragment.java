@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -120,8 +121,8 @@ public class SignupFragment extends Fragment {
                             });
                 }
                 else {
-                    Toast.makeText(view.getContext(), "User O Registration Failed",
-                            Toast.LENGTH_SHORT).show();
+                    Snackbar.make(view, "Email already registered, use a different Email",
+                            Snackbar.LENGTH_SHORT).show();
                 }
             }
         });

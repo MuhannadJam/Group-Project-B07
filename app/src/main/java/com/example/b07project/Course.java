@@ -18,6 +18,9 @@ public class Course {
     public ArrayList<String> session= new ArrayList<>(); //Fall, Winter, Summer
     public ArrayList<Course> prereq = new ArrayList<>();
 
+    public Course() {
+
+    }
     public Course(String name, String code, ArrayList<String> session,
                   ArrayList<Course> prereq) {
         this.name = name;
@@ -26,7 +29,10 @@ public class Course {
         this.prereq.addAll(prereq);
     }
 
-    public void getCourses(ArrayList <Course> courses, View view) {
+    public static ArrayList<Course> getCourses() {
+
+        ArrayList <Course> courses = new ArrayList<Course>();
+
         DatabaseReference ref = FirebaseDatabase.
                 getInstance("https://bo7-project-default-rtdb.firebaseio.com/").
                 getReference("Courses");
@@ -45,6 +51,8 @@ public class Course {
                 }
             }
         });
+
+        return courses;
     }
 
 

@@ -17,6 +17,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.b07project.databinding.FragmentFirstBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -67,22 +68,6 @@ public class LoginFragment extends Fragment {
 
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        if(mAuth.getCurrentUser() != null){
-            if (admins.indexOf(mAuth.getCurrentUser().getUid()) != -1) {
-                NavHostFragment.findNavController(LoginFragment.this
-                ).navigate(R.id.action_FirstFragment_to_AdminFragment);
-            }
-            else {
-                NavHostFragment.findNavController(LoginFragment.this
-                ).navigate(R.id.action_FirstFragment_to_SecondFragment);
-            }
-        }
-
-    }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -150,8 +135,7 @@ public class LoginFragment extends Fragment {
 
                 }
                 else{
-                    Toast.makeText(view.getContext(), "Invalid Credentials!",
-                            Toast.LENGTH_SHORT).show();
+                    Snackbar.make(view, "Invalid Credentials!", Snackbar.LENGTH_SHORT).show();
                 }
             }
         });
