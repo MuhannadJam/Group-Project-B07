@@ -52,7 +52,7 @@
         app:layout_constraintTop_toBottomOf="@+id/addcourse_code" />
 
     <ImageButton
-        android:id="@+id/imageButton4"
+        android:id="@+id/add_prereq_button"
         android:layout_width="53dp"
         android:layout_height="53dp"
         android:layout_marginTop="22dp"
@@ -132,7 +132,7 @@
         android:hint="Prerequisites"
         android:inputType="textPersonName"
         android:padding="14dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton4"
+        app:layout_constraintEnd_toStartOf="@+id/add_prereq_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_admin_winter" />
 

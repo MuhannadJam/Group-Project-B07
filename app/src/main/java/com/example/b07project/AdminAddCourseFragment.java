@@ -13,12 +13,15 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
@@ -28,16 +31,25 @@ public class AdminAddCourseFragment extends Fragment {
 
     View view;
 
+    ListView listView;
+
     EditText courseName;
     EditText courseCode;
+    EditText prereqCode;
 
     Button fall_button;
     Button winter_button;
     Button summer_button;
     Button addCourse;
+    ImageButton addPrereq;
 
     ArrayList <String> sessions = new ArrayList<>();
+    ArrayList <Course> courses  = new ArrayList<>();
     ArrayList <Course> prereq = new ArrayList<>();
+    ArrayList <String> prereqDisplay;
+    ArrayList <String> courseCodes;
+    DatabaseReference ref;
+
 
     boolean fall_clicked;
     boolean winter_clicked;
@@ -49,6 +61,22 @@ public class AdminAddCourseFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        ref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (DataSnapshot child: task.getResult().getChildren()) {
+                        Course course = child.getValue(Course.class);
+                        courses.add(course);
+                        courseCodes.add(course.code);
+                    }
+                }
+                else {
+                    return;
+                }
+            }
+        });
 
         fall_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,7 +129,44 @@ public class AdminAddCourseFragment extends Fragment {
             }
         });
 
+        addPrereq.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                String prereq_name = prereqCode.getText().toString().trim();
+
+                if (prereq_name.equals("")) {
+                    prereqCode.setError("Course Code required");
+                    prereqCode.requestFocus();
+                    return;
+                }
+                if (prereq_name.equals(courseName.getText().toString().trim())) {
+                    prereqCode.setError("Course cannot be prerequisite of itself");
+                    prereqCode.requestFocus();
+                    return;
+                }
+                if (prereqDisplay.indexOf(prereq_name) != -1) {
+                    prereqCode.setError("Prerequisite already added");
+                    prereqCode.requestFocus();
+                    return;
+                }
+                if (courseCodes.indexOf(prereq_name) != -1) {
+
+                    prereqDisplay.add(prereq_name);
+
+                    ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(getContext(),
+                            android.R.layout.simple_list_item_1, prereqDisplay);
+                    listView.setAdapter(itemsAdapter);
+                }
+                else {
+                    prereqCode.setError("Course Code does not exist");
+                    prereqCode.requestFocus();
+                    return;
+                }
+
+                prereqCode.setText("");
+            }
+        });
 
 
         addCourse.setOnClickListener(new View.OnClickListener() {
@@ -135,9 +200,12 @@ public class AdminAddCourseFragment extends Fragment {
                     sessions.add("Winter");
                 }
                 if (summer_clicked) {
-                    sessions.add("Winter");
+                    sessions.add("Summer");
                 }
 
+                for (String prereqs: prereqDisplay) {
+                    prereq.add(courses.get(courseCodes.indexOf(prereqs)));
+                }
 
                 Course course = new Course(name, code, sessions, prereq);
 
@@ -162,6 +230,7 @@ public class AdminAddCourseFragment extends Fragment {
 
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -169,17 +238,28 @@ public class AdminAddCourseFragment extends Fragment {
 
         view = inflater.inflate(R.layout.admin_add_course, container, false);
 
+        ref = FirebaseDatabase.getInstance("https://bo7-project-default-rtdb.firebaseio.com/").
+                getReference("Courses");
+
+        courseCodes = new ArrayList<>();
+
         courseName = (EditText) view.findViewById(R.id.addcourse_name);
         courseCode = (EditText) view.findViewById(R.id.addcourse_code);
+        prereqCode = (EditText) view.findViewById(R.id.addcourse_prereq);
 
         fall_button = (Button) view.findViewById(R.id.button_admin_fall);
         winter_button = (Button) view.findViewById(R.id.button_admin_winter);
         summer_button = (Button) view.findViewById(R.id.button_admin_summer);
         addCourse = (Button) view.findViewById(R.id.button_add);
+        addPrereq = (ImageButton) view.findViewById(R.id.add_prereq_button);
 
-        ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, items);
-        ListView listView = (ListView) view.findViewById(R.id.prereq_list);
-        listView.setAdapter(itemsAdapter);
+        listView = (ListView) view.findViewById(R.id.prereq_list);
+
+        prereqDisplay = new ArrayList<>();
+
+
+
+
         return view;
     }
 

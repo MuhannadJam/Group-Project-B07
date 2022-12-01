@@ -29,31 +29,4 @@ public class Course {
         this.prereq.addAll(prereq);
     }
 
-    public static ArrayList<Course> getCourses() {
-
-        ArrayList <Course> courses = new ArrayList<Course>();
-
-        DatabaseReference ref = FirebaseDatabase.
-                getInstance("https://bo7-project-default-rtdb.firebaseio.com/").
-                getReference("Courses");
-
-        ref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (DataSnapshot child: task.getResult().getChildren()) {
-                        Course course = child.getValue(Course.class);
-                        courses.add(course);
-                    }
-                }
-                else {
-                    return;
-                }
-            }
-        });
-
-        return courses;
-    }
-
-
 }

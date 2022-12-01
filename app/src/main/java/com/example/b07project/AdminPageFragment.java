@@ -1,5 +1,6 @@
 package com.example.b07project;
 
+import android.content.Intent;
 import android.graphics.CornerPathEffect;
 import android.os.Bundle;
 
@@ -21,7 +22,12 @@ import android.widget.ListView;
 import com.example.b07project.databinding.AdminPageBinding;
 import com.example.b07project.databinding.FragmentMainPageBinding;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -29,14 +35,47 @@ public class AdminPageFragment extends Fragment {
 
     View view;
     FirebaseAuth mAuth;
-    String[] items = {"BO7", "BO7", "BO7", "BO7", "BO7", "BO7", "BO7"};
+    ArrayList <String> courseCode;
 
-    ArrayList <Course> courses = new ArrayList<Course>();
+    ArrayList <Course> courses;
+
+    ListView listView;
 
     private android.app.Fragment binding;
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+
+        DatabaseReference ref = FirebaseDatabase.
+                getInstance("https://bo7-project-default-rtdb.firebaseio.com/").
+                getReference("Courses");
+
+
+
+        ref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (DataSnapshot child: task.getResult().getChildren()) {
+                        Course course = child.getValue(Course.class);
+                        courses.add(course);
+                    }
+
+                    for (Course c: courses) {
+                        courseCode.add(c.code);
+                    }
+
+                    ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(getContext(),
+                            android.R.layout.simple_list_item_1, courseCode);
+
+                    listView.setAdapter(itemsAdapter);
+                }
+                else {
+                    return;
+                }
+            }
+        });
 
 
         view.findViewById(R.id.button_add_course).setOnClickListener(new View.OnClickListener() {
@@ -69,12 +108,12 @@ public class AdminPageFragment extends Fragment {
 
         mAuth = FirebaseAuth.getInstance();
 
-        courses = Course.getCourses();
+        courses = new ArrayList<Course>();
 
-        ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(getContext(),
-                android.R.layout.simple_list_item_1, items);
-        ListView listView = (ListView) view.findViewById(R.id.course_list);
-        listView.setAdapter(itemsAdapter);
+        courseCode = new ArrayList<>();
+
+        listView = (ListView) view.findViewById(R.id.course_list);
+
         return view;
 
 
