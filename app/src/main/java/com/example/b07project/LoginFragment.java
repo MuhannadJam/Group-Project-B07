@@ -24,7 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
-public class FirstFragment extends Fragment {
+public class LoginFragment extends Fragment {
 
     private FragmentFirstBinding binding;
     private EditText email;
@@ -72,11 +72,11 @@ public class FirstFragment extends Fragment {
 
         if(mAuth.getCurrentUser() != null){
             if (!(admins.indexOf(mAuth.getCurrentUser().getUid()) != -1)) {
-                NavHostFragment.findNavController(FirstFragment.this
+                NavHostFragment.findNavController(LoginFragment.this
                 ).navigate(R.id.action_FirstFragment_to_AdminFragment);
             }
             else {
-                NavHostFragment.findNavController(FirstFragment.this
+                NavHostFragment.findNavController(LoginFragment.this
                 ).navigate(R.id.action_FirstFragment_to_SecondFragment);
             }
         }
@@ -90,7 +90,7 @@ public class FirstFragment extends Fragment {
         view.findViewById(R.id.signup).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(FirstFragment.this)
+                NavHostFragment.findNavController(LoginFragment.this)
                         .navigate(R.id.action_FirstFragment_to_signupFragment);
             }
         });
@@ -131,7 +131,7 @@ public class FirstFragment extends Fragment {
         }
         if (login_password.equals("admin") &&
                 password.getText().toString().equals("admin")) {
-            NavHostFragment.findNavController(FirstFragment.this)
+            NavHostFragment.findNavController(LoginFragment.this)
                     .navigate(R.id.action_FirstFragment_to_AdminFragment);
         }
         mAuth.signInWithEmailAndPassword(login_email, login_password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -139,11 +139,11 @@ public class FirstFragment extends Fragment {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     if (admins.indexOf(mAuth.getCurrentUser().getUid()) != -1) {
-                        NavHostFragment.findNavController(FirstFragment.this)
+                        NavHostFragment.findNavController(LoginFragment.this)
                                 .navigate(R.id.action_FirstFragment_to_AdminFragment);
                     }
                     else{
-                        NavHostFragment.findNavController(FirstFragment.this)
+                        NavHostFragment.findNavController(LoginFragment.this)
                                 .navigate(R.id.action_FirstFragment_to_SecondFragment);
                     }
 
