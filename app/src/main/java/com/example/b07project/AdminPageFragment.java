@@ -1,6 +1,5 @@
 package com.example.b07project;
 
-import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,11 +9,10 @@ import androidx.navigation.fragment.NavHostFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import com.example.b07project.databinding.AdminPageBinding;
-import com.example.b07project.databinding.FragmentMainPageBinding;
+
 import com.google.firebase.auth.FirebaseAuth;
 
-public class admin_page extends Fragment {
+public class AdminPageFragment extends Fragment {
 
     View view;
     FirebaseAuth mAuth;
@@ -27,7 +25,7 @@ public class admin_page extends Fragment {
         view.findViewById(R.id.button_add_course).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(admin_page.this)
+                NavHostFragment.findNavController(AdminPageFragment.this)
                         .navigate(R.id.action_admin_page_to_admin_add_course2);
             }
         });
@@ -36,11 +34,10 @@ public class admin_page extends Fragment {
             public void onClick(View view) {
 
                 mAuth.signOut();
-                NavHostFragment.findNavController(admin_page.this)
+                NavHostFragment.findNavController(AdminPageFragment.this)
                         .navigate(R.id.action_admin_page_to_FirstFragment);
             }
         });
-
     }
 
 

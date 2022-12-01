@@ -1,36 +1,29 @@
 package com.example.b07project;
 
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
-import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.view.TintableBackgroundView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.b07project.databinding.AdminAddCourseBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
-public class admin_add_course extends Fragment {
+public class AdminAddCourseFragment extends Fragment {
 
 
     View view;
@@ -153,7 +146,7 @@ public class admin_add_course extends Fragment {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
-                                    NavHostFragment.findNavController(admin_add_course.this)
+                                    NavHostFragment.findNavController(AdminAddCourseFragment.this)
                                             .navigate(R.id.action_admin_add_course_to_admin_page);
                                 }
                                 else {

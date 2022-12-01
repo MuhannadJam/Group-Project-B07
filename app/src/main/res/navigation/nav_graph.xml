@@ -23,7 +23,7 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="com.example.b07project.SecondFragment"
+        android:name="com.example.b07project.MainPageFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_main_page">
 
@@ -45,7 +45,7 @@
     </fragment>
     <fragment
         android:id="@+id/admin_page"
-        android:name="com.example.b07project.admin_page"
+        android:name="com.example.b07project.AdminPageFragment"
         android:label="fragment_blank"
         tools:layout="@layout/admin_page" >
         <action
@@ -57,7 +57,7 @@
     </fragment>
     <fragment
         android:id="@+id/admin_add_course"
-        android:name="com.example.b07project.admin_add_course"
+        android:name="com.example.b07project.AdminAddCourseFragment"
         android:label="admin_add_course"
         tools:layout="@layout/admin_add_course" >
         <action
@@ -66,6 +66,6 @@
     </fragment>
     <fragment
         android:id="@+id/course_menu"
-        android:name="com.example.b07project.course_menu"
+        android:name="com.example.b07project.CourseMenuFragment"
         android:label="course_menu" />
 </navigation>

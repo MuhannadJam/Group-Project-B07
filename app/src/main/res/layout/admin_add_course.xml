@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/LightBlue"
     android:backgroundTint="@color/LightBlue"
-    tools:context="admin_add_course">
+    tools:context=".AdminAddCourseFragment">
 
     <TextView
         android:id="@+id/add_course"

@@ -10,14 +10,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.example.b07project.databinding.CourseMenuBinding;
-import com.example.b07project.databinding.FragmentMainPageBinding;
-
-public class course_menu extends Fragment {
+public class CourseMenuFragment extends Fragment {
     String[] items = {"BO7", "BO7", "BO7", "BO7", "BO7", "BO7", "BO7"};
     View view;
 
-    public course_menu() {
+    public CourseMenuFragment() {
         // Required empty public constructor
     }
 
