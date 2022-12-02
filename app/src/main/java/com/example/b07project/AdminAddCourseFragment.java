@@ -139,9 +139,13 @@ public class AdminAddCourseFragment extends Fragment {
             public void onClick(View view) {
 
                 String prereq_name = prereqCode.getText().toString().trim();
-
+                if (courseCode.getText().toString().trim().equals("")) {
+                    prereqCode.setError("Course name and Code required");
+                    prereqCode.requestFocus();
+                    return;
+                }
                 if (prereq_name.equals("")) {
-                    prereqCode.setError("Course Code required");
+                    prereqCode.setError("Prerequisite Course Code required");
                     prereqCode.requestFocus();
                     return;
                 }
