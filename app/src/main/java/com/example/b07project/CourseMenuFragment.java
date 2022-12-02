@@ -33,7 +33,7 @@ public class CourseMenuFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.course_menu, container, false);
         ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, items);
-        ListView listView = (ListView) view.findViewById(R.id.add_courses_list);
+        ListView listView = (ListView) view.findViewById(R.id.course_taken_list);
         listView.setAdapter(itemsAdapter);
         return view;
     }
