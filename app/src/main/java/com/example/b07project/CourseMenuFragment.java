@@ -35,6 +35,9 @@ public class CourseMenuFragment extends Fragment {
         ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, items);
         ListView listView = (ListView) view.findViewById(R.id.course_taken_list);
         listView.setAdapter(itemsAdapter);
+        ArrayAdapter<String> itemsAdapter2 = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, items);
+        ListView listView2 = (ListView) view.findViewById(R.id.add_courses_list);
+        listView2.setAdapter(itemsAdapter);
         return view;
     }
     @Override

@@ -16,9 +16,10 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="348dp"
         android:src="@drawable/back_arrow"
+        app:layout_constraintBottom_toTopOf="@+id/header"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/header"
@@ -27,14 +28,16 @@
         android:layout_marginStart="33dp"
         android:layout_marginTop="65dp"
         android:layout_marginEnd="34dp"
+        android:layout_marginBottom="590dp"
         android:fontFamily="sans-serif-black"
         android:text="@string/course_menu"
         android:textColor="@color/DarkBlue"
         android:textSize="57sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"  />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/courses_taken_text"
