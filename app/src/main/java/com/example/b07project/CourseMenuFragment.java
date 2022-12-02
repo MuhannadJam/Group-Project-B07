@@ -9,11 +9,13 @@ import androidx.navigation.fragment.NavHostFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -32,10 +34,14 @@ public class CourseMenuFragment extends Fragment {
     ListView courseTakenList;
     ListView courseAddList;
 
+    ArrayList <Course> allCourses;
     ArrayList <String> courses;
     ArrayList <Course> coursesTaken;
     ArrayList <String> courseTakenDisplay;
     ArrayList <String> addCoursesDisplay;
+
+    ArrayAdapter<String> itemsAdapter1;
+    ArrayAdapter<String> itemsAdapter2;
 
     ImageView backButton;
 
@@ -66,6 +72,7 @@ public class CourseMenuFragment extends Fragment {
         courses = new ArrayList<String>();
         courseTakenDisplay = new ArrayList<>();
         addCoursesDisplay = new ArrayList<>();
+        allCourses = new ArrayList<Course>();
 
         courseTakenList = (ListView) view.findViewById(R.id.course_taken_list);
         courseAddList = (ListView) view.findViewById(R.id.add_courses_list);
@@ -95,10 +102,10 @@ public class CourseMenuFragment extends Fragment {
                         courseTakenDisplay.add(course.code);
                     }
 
-                    ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(getContext(),
+                    itemsAdapter1 = new ArrayAdapter<String>(getContext(),
                             android.R.layout.simple_list_item_1, courseTakenDisplay);
 
-                    courseTakenList.setAdapter(itemsAdapter);
+                    courseTakenList.setAdapter(itemsAdapter1);
                 }
                 else {
                     return;
@@ -112,6 +119,7 @@ public class CourseMenuFragment extends Fragment {
                 if (task.isSuccessful()) {
                     for (DataSnapshot child: task.getResult().getChildren()) {
                         Course course = child.getValue(Course.class);
+                        allCourses.add(course);
                         courses.add(course.code);
                     }
 
@@ -121,10 +129,10 @@ public class CourseMenuFragment extends Fragment {
                         }
                     }
 
-                    ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(getContext(),
+                    itemsAdapter2 = new ArrayAdapter<String>(getContext(),
                             android.R.layout.simple_list_item_1, addCoursesDisplay);
 
-                    courseAddList.setAdapter(itemsAdapter);
+                    courseAddList.setAdapter(itemsAdapter2);
                 }
                 else {
                     return;
@@ -132,7 +140,63 @@ public class CourseMenuFragment extends Fragment {
             }
         });
 
+        courseAddList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
+                courseTakenDisplay.add(addCoursesDisplay.get(i));
+                addCoursesDisplay.remove(addCoursesDisplay.get(i));
+
+                itemsAdapter1 = new ArrayAdapter<String>(getContext(),
+                        android.R.layout.simple_list_item_1, courseTakenDisplay);
+
+                courseTakenList.setAdapter(itemsAdapter1);
+
+                itemsAdapter2 = new ArrayAdapter<String>(getContext(),
+                        android.R.layout.simple_list_item_1, addCoursesDisplay);
+
+                courseAddList.setAdapter(itemsAdapter2);
+
+                updateDatabase();
+            }
+        });
+
+        courseTakenList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                addCoursesDisplay.add(courseTakenDisplay.get(i));
+                courseTakenDisplay.remove(courseTakenDisplay.get(i));
+
+
+                itemsAdapter1 = new ArrayAdapter<String>(getContext(),
+                        android.R.layout.simple_list_item_1, courseTakenDisplay);
+
+                courseTakenList.setAdapter(itemsAdapter1);
+
+                itemsAdapter2 = new ArrayAdapter<String>(getContext(),
+                        android.R.layout.simple_list_item_1, addCoursesDisplay);
+
+                courseAddList.setAdapter(itemsAdapter2);
+
+                updateDatabase();
+            }
+        });
+    }
+
+    public void updateDatabase() {
+
+        ArrayList <Course> cTaken = new ArrayList<Course>();
+
+        for (String code: courseTakenDisplay) {
+            for (Course course: allCourses) {
+                if (course.code.equals(code)) {
+                    cTaken.add(course);
+                }
+            }
+        }
+
+        cTakenRef.setValue(cTaken);
     }
 
     @Override
