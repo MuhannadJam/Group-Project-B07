@@ -44,6 +44,14 @@ public class SignupFragment extends Fragment {
                 registerUser();
             }
         });
+        view.findViewById(R.id.back_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(SignupFragment.this)
+                        .navigate(R.id.action_signupFragment_to_FirstFragment);
+            }
+        });
+
     }
 
     public void registerUser() {

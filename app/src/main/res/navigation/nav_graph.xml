@@ -42,6 +42,9 @@
         <action
             android:id="@+id/action_signupFragment_to_SecondFragment"
             app:destination="@id/SecondFragment" />
+        <action
+            android:id="@+id/action_signupFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
     </fragment>
     <fragment
         android:id="@+id/admin_page"
@@ -63,9 +66,14 @@
         <action
             android:id="@+id/action_admin_add_course_to_admin_page"
             app:destination="@id/admin_page" />
+
     </fragment>
     <fragment
         android:id="@+id/course_menu"
         android:name="com.example.b07project.CourseMenuFragment"
-        android:label="course_menu" />
+        android:label="course_menu" >
+        <action
+            android:id="@+id/action_course_menu_to_SecondFragment"
+            app:destination="@id/SecondFragment" />
+    </fragment>
 </navigation>

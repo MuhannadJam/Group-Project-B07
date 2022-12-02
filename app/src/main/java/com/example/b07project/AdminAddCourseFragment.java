@@ -77,7 +77,12 @@ public class AdminAddCourseFragment extends Fragment {
                 }
             }
         });
-
+        view.findViewById(R.id.back_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(AdminAddCourseFragment.this)
+                        .navigate(R.id.action_admin_add_course_to_admin_page);
+            }});
         fall_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

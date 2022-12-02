@@ -156,7 +156,7 @@
         app:layout_constraintTop_toBottomOf="@+id/signup_password" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/back_button"
         android:layout_width="38dp"
         android:layout_height="39dp"
         android:src="@drawable/back_arrow"
