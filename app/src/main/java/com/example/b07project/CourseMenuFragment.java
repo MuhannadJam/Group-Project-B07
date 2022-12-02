@@ -123,9 +123,9 @@ public class CourseMenuFragment extends Fragment {
                         courses.add(course.code);
                     }
 
-                    for (String course: courses) {
-                        if (!(coursesTaken.contains(course))) {
-                            addCoursesDisplay.add(course);
+                    for (String code: courses) {
+                        if(!(courseTakenDisplay.contains(code))) {
+                            addCoursesDisplay.add(code);
                         }
                     }
 
