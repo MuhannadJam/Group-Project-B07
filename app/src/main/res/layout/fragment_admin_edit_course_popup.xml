@@ -38,12 +38,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/edit_course_course_code"
+        android:id="@+id/edit_course_course_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60sp"
         android:layout_marginTop="10sp"
-        android:text="Course code:"
+        android:text="Course Name:"
         android:textColor="@color/MediumBlue"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,16 +51,16 @@
 
 
     <TextView
-        android:id="@+id/edit_course_course_desc"
+        android:id="@+id/edit_course_course_code"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60sp"
         android:layout_marginTop="50sp"
-        android:text="Course Description:"
+        android:text="Course Code:"
         android:textColor="@color/MediumBlue"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_course_course_code" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_course_course_name" />
 
     <TextView
         android:id="@+id/edit_course_prereq"
@@ -72,7 +72,7 @@
         android:textColor="@color/MediumBlue"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_course_course_desc" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_course_course_code" />
 
     <LinearLayout
         android:id="@+id/prereq_list_layout"

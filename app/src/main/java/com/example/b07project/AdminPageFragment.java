@@ -84,8 +84,8 @@ public class AdminPageFragment extends Fragment {
                             Button delete = myDialog.findViewById(R.id.delete_button);
                             Button bt = myDialog.findViewById(R.id.done_button);
                             ImageView back = myDialog.findViewById(R.id.back_button);
-                            TextView course_code = myDialog.findViewById(R.id.edit_course_course_code);
-                            TextView course_desc = myDialog.findViewById(R.id.edit_course_course_desc);
+                            TextView course_code = myDialog.findViewById(R.id.edit_course_course_name);
+                            TextView course_desc = myDialog.findViewById(R.id.edit_course_course_code);
                             ListView prereq = myDialog.findViewById(R.id.prereq_list);
                             ArrayAdapter<String> itemsAdapter3 = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, prereqs);
                             prereq.setAdapter(itemsAdapter3);
