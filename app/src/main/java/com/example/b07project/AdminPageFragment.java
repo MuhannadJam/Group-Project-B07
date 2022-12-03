@@ -157,6 +157,9 @@ public class AdminPageFragment extends Fragment {
     }
 
     public void readDatabase() {
+        courses = new ArrayList<>();
+        courseCode = new ArrayList<>();
+
         ref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
