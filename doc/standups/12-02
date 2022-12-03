@@ -2,11 +2,11 @@ Name: Muhannad Al-Jamali
 
 What have you done since yesterday?
 
-- Worked on allowing admins to add courses to the database
+- Worked on allowing students to add and remove courses
 
 What are you planning on doing today?
 
-- Work on allowing admins to edit courses
+- Work on the backend of popup menus
 
 Any impediments or stumbling blocks?
 
@@ -17,11 +17,11 @@ Name: Mohammed Al Hosni
 
 What have you done since yesterday?
 
-- Worked on displaying courses on the admin and student page
+- Worked on setting up pop menus for the fragments
 
 What are you planning on doing today?
 
-- Continue working on the display of courses
+- Work on the frontend of popup menus
 
 Any impediments or stumbling blocks?
 
@@ -32,11 +32,11 @@ Name: Ethan Chan
 
 What have you done since yesterday?
 
-- Worked on UI of the application
+- Nothing
 
 What are you planning on doing today?
 
-- Work on displaying the students course timeline
+- Nothing
 
 Any impediments or stumbling blocks?
 
@@ -47,26 +47,27 @@ Name: Caitlyn Niteisha
 
 What have you done since yesterday?
 
-- Designing and implementing UI of application
+- Nothing
 
 What are you planning on doing today?
 
-- Continue designing and implementing UI of application
+- Make the fragment_admin_edit_course_popup display course name and course code
+- Add elements to the fragment_admin_edit_course_popup display
 
 Any impediments or stumbling blocks?
 
-- Figure out how to make the button go from one page to another so that I can implement this to other buttons
+- Cannot figure out how to make the fragment_admin_edit_course_popup display course name and course code
 
 
 Name: Hamim Karim
 
 What have you done since yesterday?
 
-- Worked on generating the students course timeline
+- Nothing
 
 What are you planning on doing today?
 
-- Work on displaying the students course timeline
+- Nothing
 
 Any impediments or stumbling blocks?
 
