@@ -79,11 +79,6 @@ public class AdminPageFragment extends Fragment {
                             myDialog.setContentView(R.layout.fragment_admin_edit_course_popup);
                             myDialog.show();
 
-                            DatabaseReference courseRef = FirebaseDatabase.
-                                    getInstance("https://bo7-project-default-rtdb.firebaseio.com/").
-                                    getReference("Courses").child(courses.get(i).code);
-
-
                             ArrayList <Course> pre = courses.get(i).prereq;
                             ArrayList <String> prereqs = new ArrayList<>();
                             for(Course c: pre) {
