@@ -52,10 +52,13 @@ What have you done since yesterday?
 What are you planning on doing today?
 
 - Designing application and UI and implementing them
+- Figure out how to make one button go from one page to another
+- How to make the list scroll
 
 Any impediments or stumbling blocks?
 
-- Nothing
+- Was not able to make the list scroll, people say its already automatic, but my list would not scroll
+- Hard to figure out ScrollView
 
 
 Name: Hamim Karim

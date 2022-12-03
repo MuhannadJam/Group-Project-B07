@@ -38,7 +38,7 @@
         app:layout_constraintVertical_bias="0.636" />
 
     <TextView
-        android:id="@+id/course_code"
+        android:id="@+id/edit_course_course_desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Course Code:"
@@ -51,7 +51,7 @@
         app:layout_constraintVertical_bias="0.384" />
 
     <TextView
-        android:id="@+id/course_name"
+        android:id="@+id/edit_course_course_code"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Course name:"

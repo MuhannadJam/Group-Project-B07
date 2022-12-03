@@ -51,11 +51,12 @@ What have you done since yesterday?
 
 What are you planning on doing today?
 
-- Nothing
+- Make the fragment_admin_edit_course_popup display course name and course code
+- Add elements to the fragment_admin_edit_course_popup display
 
 Any impediments or stumbling blocks?
 
-- Nothing
+- Cannot figure out how to make the fragment_admin_edit_course_popup display course name and course code
 
 
 Name: Hamim Karim

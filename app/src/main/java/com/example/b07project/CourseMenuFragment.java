@@ -153,9 +153,9 @@ public class CourseMenuFragment extends Fragment {
 
                 Button bt = myDialog.findViewById(R.id.done_button);
                 ImageView back = myDialog.findViewById(R.id.back_button);
-                TextView course_code = myDialog.findViewById(R.id.course_code);
+                TextView course_code = myDialog.findViewById(R.id.edit_course_course_desc);
                 TextView course_sessions = myDialog.findViewById(R.id.Avaliable_sessions);
-                TextView course_name = myDialog.findViewById(R.id.course_name);
+                TextView course_name = myDialog.findViewById(R.id.edit_course_course_code);
 
 
 
