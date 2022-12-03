@@ -5,7 +5,6 @@
     android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/LightBlue"
     tools:context=".SignupFragment">
 
     <ImageView
@@ -70,7 +69,8 @@
         <ListView
             android:id="@+id/course_taken_list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:background="@color/AlternateBlue" />
 
     </LinearLayout>
 
@@ -91,20 +91,6 @@
         app:layout_constraintTop_toBottomOf="@+id/course_menu_add_course_linearlayout"
         app:layout_constraintVertical_bias="0.0" />
 
-    <ImageButton
-        android:id="@+id/add_course_button"
-        android:layout_width="53dp"
-        android:layout_height="53dp"
-        android:background="@color/LightBlue"
-        android:backgroundTint="@color/LightBlue"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.835"
-        app:layout_constraintStart_toEndOf="@+id/add_courses_text"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.62"
-        app:srcCompat="@drawable/add_circle_logo" />
-
     <LinearLayout
         android:id="@+id/course_menu_expected_course_linearlayout"
         android:layout_width="334dp"
@@ -119,7 +105,8 @@
         <ListView
             android:id="@+id/add_courses_list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:background="@color/AlternateBlue" />
     </LinearLayout>
 
 
