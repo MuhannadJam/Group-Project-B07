@@ -40,106 +40,79 @@ public class AdminPageFragment extends Fragment {
 
     ListView listView;
 
+    DatabaseReference ref;
+
     private android.app.Fragment binding;
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        readDatabase();
 
-        DatabaseReference ref = FirebaseDatabase.
-                getInstance("https://bo7-project-default-rtdb.firebaseio.com/").
-                getReference("Courses");
-
-
-
-        ref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                if (task.isSuccessful()) {
-                    for (DataSnapshot child : task.getResult().getChildren()) {
-                        Course course = child.getValue(Course.class);
-                        courses.add(course);
-                    }
+                Dialog myDialog;
+                myDialog = new Dialog(getContext());
+                myDialog.setContentView(R.layout.fragment_admin_edit_course_popup);
+                myDialog.show();
 
-                    for (Course c : courses) {
-                        courseCode.add(c.code);
-                    }
-
-                    ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(getContext(),
-                            android.R.layout.simple_list_item_1, courseCode);
-
-                    listView.setAdapter(itemsAdapter);
-                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                            Dialog myDialog;
-                            myDialog = new Dialog(getContext());
-                            myDialog.setContentView(R.layout.fragment_admin_edit_course_popup);
-                            myDialog.show();
-
-                            ArrayList <Course> pre = courses.get(i).prereq;
-                            ArrayList <String> prereqs = new ArrayList<>();
-                            for(Course c: pre) {
-                                prereqs.add(c.code);
-                            }
-                            EditText name_edit = (EditText) myDialog
-                                    .findViewById(R.id.course_name_edit);
-                            EditText code_edit = (EditText) myDialog
-                                    .findViewById(R.id.course_code_edit);
-                            Button delete = myDialog.findViewById(R.id.delete_button);
-                            Button bt = myDialog.findViewById(R.id.done_button);
-                            ImageView back = myDialog.findViewById(R.id.back_button);
-                            TextView course_code = myDialog.findViewById(R.id.edit_course_course_name);
-                            TextView course_desc = myDialog.findViewById(R.id.edit_course_course_code);
-                            ListView prereq = myDialog.findViewById(R.id.prereq_list);
-                            ArrayAdapter<String> itemsAdapter3 = new ArrayAdapter<String>(getContext(),
-                                    android.R.layout.simple_list_item_1, prereqs);
-                            prereq.setAdapter(itemsAdapter3);
-
-                            name_edit.setText(courses.get(i).name);
-                            code_edit.setText(courses.get(i).code);
-
-                            String newName = name_edit.getText().toString().trim();
-                            String newCode = code_edit.getText().toString().trim();
-
-                            delete.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-
-                                    myDialog.dismiss();
-                                }
-                            });
-                            back.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    myDialog.dismiss();
-                                }
-                            });
-                            bt.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    Course updatedCourse = new Course();
-                                    //courseRef.setValue(updatedCourse);
-                                    myDialog.dismiss();
-
-                                }
-                            });
-                        }
-
-                    })
-                    ;
-
+                ArrayList <Course> pre = courses.get(i).prereq;
+                ArrayList <String> prereqs = new ArrayList<>();
+                for(Course c: pre) {
+                    prereqs.add(c.code);
                 }
-                else {
-                    return;
-                }
+
+                EditText name_edit = (EditText) myDialog
+                        .findViewById(R.id.course_name_edit);
+                EditText code_edit = (EditText) myDialog
+                        .findViewById(R.id.course_code_edit);
+                Button delete = myDialog.findViewById(R.id.delete_button);
+                Button bt = myDialog.findViewById(R.id.done_button);
+                ImageView back = myDialog.findViewById(R.id.back_button);
+                TextView course_code = myDialog.findViewById(R.id.edit_course_course_name);
+                TextView course_desc = myDialog.findViewById(R.id.edit_course_course_code);
+                ListView prereq = myDialog.findViewById(R.id.prereq_list);
+                ArrayAdapter<String> itemsAdapter3 = new ArrayAdapter<String>(getContext(),
+                        android.R.layout.simple_list_item_1, prereqs);
+                prereq.setAdapter(itemsAdapter3);
+
+                name_edit.setText(courses.get(i).name);
+                code_edit.setText(courses.get(i).code);
+
+                String newName = name_edit.getText().toString().trim();
+                String newCode = code_edit.getText().toString().trim();
+
+                delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        readDatabase();
+                        myDialog.dismiss();
+                    }
+                });
+                back.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        myDialog.dismiss();
+                    }
+                });
+                bt.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Course updatedCourse = new Course();
+                        //courseRef.setValue(updatedCourse);
+                        readDatabase();
+                        myDialog.dismiss();
+
+                    }
+                });
             }
+
         });
 
 
-                view.findViewById(R.id.button_add_course).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.button_add_course).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         NavHostFragment.findNavController(AdminPageFragment.this)
@@ -176,10 +149,39 @@ public class AdminPageFragment extends Fragment {
 
         listView = (ListView) view.findViewById(R.id.course_list);
 
+        ref = FirebaseDatabase.getInstance("https://bo7-project-default-rtdb.firebaseio.com/").
+                getReference("Courses");
+
         return view;
 
+    }
 
+    public void readDatabase() {
+        ref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
 
+                if (task.isSuccessful()) {
+                    for (DataSnapshot child : task.getResult().getChildren()) {
+                        Course course = child.getValue(Course.class);
+                        courses.add(course);
+                    }
+
+                    for (Course c : courses) {
+                        courseCode.add(c.code);
+                    }
+
+                    ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(getContext(),
+                            android.R.layout.simple_list_item_1, courseCode);
+
+                    listView.setAdapter(itemsAdapter);
+
+                }
+                else {
+                    return;
+                }
+            }
+        });
     }
 
     @Override

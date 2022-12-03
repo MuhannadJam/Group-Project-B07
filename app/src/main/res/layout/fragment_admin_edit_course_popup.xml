@@ -13,16 +13,13 @@
         android:id="@+id/back_button"
         android:layout_width="42dp"
         android:layout_height="37dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="678dp"
         android:src="@drawable/back_arrow"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.059"
+        app:layout_constraintEnd_toStartOf="@+id/edit_course_text"
+        app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
+        app:layout_constraintVertical_bias="0.05" />
 
     <EditText
         android:id="@+id/addcourse_prereq"
@@ -48,15 +45,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="78dp"
-        android:layout_marginTop="40dp"
         android:layout_marginEnd="79dp"
         android:text="Edit Course"
         android:textColor="@color/MediumBlue"
         android:textSize="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.064" />
 
     <TextView
         android:id="@+id/edit_course_course_name"
@@ -140,14 +138,16 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.374"
+        app:layout_constraintHorizontal_bias="0.35"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addcourse_prereq"
-        app:layout_constraintVertical_bias="0.627">
+        app:layout_constraintVertical_bias="0.859">
+
         <ListView
             android:id="@+id/prereq_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
 
     </LinearLayout>
 
@@ -155,14 +155,15 @@
         android:id="@+id/add_prereq_button"
         android:layout_width="53dp"
         android:layout_height="53dp"
+        android:layout_marginTop="28dp"
         android:background="@color/LightBlue"
         android:backgroundTint="@color/BlueGrey"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/prereq_list_layout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.67"
+        app:layout_constraintHorizontal_bias="0.653"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_admin_winter"
-        app:layout_constraintVertical_bias="0.137"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/add_circle_logo" />
 
     <androidx.appcompat.widget.AppCompatButton
