@@ -21,7 +21,7 @@
         app:layout_constraintHorizontal_bias="0.59"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.122" />
+        app:layout_constraintVertical_bias="0.106" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/done_button"
@@ -35,7 +35,8 @@
         app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.849" />
+        app:layout_constraintVertical_bias="0.928" />
+
 
     <TextView
         android:id="@+id/edit_course_course_code"
@@ -49,7 +50,7 @@
         app:layout_constraintHorizontal_bias="0.149"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_course_course_name"
-        app:layout_constraintVertical_bias="0.177" />
+        app:layout_constraintVertical_bias="0.135" />
 
     <TextView
         android:id="@+id/edit_course_course_name"
@@ -63,8 +64,7 @@
         app:layout_constraintHorizontal_bias="0.151"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_course_text"
-        app:layout_constraintVertical_bias="0.075" />
-
+        app:layout_constraintVertical_bias="0.062" />
 
     <ImageView
         android:id="@+id/back_button"
@@ -76,7 +76,7 @@
         app:layout_constraintHorizontal_bias="0.105"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.05" />
+        app:layout_constraintVertical_bias="0.023" />
 
     <TextView
         android:id="@+id/Avaliable_sessions"
@@ -90,7 +90,7 @@
         app:layout_constraintHorizontal_bias="0.197"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_course_course_code"
-        app:layout_constraintVertical_bias="0.471" />
+        app:layout_constraintVertical_bias="0.273" />
 
     <TextView
         android:id="@+id/name_display"
@@ -100,8 +100,10 @@
         android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/edit_course_course_code"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_course_course_name" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_course_course_name"
+        app:layout_constraintVertical_bias="0.344" />
 
     <TextView
         android:id="@+id/code_display"
@@ -111,6 +113,46 @@
         android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/Avaliable_sessions"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_course_course_code" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_course_course_code"
+        app:layout_constraintVertical_bias="0.375" />
+
+    <TextView
+        android:id="@+id/session_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/session_2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.626" />
+
+    <TextView
+        android:id="@+id/session_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.626" />
+
+    <TextView
+        android:id="@+id/session_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.542"
+        app:layout_constraintStart_toEndOf="@+id/session_2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.627" />
 </androidx.constraintlayout.widget.ConstraintLayout>

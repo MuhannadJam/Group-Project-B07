@@ -25,6 +25,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class CourseMenuFragment extends Fragment {
@@ -161,6 +163,36 @@ public class CourseMenuFragment extends Fragment {
                 TextView course_code = myDialog.findViewById(R.id.edit_course_course_code);
                 TextView course_sessions = myDialog.findViewById(R.id.Avaliable_sessions);
                 TextView course_name = myDialog.findViewById(R.id.edit_course_course_name);
+                TextView name_display = myDialog.findViewById(R.id.name_display);
+                TextView code_display = myDialog.findViewById(R.id.code_display);
+                TextView session_1 = myDialog.findViewById(R.id.session_1);
+                TextView session_2 = myDialog.findViewById(R.id.session_2);
+                TextView session_3 = myDialog.findViewById(R.id.session_3);
+
+                for (Course course: allCourses) {
+                    if (course.code.equals(addCoursesDisplay.get(i))) {
+                        name_display.setText(course.name);
+                        code_display.setText(course.code);
+
+                        if (course.session.size() == 1) {
+                            session_1.setText(course.session.get(0));
+                            session_2.setText("");
+                            session_3.setText("");
+                        }
+                        else if (course.session.size() == 2){
+                            session_1.setText(course.session.get(0));
+                            session_2.setText(course.session.get(1));
+                            session_3.setText("");
+                        }
+                        else {
+                            session_1.setText(course.session.get(0));
+                            session_2.setText(course.session.get(1));
+                            session_3.setText(course.session.get(2));
+                        }
+                    }
+
+                }
+
 
                 back.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -210,8 +242,37 @@ public class CourseMenuFragment extends Fragment {
                 TextView course_code = myDialog.findViewById(R.id.edit_course_course_code);
                 TextView course_sessions = myDialog.findViewById(R.id.Avaliable_sessions);
                 TextView course_name = myDialog.findViewById(R.id.edit_course_course_name);
+                TextView session_1 = myDialog.findViewById(R.id.session_1);
+                TextView session_2 = myDialog.findViewById(R.id.session_2);
+                TextView session_3 = myDialog.findViewById(R.id.session_3);
 
                 bt.setText("Remove");
+
+                TextView name_display = myDialog.findViewById(R.id.name_display);
+                TextView code_display = myDialog.findViewById(R.id.code_display);
+
+                for (Course course: allCourses) {
+                    if (course.code.equals(courseTakenDisplay.get(i))) {
+                        name_display.setText(course.name);
+                        code_display.setText(course.code);
+
+                        if (course.session.size() == 1) {
+                            session_1.setText(course.session.get(0));
+                            session_2.setText("");
+                            session_3.setText("");
+                        }
+                        else if (course.session.size() == 2){
+                            session_1.setText(course.session.get(0));
+                            session_2.setText(course.session.get(1));
+                            session_3.setText("");
+                        }
+                        else {
+                            session_1.setText(course.session.get(0));
+                            session_2.setText(course.session.get(1));
+                            session_3.setText(course.session.get(2));
+                        }
+                    }
+                }
 
                 back.setOnClickListener(new View.OnClickListener() {
                     @Override
