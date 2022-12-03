@@ -1,5 +1,6 @@
 package com.example.b07project;
 
+import android.app.Dialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,10 +13,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -30,7 +30,7 @@ public class CourseMenuFragment extends Fragment {
 
     String[] items = {"BO7", "BO7", "BO7", "BO7", "BO7", "BO7", "BO7"};
     View view;
-
+    View popupwindow;
     ListView courseTakenList;
     ListView courseAddList;
 
@@ -55,6 +55,7 @@ public class CourseMenuFragment extends Fragment {
 
         view = inflater.inflate(R.layout.course_menu, container, false);
 
+        popupwindow = inflater.inflate(R.layout.fragment_add_course_popup,null);
         mAuth = FirebaseAuth.getInstance();
 
         cRef = FirebaseDatabase.
@@ -140,30 +141,59 @@ public class CourseMenuFragment extends Fragment {
             }
         });
 
+
+        TextView pop;
         courseAddList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Dialog myDialog;
+                myDialog = new Dialog(getContext());
+                myDialog.setContentView(R.layout.fragment_add_course_popup);
+                myDialog.show();
 
-                courseTakenDisplay.add(addCoursesDisplay.get(i));
-                addCoursesDisplay.remove(addCoursesDisplay.get(i));
+                Button bt = myDialog.findViewById(R.id.done_button);
+                ImageView back = myDialog.findViewById(R.id.back_button);
+                TextView course_code = myDialog.findViewById(R.id.course_code);
+                TextView course_sessions = myDialog.findViewById(R.id.Avaliable_sessions);
+                TextView course_name = myDialog.findViewById(R.id.course_name);
 
-                itemsAdapter1 = new ArrayAdapter<String>(getContext(),
-                        android.R.layout.simple_list_item_1, courseTakenDisplay);
 
-                courseTakenList.setAdapter(itemsAdapter1);
 
-                itemsAdapter2 = new ArrayAdapter<String>(getContext(),
-                        android.R.layout.simple_list_item_1, addCoursesDisplay);
+                course_code.setText("Course code: " + addCoursesDisplay.get(i));
+                back.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        myDialog.dismiss();
+                    }
+                });
+                bt.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        myDialog.dismiss();
+                        courseTakenDisplay.add(addCoursesDisplay.get(i));
+                        addCoursesDisplay.remove(addCoursesDisplay.get(i));
 
-                courseAddList.setAdapter(itemsAdapter2);
+                        itemsAdapter1 = new ArrayAdapter<String>(getContext(),
+                                android.R.layout.simple_list_item_1, courseTakenDisplay);
 
-                updateDatabase();
+                        courseTakenList.setAdapter(itemsAdapter1);
+
+                        itemsAdapter2 = new ArrayAdapter<String>(getContext(),
+                                android.R.layout.simple_list_item_1, addCoursesDisplay);
+
+                        courseAddList.setAdapter(itemsAdapter2);
+
+                        updateDatabase();
+                    }
+                });
+
             }
         });
 
         courseTakenList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
 
                 addCoursesDisplay.add(courseTakenDisplay.get(i));
                 courseTakenDisplay.remove(courseTakenDisplay.get(i));
@@ -204,6 +234,8 @@ public class CourseMenuFragment extends Fragment {
         super.onDestroyView();
     }
     private android.app.Fragment binding;
+
+
 
 
 }
