@@ -1,6 +1,8 @@
 package com.example.b07project;
 
 import android.app.Dialog;
+import android.content.Context;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -19,6 +21,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -156,6 +159,8 @@ public class AdminPageFragment extends Fragment {
 
         ref = FirebaseDatabase.getInstance("https://bo7-project-default-rtdb.firebaseio.com/").
                 getReference("Courses");
+
+
 
         return view;
 

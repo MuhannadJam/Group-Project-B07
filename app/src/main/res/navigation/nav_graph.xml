@@ -33,6 +33,9 @@
         <action
             android:id="@+id/action_SecondFragment_to_course_menu"
             app:destination="@id/course_menu" />
+        <action
+            android:id="@+id/action_SecondFragment_to_editCourseTimeline"
+            app:destination="@id/editCourseTimeline" />
     </fragment>
     <fragment
         android:id="@+id/signupFragment"
@@ -76,4 +79,9 @@
             android:id="@+id/action_course_menu_to_SecondFragment"
             app:destination="@id/SecondFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/editCourseTimeline"
+        android:name="com.example.b07project.EditCourseTimeline"
+        android:label="fragment_edit_course_timeline"
+        tools:layout="@layout/fragment_edit_course_timeline" />
 </navigation>

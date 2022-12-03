@@ -94,6 +94,13 @@ public class MainPageFragment extends Fragment {
                         .action_SecondFragment_to_course_menu);
             }
         });
+
+        manageTimeline.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(MainPageFragment.this).navigate(R.id.action_SecondFragment_to_editCourseTimeline);
+            }
+        });
     }
 
     @Override
