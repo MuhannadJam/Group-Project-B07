@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -71,28 +72,37 @@ public class AdminPageFragment extends Fragment {
                     listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
                             Dialog myDialog;
                             myDialog = new Dialog(getContext());
                             myDialog.setContentView(R.layout.fragment_admin_edit_course_popup);
                             myDialog.show();
+
 
                             ArrayList <Course> pre = courses.get(i).prereq;
                             ArrayList <String> prereqs = new ArrayList<>();
                             for(Course c: pre) {
                                 prereqs.add(c.code);
                             }
+                            EditText name_edit = (EditText) myDialog
+                                    .findViewById(R.id.course_name_edit);
+                            EditText code_edit = (EditText) myDialog
+                                    .findViewById(R.id.course_code_edit);
                             Button delete = myDialog.findViewById(R.id.delete_button);
                             Button bt = myDialog.findViewById(R.id.done_button);
                             ImageView back = myDialog.findViewById(R.id.back_button);
                             TextView course_code = myDialog.findViewById(R.id.edit_course_course_name);
                             TextView course_desc = myDialog.findViewById(R.id.edit_course_course_code);
                             ListView prereq = myDialog.findViewById(R.id.prereq_list);
-                            ArrayAdapter<String> itemsAdapter3 = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, prereqs);
+                            ArrayAdapter<String> itemsAdapter3 = new ArrayAdapter<String>(getContext(),
+                                    android.R.layout.simple_list_item_1, prereqs);
                             prereq.setAdapter(itemsAdapter3);
 
+                            name_edit.setText(courses.get(i).name);
+                            code_edit.setText(courses.get(i).code);
 
-
-
+                            String newName = name_edit.getText().toString().trim();
+                            String newCode = code_edit.getText().toString().trim();
 
                             delete.setOnClickListener(new View.OnClickListener() {
                                 @Override
@@ -110,6 +120,8 @@ public class AdminPageFragment extends Fragment {
                             bt.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
+                                    Course updatedCourse = new Course();
+                                    ref.child(courses.get(i).code).setValue(updatedCourse);
                                     myDialog.dismiss();
 
                                 }
