@@ -96,10 +96,10 @@
         android:text="Fall"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.17"
+        app:layout_constraintHorizontal_bias="0.175"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.464" />
+        app:layout_constraintTop_toBottomOf="@+id/course_code_edit"
+        app:layout_constraintVertical_bias="0.073" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_admin_winter"
@@ -111,10 +111,11 @@
         android:text="Winter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.011"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/button_admin_fall"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.464" />
+        app:layout_constraintTop_toBottomOf="@+id/course_code_edit"
+        app:layout_constraintVertical_bias="0.073" />
+
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_admin_summer"
@@ -125,11 +126,10 @@
         android:text="Summer"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.826"
+        app:layout_constraintHorizontal_bias="0.824"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.464" />
-
+        app:layout_constraintTop_toBottomOf="@+id/course_code_edit"
+        app:layout_constraintVertical_bias="0.073" />
 
     <LinearLayout
         android:id="@+id/prereq_list_layout"
