@@ -10,6 +10,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -149,7 +150,11 @@ public class CourseMenuFragment extends Fragment {
                 Dialog myDialog;
                 myDialog = new Dialog(getContext());
                 myDialog.setContentView(R.layout.fragment_add_course_popup);
+                WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+                lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+                lp.height = WindowManager.LayoutParams.MATCH_PARENT;
                 myDialog.show();
+                myDialog.getWindow().setAttributes(lp);
 
                 Button bt = myDialog.findViewById(R.id.done_button);
                 ImageView back = myDialog.findViewById(R.id.back_button);
@@ -157,9 +162,6 @@ public class CourseMenuFragment extends Fragment {
                 TextView course_sessions = myDialog.findViewById(R.id.Avaliable_sessions);
                 TextView course_name = myDialog.findViewById(R.id.edit_course_course_name);
 
-
-
-                course_code.setText("Course code: " + addCoursesDisplay.get(i));
                 back.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -194,22 +196,54 @@ public class CourseMenuFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
+                Dialog myDialog;
+                myDialog = new Dialog(getContext());
+                myDialog.setContentView(R.layout.fragment_add_course_popup);
+                WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+                lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+                lp.height = WindowManager.LayoutParams.MATCH_PARENT;
+                myDialog.show();
+                myDialog.getWindow().setAttributes(lp);
 
-                addCoursesDisplay.add(courseTakenDisplay.get(i));
-                courseTakenDisplay.remove(courseTakenDisplay.get(i));
+                Button bt = myDialog.findViewById(R.id.done_button);
+                ImageView back = myDialog.findViewById(R.id.back_button);
+                TextView course_code = myDialog.findViewById(R.id.edit_course_course_code);
+                TextView course_sessions = myDialog.findViewById(R.id.Avaliable_sessions);
+                TextView course_name = myDialog.findViewById(R.id.edit_course_course_name);
+
+                bt.setText("Remove");
+
+                back.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        myDialog.dismiss();
+                    }
+                });
+
+                bt.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        myDialog.dismiss();
+                        addCoursesDisplay.add(courseTakenDisplay.get(i));
+                        courseTakenDisplay.remove(courseTakenDisplay.get(i));
 
 
-                itemsAdapter1 = new ArrayAdapter<String>(getContext(),
-                        android.R.layout.simple_list_item_1, courseTakenDisplay);
+                        itemsAdapter1 = new ArrayAdapter<String>(getContext(),
+                                android.R.layout.simple_list_item_1, courseTakenDisplay);
 
-                courseTakenList.setAdapter(itemsAdapter1);
+                        courseTakenList.setAdapter(itemsAdapter1);
 
-                itemsAdapter2 = new ArrayAdapter<String>(getContext(),
-                        android.R.layout.simple_list_item_1, addCoursesDisplay);
+                        itemsAdapter2 = new ArrayAdapter<String>(getContext(),
+                                android.R.layout.simple_list_item_1, addCoursesDisplay);
 
-                courseAddList.setAdapter(itemsAdapter2);
+                        courseAddList.setAdapter(itemsAdapter2);
 
-                updateDatabase();
+                        updateDatabase();
+                    }
+                });
+
+
             }
         });
     }

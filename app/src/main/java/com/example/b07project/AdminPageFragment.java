@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -56,7 +57,11 @@ public class AdminPageFragment extends Fragment {
                 Dialog myDialog;
                 myDialog = new Dialog(getContext());
                 myDialog.setContentView(R.layout.fragment_admin_edit_course_popup);
+                WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+                lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+                lp.height = WindowManager.LayoutParams.MATCH_PARENT;
                 myDialog.show();
+                myDialog.getWindow().setAttributes(lp);
 
                 ArrayList <Course> pre = courses.get(i).prereq;
                 ArrayList <String> prereqs = new ArrayList<>();

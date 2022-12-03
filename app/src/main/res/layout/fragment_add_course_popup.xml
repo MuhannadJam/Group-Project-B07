@@ -18,10 +18,10 @@
         android:textSize="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.59"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/back_button"
-        app:layout_constraintVertical_bias="0.023" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.122" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/done_button"
@@ -32,10 +32,10 @@
         android:text="Add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.636" />
+        app:layout_constraintVertical_bias="0.849" />
 
     <TextView
         android:id="@+id/edit_course_course_code"
@@ -43,12 +43,13 @@
         android:layout_height="wrap_content"
         android:text="Course Code:"
         android:textColor="@color/MediumBlue"
+        android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.229"
+        app:layout_constraintHorizontal_bias="0.149"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.384" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_course_course_name"
+        app:layout_constraintVertical_bias="0.177" />
 
     <TextView
         android:id="@+id/edit_course_course_name"
@@ -56,28 +57,26 @@
         android:layout_height="wrap_content"
         android:text="Course name:"
         android:textColor="@color/MediumBlue"
+        android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.23"
+        app:layout_constraintHorizontal_bias="0.151"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_course_text"
-        app:layout_constraintVertical_bias="0.055" />
+        app:layout_constraintVertical_bias="0.075" />
+
 
     <ImageView
         android:id="@+id/back_button"
         android:layout_width="42dp"
         android:layout_height="37dp"
-        android:layout_marginStart="67dp"
-        android:layout_marginTop="69dp"
-        android:layout_marginEnd="302dp"
-        android:layout_marginBottom="625dp"
         android:src="@drawable/back_arrow"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.105"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.05" />
 
     <TextView
         android:id="@+id/Avaliable_sessions"
@@ -85,10 +84,33 @@
         android:layout_height="wrap_content"
         android:text="Avaliable Sessions:"
         android:textColor="@color/MediumBlue"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/done_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.268"
+        app:layout_constraintHorizontal_bias="0.197"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.483" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_course_course_code"
+        app:layout_constraintVertical_bias="0.471" />
+
+    <TextView
+        android:id="@+id/name_display"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/edit_course_course_code"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_course_course_name" />
+
+    <TextView
+        android:id="@+id/code_display"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/Avaliable_sessions"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_course_course_code" />
 </androidx.constraintlayout.widget.ConstraintLayout>
