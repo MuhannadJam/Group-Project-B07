@@ -27,6 +27,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.sql.Ref;
 import java.util.ArrayList;
 
 public class AdminPageFragment extends Fragment {
@@ -78,6 +79,10 @@ public class AdminPageFragment extends Fragment {
                             myDialog.setContentView(R.layout.fragment_admin_edit_course_popup);
                             myDialog.show();
 
+                            DatabaseReference courseRef = FirebaseDatabase.
+                                    getInstance("https://bo7-project-default-rtdb.firebaseio.com/").
+                                    getReference("Courses").child(courses.get(i).code);
+
 
                             ArrayList <Course> pre = courses.get(i).prereq;
                             ArrayList <String> prereqs = new ArrayList<>();
@@ -121,7 +126,7 @@ public class AdminPageFragment extends Fragment {
                                 @Override
                                 public void onClick(View view) {
                                     Course updatedCourse = new Course();
-                                    ref.child(courses.get(i).code).setValue(updatedCourse);
+                                    //courseRef.setValue(updatedCourse);
                                     myDialog.dismiss();
 
                                 }
