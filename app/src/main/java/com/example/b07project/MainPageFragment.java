@@ -5,7 +5,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.RelativeLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,6 +24,10 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+
 public class MainPageFragment extends Fragment {
 
     private FragmentMainPageBinding binding;
@@ -28,6 +36,9 @@ public class MainPageFragment extends Fragment {
 
     TextView displayName;
     String studentName;
+
+    ArrayList <Course> coursesTaken;
+    ArrayList <String> courseTakenDisplay;
 
     Button manageCourses;
     Button manageTimeline;
@@ -53,14 +64,66 @@ public class MainPageFragment extends Fragment {
 
         displayName =  view.findViewById(R.id.student_name);
 
-
+        addtable();
 
 
         return view;
 
 
     }
+    public void addtable(){
+        TableLayout stk = (TableLayout) view.findViewById(R.id.timeline);
+        TableRow tbrow = new TableRow(getContext());
 
+        String csession = "Winter";
+        TextView session = new TextView(getContext());
+        session.setWidth(135);
+        session.setText(csession);
+        tbrow.addView(session);
+        String courses = "12";
+        TextView courses_list = new TextView(getContext());
+        /*for(Course course : coursesTaken){
+            if(course.session.contains("Winter")
+                courses.concat(course.code + " ");
+        }*/
+
+        tbrow.addView(courses_list);
+        stk.addView(tbrow);
+
+
+        TableRow tbrow1 = new TableRow(getContext());
+        String csession1 = "Fall";
+        TextView session2 = new TextView(getContext());
+        session2.setWidth(135);
+        session2.setText(csession1);
+        tbrow1.addView(session2);
+        String courses2 = "12";
+        TextView courses_list2 = new TextView(getContext());
+
+        /*for(Course course : coursesTaken){
+            if(course.session.contains("Fall")
+                courses2.concat(course.code + " ");
+        }*/
+        tbrow1.addView(courses_list2);
+        stk.addView(tbrow1);
+
+        TableRow tbrow2 = new TableRow(getContext());
+        String csession3 = "Summer";
+        TextView session3 = new TextView(getContext());
+        session3.setWidth(135);
+        session3.setText(csession3);
+        tbrow2.addView(session3);
+        String courses3 = "";
+        TextView courses_list3 = new TextView(getContext());
+
+        /*for(Course course : coursesTaken){
+            if(course.session.contains("Fall")
+                courses3.concat(course.code + " ");
+        }*/
+
+        tbrow2.addView(courses_list3);
+        stk.addView(tbrow2);
+    }
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
@@ -76,6 +139,7 @@ public class MainPageFragment extends Fragment {
                 }
             }
         });
+
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
