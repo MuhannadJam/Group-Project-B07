@@ -149,7 +149,7 @@ public class AdminAddCourseFragment extends Fragment {
                     prereqCode.requestFocus();
                     return;
                 }
-                if (prereq_name.equals(courseName.getText().toString().trim())) {
+                if (prereq_name.equals(courseCode.getText().toString().trim())) {
                     prereqCode.setError("Course cannot be prerequisite of itself");
                     prereqCode.requestFocus();
                     return;

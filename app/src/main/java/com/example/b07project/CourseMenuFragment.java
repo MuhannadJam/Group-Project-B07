@@ -43,6 +43,7 @@ public class CourseMenuFragment extends Fragment {
     ArrayList <Course> coursesTaken;
     ArrayList <String> courseTakenDisplay;
     ArrayList <String> addCoursesDisplay;
+    ArrayList <String> prereqs;
 
     ArrayAdapter<String> itemsAdapter1;
     ArrayAdapter<String> itemsAdapter2;
@@ -193,8 +194,8 @@ public class CourseMenuFragment extends Fragment {
                             session_3.setText(course.session.get(2));
                         }
 
-                        ArrayList <Course> pre = allCourses.get(i).prereq;
-                        ArrayList <String> prereqs = new ArrayList<>();
+                        ArrayList <Course> pre = course.prereq;
+                        prereqs = new ArrayList<>();
                         for(Course c: pre) {
                             prereqs.add(c.code);
                         }
@@ -251,6 +252,8 @@ public class CourseMenuFragment extends Fragment {
                 myDialog.show();
                 myDialog.getWindow().setAttributes(lp);
 
+                ListView prereq = (ListView) myDialog.findViewById(R.id.prereq);
+
                 Button bt = myDialog.findViewById(R.id.done_button);
                 ImageView back = myDialog.findViewById(R.id.back_button);
                 TextView course_code = myDialog.findViewById(R.id.edit_course_course_code);
@@ -285,6 +288,17 @@ public class CourseMenuFragment extends Fragment {
                             session_2.setText(course.session.get(1));
                             session_3.setText(course.session.get(2));
                         }
+
+                        ArrayList <Course> pre = course.prereq;
+                        prereqs = new ArrayList<>();
+                        for(Course c: pre) {
+                            prereqs.add(c.code);
+                        }
+
+                        ArrayAdapter<String> itemsAdapter5 = new ArrayAdapter<String>(getContext(),
+                                android.R.layout.simple_list_item_1,prereqs);
+
+                        prereq.setAdapter(itemsAdapter5);
                     }
                 }
 
