@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,19 +40,33 @@ public class AdminPageFragment extends Fragment {
     View view;
     FirebaseAuth mAuth;
     ArrayList <String> courseCode;
-
+    ArrayList <Course> studentCourses = new ArrayList<Course>();
     ArrayList <Course> courses;
 
     ListView listView;
 
     DatabaseReference ref;
+    DatabaseReference sRef;
 
+    boolean fall_selected;
+    boolean winter_selected;
+    boolean summer_selected;
+
+    String newName;
+    String newCode;
+    String storedCode;
+
+    private ArrayList<String> students = new ArrayList<>();
+
+    
     private android.app.Fragment binding;
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         readDatabase();
+
+
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -72,6 +87,8 @@ public class AdminPageFragment extends Fragment {
                     prereqs.add(c.code);
                 }
 
+                storedCode = courses.get(i).code;
+
                 EditText name_edit = (EditText) myDialog
                         .findViewById(R.id.course_name_edit);
                 EditText code_edit = (EditText) myDialog
@@ -89,27 +106,134 @@ public class AdminPageFragment extends Fragment {
                 name_edit.setText(courses.get(i).name);
                 code_edit.setText(courses.get(i).code);
 
-                String newName = name_edit.getText().toString().trim();
-                String newCode = code_edit.getText().toString().trim();
+                newName = name_edit.getText().toString().trim();
+                newCode = code_edit.getText().toString().trim();
+
+                Button fall_button = (Button) myDialog.findViewById(R.id.button_admin_fall);
+                Button winter_button = (Button) myDialog.findViewById(R.id.button_admin_winter);
+                Button summer_button = (Button) myDialog.findViewById(R.id.button_admin_summer);
+
+                fall_selected = false;
+                winter_selected = false;
+                summer_selected = false;
+
+                for (String session: courses.get(i).session) {
+                    if (session.equals("Fall")) {
+                        fall_button.setBackgroundResource(R.drawable.roundstyle);
+                        fall_button.setBackgroundTintList(getContext().getResources()
+                                .getColorStateList(R.color.SelectedBlue));
+                        fall_selected = true;
+                    }
+                    if (session.equals("Winter")) {
+                        winter_button.setBackgroundResource(R.drawable.roundstyle);
+                        winter_button.setBackgroundTintList(getContext().getResources()
+                                .getColorStateList(R.color.SelectedBlue));
+                        winter_selected = true;
+                    }
+                    if (session.equals("Summer")) {
+                        summer_button.setBackgroundResource(R.drawable.roundstyle);
+                        summer_button.setBackgroundTintList(getContext().getResources()
+                                .getColorStateList(R.color.SelectedBlue));
+                        summer_selected = true;
+                    }
+                }
+
+                fall_button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (fall_selected) {
+                            fall_button.setBackgroundResource(R.drawable.roundstyle);
+                            fall_button.setBackgroundTintList(getContext().getResources()
+                                    .getColorStateList(R.color.MediumBlue));
+                            fall_selected= false;
+                        } else {
+                            fall_button.setBackgroundResource(R.drawable.roundstyle);
+                            fall_button.setBackgroundTintList(getContext().getResources()
+                                    .getColorStateList(R.color.SelectedBlue));
+                            fall_selected = true;
+                        }
+                    }
+                });
+
+                winter_button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (winter_selected) {
+                            winter_button.setBackgroundResource(R.drawable.roundstyle);
+                            winter_button.setBackgroundTintList(getContext().getResources()
+                                    .getColorStateList(R.color.MediumBlue));
+                            winter_selected = false;
+                        } else {
+                            winter_button.setBackgroundResource(R.drawable.roundstyle);
+                            winter_button.setBackgroundTintList(getContext().getResources()
+                                    .getColorStateList(R.color.SelectedBlue));
+                            winter_selected = true;
+                        }
+                    }
+                });
+
+                summer_button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (summer_selected) {
+                            summer_button.setBackgroundResource(R.drawable.roundstyle);
+                            summer_button.setBackgroundTintList(getContext().getResources()
+                                    .getColorStateList(R.color.MediumBlue));
+                            summer_selected = false;
+                        } else {
+                            summer_button.setBackgroundResource(R.drawable.roundstyle);
+                            summer_button.setBackgroundTintList(getContext().getResources()
+                                    .getColorStateList(R.color.SelectedBlue));
+                            summer_selected = true;
+                        }
+                    }
+                });
+
+
+
+
 
                 delete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        deleteStudentCourse(storedCode);
+                        ref.child(courses.get(i).code).removeValue();
                         readDatabase();
                         myDialog.dismiss();
                     }
                 });
+
                 back.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         myDialog.dismiss();
                     }
                 });
+
                 bt.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Course updatedCourse = new Course();
-                        //courseRef.setValue(updatedCourse);
+
+                        newName = name_edit.getText().toString().trim();
+                        newCode = code_edit.getText().toString().trim();
+
+                        ArrayList <String> sessions = new ArrayList<>();
+
+                        if (fall_selected) {
+                            sessions.add("Fall");
+                        }
+                        if (winter_selected) {
+                            sessions.add("Winter");
+                        }
+                        if (summer_selected) {
+                            sessions.add("Summer");
+                        }
+
+                        Course updatedCourse = new Course(newName, newCode, sessions,
+                                courses.get(i).prereq);
+                        ref.child(courses.get(i).code).removeValue();
+                        ref.child(newCode).setValue(updatedCourse);
+
                         readDatabase();
                         myDialog.dismiss();
 
@@ -160,10 +284,46 @@ public class AdminPageFragment extends Fragment {
         ref = FirebaseDatabase.getInstance("https://bo7-project-default-rtdb.firebaseio.com/").
                 getReference("Courses");
 
-
+        sRef = FirebaseDatabase.getInstance("https://bo7-project-default-rtdb.firebaseio.com/")
+                .getReference("Students");
+        sRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                for(DataSnapshot id: task.getResult().getChildren()) {
+                    students.add(id.getKey());
+                }
+            }
+        });
 
         return view;
 
+    }
+
+    public void deleteStudentCourse(String code) {
+
+        for (String student: students) {
+            sRef.child(student).child("coursesTaken").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        for (DataSnapshot child: task.getResult().getChildren()) {
+                            Course course = child.getValue(Course.class);
+                            if (!(course.code.equals(code))) {
+                                studentCourses.add(course);
+                            }
+
+
+                        }
+                        sRef.child(student).child("coursesTaken").setValue(studentCourses);
+                        studentCourses = new ArrayList<Course>();
+                    }
+                    else {
+                        return;
+                    }
+                }
+            });
+
+        }
     }
 
     public void readDatabase() {
