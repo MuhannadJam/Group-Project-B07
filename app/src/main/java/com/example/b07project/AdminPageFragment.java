@@ -231,6 +231,7 @@ public class AdminPageFragment extends Fragment {
 
                         Course updatedCourse = new Course(newName, newCode, sessions,
                                 courses.get(i).prereq);
+                        editStudentCourse(storedCode, updatedCourse);
                         ref.child(courses.get(i).code).removeValue();
                         ref.child(newCode).setValue(updatedCourse);
 
@@ -299,6 +300,34 @@ public class AdminPageFragment extends Fragment {
 
     }
 
+    public void editStudentCourse(String code, Course updated) {
+        for (String student: students) {
+            sRef.child(student).child("coursesTaken").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        for (DataSnapshot child: task.getResult().getChildren()) {
+                            Course course = child.getValue(Course.class);
+                            if (!(course.code.equals(code))) {
+                                studentCourses.add(course);
+                            }
+                            else {
+                                studentCourses.add(updated);
+                            }
+                        }
+
+                        sRef.child(student).child("coursesTaken").setValue(studentCourses);
+                        studentCourses = new ArrayList<Course>();
+                    }
+                    else {
+                        return;
+                    }
+                }
+            });
+
+        }
+    }
+
     public void deleteStudentCourse(String code) {
 
         for (String student: students) {
@@ -311,9 +340,8 @@ public class AdminPageFragment extends Fragment {
                             if (!(course.code.equals(code))) {
                                 studentCourses.add(course);
                             }
-
-
                         }
+
                         sRef.child(student).child("coursesTaken").setValue(studentCourses);
                         studentCourses = new ArrayList<Course>();
                     }
