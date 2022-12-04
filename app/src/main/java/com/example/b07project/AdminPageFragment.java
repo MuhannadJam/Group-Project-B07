@@ -27,6 +27,7 @@ import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
@@ -218,6 +219,23 @@ public class AdminPageFragment extends Fragment {
                         newCode = code_edit.getText().toString().trim();
 
                         ArrayList <String> sessions = new ArrayList<>();
+
+                        if (newName.equals("")) {
+                            name_edit.setError("Course Name Required");
+                            name_edit.requestFocus();
+                            return;
+                        }
+                        if (newCode.equals("")) {
+                            code_edit.setError("Course Code Required");
+                            code_edit.requestFocus();
+                            return;
+                        }
+
+                        if (!(fall_selected || winter_selected || summer_selected)) {
+                            Snackbar.make(view, "Please Select a Session",
+                                            Snackbar.LENGTH_SHORT).show();
+                            return;
+                        }
 
                         if (fall_selected) {
                             sessions.add("Fall");
