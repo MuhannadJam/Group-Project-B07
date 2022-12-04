@@ -28,6 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CourseMenuFragment extends Fragment {
 
@@ -168,6 +169,8 @@ public class CourseMenuFragment extends Fragment {
                 TextView session_1 = myDialog.findViewById(R.id.session_1);
                 TextView session_2 = myDialog.findViewById(R.id.session_2);
                 TextView session_3 = myDialog.findViewById(R.id.session_3);
+                ListView prereq = myDialog.findViewById(R.id.prereq);
+
 
                 for (Course course: allCourses) {
                     if (course.code.equals(addCoursesDisplay.get(i))) {
@@ -189,6 +192,17 @@ public class CourseMenuFragment extends Fragment {
                             session_2.setText(course.session.get(1));
                             session_3.setText(course.session.get(2));
                         }
+
+                        ArrayList <Course> pre = allCourses.get(i).prereq;
+                        ArrayList <String> prereqs = new ArrayList<>();
+                        for(Course c: pre) {
+                            prereqs.add(c.code);
+                        }
+
+                        ArrayAdapter<String> itemsAdapter5 = new ArrayAdapter<String>(getContext(),
+                                android.R.layout.simple_list_item_1,prereqs);
+
+                        prereq.setAdapter(itemsAdapter5);
                     }
 
                 }
