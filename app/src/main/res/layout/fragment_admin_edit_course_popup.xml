@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/LightBlueGrey"
+    android:background="@color/LightBlue"
     tools:context=".admin_add_course_popup">
 
 
@@ -145,7 +145,8 @@
         <ListView
             android:id="@+id/prereq_list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:background="@color/AlternateBlue" />
 
 
     </LinearLayout>
@@ -156,7 +157,7 @@
         android:layout_height="53dp"
         android:layout_marginTop="28dp"
         android:background="@color/LightBlue"
-        android:backgroundTint="@color/LightBlueGrey"
+        android:backgroundTint="@color/LightBlue"
         android:contentDescription="@string/app_name"
         app:layout_constraintBottom_toTopOf="@+id/prereq_list_layout"
         app:layout_constraintEnd_toEndOf="parent"
