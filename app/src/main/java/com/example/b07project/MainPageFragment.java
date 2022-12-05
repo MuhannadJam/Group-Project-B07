@@ -43,6 +43,7 @@ public class MainPageFragment extends Fragment {
 
     ArrayList <Course> coursesTaken = new ArrayList<>();
     ArrayList <Course> allCourses = new ArrayList<>();
+    ArrayList <Course> timetable = new ArrayList<>();
 
     ArrayList <String> courses_avaliable = new ArrayList<>();
     ArrayList <String> fall_courses = new ArrayList<>();
@@ -251,7 +252,10 @@ public class MainPageFragment extends Fragment {
 
                 ListView course_available = myDialog.findViewById(R.id.courses_avaliable_list);
                 ListView courses_planned = myDialog.findViewById(R.id.selected_courses_list);
+
+                Button generate_timeline = myDialog.findViewById(R.id.generate_button);
                 ImageView bt = myDialog.findViewById(R.id.back_button);
+
                 bt.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -286,7 +290,6 @@ public class MainPageFragment extends Fragment {
 
                     }
 
-
                 });
 
                 /*planning_courses =student.coursesPlanned;
@@ -295,6 +298,14 @@ public class MainPageFragment extends Fragment {
                     courses_planned_to_take.add(course.code);
                     Log.d("Test",course.code);
                 }*/
+
+                generate_timeline.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        timetable = student.generateTimetable();
+                        myDialog.dismiss();
+                    }
+                });
 
             }
 
