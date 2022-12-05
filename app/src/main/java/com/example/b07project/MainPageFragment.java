@@ -339,6 +339,14 @@ public class MainPageFragment extends Fragment {
         courses_list = new TextView(getContext());
         courses_list.setText(coursesList);
         tbrow1.addView(courses_list);
+
+        TableRow header_text =  view.findViewById(R.id.header);
+        stk.removeAllViews();
+        stk.addView(header_text);
+        stk = view.findViewById(R.id.timeline);
+
+
+
         stk.addView(tbrow1);
 
         for (int i = 1; i < student.timetable.size(); i++) {
