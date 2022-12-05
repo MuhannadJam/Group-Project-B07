@@ -1,5 +1,7 @@
 package com.example.b07project;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 public class Student {
@@ -26,7 +28,8 @@ public class Student {
 
     public void addCourseToPlanned(Course course){
 
-        if (!(coursesPlanned.contains(course))) {
+
+        if (!(coursesPlanned.contains(course) || coursesTaken.contains(course))) {
             coursesPlanned.add(course);
         }
 
@@ -42,17 +45,22 @@ public class Student {
 
     public void generateTimetable() {
         timetable = new ArrayList<Course>();
+
+
         int j = coursesPlanned.size();
 
         while (j > 0) {
-            for (Course course: coursesPlanned) {
-                if (canTake(course)) {
-                    timetable.add(course);
-                    coursesPlanned.remove(course);
+            for (int i = 0; i < coursesPlanned.size(); i++) {
+                if (coursesPlanned.get(i).prereq.isEmpty() || canTake(coursesPlanned.get(i))) {
+                    timetable.add(coursesPlanned.get(i));
+                    coursesPlanned.remove(coursesPlanned.get(i));
+                    i--;
                 }
             }
             j = coursesPlanned.size();
         }
+
+
     }
 
     public boolean canTake(Course course) {
@@ -65,7 +73,6 @@ public class Student {
         return true;
 
     }
-
 
 
 }

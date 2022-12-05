@@ -29,6 +29,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +42,8 @@ public class MainPageFragment extends Fragment {
 
     TextView displayName;
     String studentName;
+
+    TableLayout stk;
 
     ArrayList <Course> coursesTaken = new ArrayList<>();
     ArrayList <Course> allCourses = new ArrayList<>();
@@ -85,70 +89,13 @@ public class MainPageFragment extends Fragment {
 
         displayName =  view.findViewById(R.id.student_name);
 
+        stk  = (TableLayout) view.findViewById(R.id.timeline);
+
         return view;
 
 
     }
-    public void addtable(){
-        TableLayout stk = (TableLayout) view.findViewById(R.id.timeline);
 
-
-
-        String csession1 = "Fall";
-        TableRow tbrow1 = new TableRow(getContext());
-        TextView session2 = new TextView(getContext());
-        session2.setWidth(135);
-        session2.setText(csession1);
-        tbrow1.addView(session2);
-        String courses2 = "";
-        TextView courses_list2 = new TextView(getContext());
-
-        for (String code: fall_courses) {
-            courses2 += code + " ";
-            coursesAdd.add(code);
-        }
-        courses_list2.setText(courses2);
-        tbrow1.addView(courses_list2);
-        stk.addView(tbrow1);
-
-        String csession = "Winter";
-        TableRow tbrow = new TableRow(getContext());
-        TextView session = new TextView(getContext());
-        session.setWidth(135);
-        session.setText(csession);
-        tbrow.addView(session);
-        String courses = "";
-        TextView courses_list = new TextView(getContext());
-        for (String code: winter_courses) {
-            if (!(coursesAdd.contains(code))) {
-                courses += code + " ";
-                coursesAdd.add(code);
-            }
-        }
-
-        courses_list.setText(courses);
-        tbrow.addView(courses_list);
-        stk.addView(tbrow);
-
-        TableRow tbrow2 = new TableRow(getContext());
-        String csession3 = "Summer";
-        TextView session3 = new TextView(getContext());
-        session3.setWidth(135);
-        session3.setText(csession3);
-        tbrow2.addView(session3);
-        String courses3 = "";
-        TextView courses_list3 = new TextView(getContext());
-
-        for (String code: summer_courses) {
-            if (!(coursesAdd.contains(code))) {
-                courses3 += code + " ";
-                coursesAdd.add(code);
-            }
-        }
-        courses_list3.setText(courses3);
-        tbrow2.addView(courses_list3);
-        stk.addView(tbrow2);
-    }
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
@@ -180,23 +127,7 @@ public class MainPageFragment extends Fragment {
                         Course course = child.getValue(Course.class);
                         coursesTaken.add(course);
                         courses_codes.add(course.code);
-
                     }
-                    for (Course c: coursesTaken) {
-                        if (c.session.contains("Fall")) {
-                            fall_courses.add(c.code);
-
-
-                        }
-                        if (c.session.contains("Winter")) {
-                            winter_courses.add(c.code);
-                        }
-                        if (c.session.contains("Summer")) {
-                            summer_courses.add(c.code);
-
-                        }
-                    }
-                    addtable();
                 }
                 else {
                     return;
@@ -211,12 +142,9 @@ public class MainPageFragment extends Fragment {
                     for (DataSnapshot child: task.getResult().getChildren()) {
                         Course course = child.getValue(Course.class);
                         allCourses.add(course);
-
-
-
-                    }}}
-
-
+                    }
+                }
+            }
             });
 
         logout.setOnClickListener(new View.OnClickListener() {
@@ -240,7 +168,7 @@ public class MainPageFragment extends Fragment {
         manageTimeline.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ArrayList <String> courses_planned_to_take = new ArrayList<>();
+                courses_planned_to_take = new ArrayList<>();
                 Dialog myDialog;
                 myDialog = new Dialog(getContext());
                 myDialog.setContentView(R.layout.fragment_edit_course_timeline);
@@ -259,6 +187,7 @@ public class MainPageFragment extends Fragment {
                 bt.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        student.coursesPlanned = new ArrayList<>();
                         myDialog.dismiss();
                     }
                 });
@@ -279,6 +208,7 @@ public class MainPageFragment extends Fragment {
                 course_available.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        courses_planned_to_take = new ArrayList<>();
                         for (Course course: allCourses) {
                             if (course.code .equals(courses_avaliable.get(i))) {
                                 student.addCourseToPlanned(course);
@@ -305,13 +235,139 @@ public class MainPageFragment extends Fragment {
                     @Override
                     public void onClick(View view) {
                         student.generateTimetable();
+                        for (Course c: student.timetable) {
+                            if (c.session.contains("Fall")) {
+                                fall_courses.add(c.code);
+                            }
+                            if (c.session.contains("Winter")) {
+                                winter_courses.add(c.code);
+                            }
+                            if (c.session.contains("Summer")) {
+                                summer_courses.add(c.code);
+                            }
+                        }
+                        addtable();
+                        Log.i("Timeline", String.valueOf(student.timetable));
+                        courses_planned_to_take = new ArrayList<>();
                         myDialog.dismiss();
                     }
                 });
 
             }
-            
+
         });
+    }
+
+    public boolean canTakeTogether(int start, ArrayList <Course> timetable, Course course) {
+
+        for (int i = start; i < timetable.size(); i++) {
+            if (course.prereq.contains(timetable.get(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public String nextAvailableSession(String currentSession, int year, Course course) {
+        if (currentSession.equals("Fall")) {
+            if (course.session.contains("Winter")) {
+                return "Winter " + String.valueOf(year + 1);
+            }
+            else if (course.session.contains("Summer")) {
+                return "Summer " + String.valueOf(year + 1);
+            }
+        }
+        else if (currentSession.equals("Winter")) {
+            if (course.session.contains("Summer")) {
+                return "Summer " + String.valueOf(year);
+            }
+            else if (course.session.contains("Fall")) {
+                return "Fall " + String.valueOf(year);
+            }
+        }
+        else if (currentSession.equals("Summer")) {
+            if (course.session.contains("Fall")) {
+                return "Fall " + String.valueOf(year);
+            }
+            else if (course.session.contains("Winter")) {
+                return "Winter " + String.valueOf(year + 1);
+            }
+        }
+        return currentSession + " " + String.valueOf(year + 1);
+    }
+
+    public void addtable(){
+
+        String currentSem;
+        int year;
+        String session;
+
+        TextView current;
+        TextView courses_list;
+        int start = 0;
+        int num_courses = 1;
+
+        Course course;
+        String coursesList;
+
+        ArrayList <Course> studentTimetable = student.timetable;
+
+        course = studentTimetable.get(0);
+        coursesList = course.code;
+        if (course.session.contains("Fall")) {
+            currentSem = "Fall";
+            year = 2022;
+        }
+        else if (course.session.contains("Winter")) {
+            currentSem = "Winter";
+            year = 2023;
+        }
+        else {
+            currentSem = "Summer";
+            year = 2023;
+        }
+
+        session = currentSem + " " + String.valueOf(year);
+
+
+        TableRow tbrow1 = new TableRow(getContext());
+        current = new TextView(getContext());
+        current.setWidth(135);
+        current.setText(session);
+        tbrow1.addView(current);
+        courses_list = new TextView(getContext());
+        courses_list.setText(coursesList);
+        tbrow1.addView(courses_list);
+        stk.addView(tbrow1);
+
+        for (int i = 1; i < student.timetable.size(); i++) {
+            if (canTakeTogether(start, student.timetable, studentTimetable.get(i)) &&
+                    studentTimetable.get(i).session.contains(currentSem)) {
+                coursesList += " " + studentTimetable.get(i).code;
+                courses_list.setText(coursesList);
+                num_courses++;
+            }
+            else {
+                start = num_courses;
+                num_courses++;
+                session = nextAvailableSession(currentSem, year, studentTimetable.get(i));
+                currentSem = session.substring(0, session.indexOf(" "));
+                year = Integer.parseInt(session.substring(session.indexOf(" ") + 1),
+                        session.length() - 1);
+                course = studentTimetable.get(i);
+                coursesList = course.code;
+                tbrow1 = new TableRow(getContext());
+                current = new TextView(getContext());
+                current.setWidth(135);
+                current.setText(session);
+                tbrow1.addView(current);
+                courses_list = new TextView(getContext());
+                courses_list.setText(coursesList);
+                tbrow1.addView(courses_list);
+                stk.addView(tbrow1);
+            }
+        }
+
     }
 
     @Override
