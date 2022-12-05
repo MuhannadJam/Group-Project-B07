@@ -1,13 +1,16 @@
 package com.example.b07project;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.RelativeLayout;
+import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -24,9 +27,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainPageFragment extends Fragment {
 
@@ -38,18 +40,23 @@ public class MainPageFragment extends Fragment {
     String studentName;
 
     ArrayList <Course> coursesTaken = new ArrayList<>();
+    ArrayList <Course> allCourses = new ArrayList<>();
 
+    ArrayList <String> courses_avaliable = new ArrayList<>();
     ArrayList <String> fall_courses = new ArrayList<>();
     ArrayList <String> winter_courses = new ArrayList<>();
     ArrayList <String> summer_courses = new ArrayList<>();
     ArrayList <String> coursesAdd = new ArrayList<>();
-
+    ArrayList <String> courses_codes = new ArrayList<>();
+    ArrayList <String> courses_planned_to_take = new ArrayList<>();
 
     Button manageCourses;
     Button manageTimeline;
     Button logout;
 
     Student student;
+
+    DatabaseReference cRef;
 
     View view;
 
@@ -60,6 +67,11 @@ public class MainPageFragment extends Fragment {
     ) {
 
         view = inflater.inflate(R.layout.fragment_main_page, container, false);
+
+
+        cRef = FirebaseDatabase.
+                getInstance("https://bo7-project-default-rtdb.firebaseio.com/").
+                getReference("Courses");
 
         logout = (Button) view.findViewById(R.id.button_logout);
         manageCourses = (Button) view.findViewById(R.id.manage_courses_button);
@@ -110,7 +122,7 @@ public class MainPageFragment extends Fragment {
                 coursesAdd.add(code);
             }
         }
-        Log.i("Test 2", courses);
+
         courses_list.setText(courses);
         tbrow.addView(courses_list);
         stk.addView(tbrow);
@@ -163,6 +175,8 @@ public class MainPageFragment extends Fragment {
                     for (DataSnapshot child: task.getResult().getChildren()) {
                         Course course = child.getValue(Course.class);
                         coursesTaken.add(course);
+                        courses_codes.add(course.code);
+
                     }
                     for (Course c: coursesTaken) {
                         if (c.session.contains("Fall")) {
@@ -183,6 +197,20 @@ public class MainPageFragment extends Fragment {
             }
         });
 
+        cRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (DataSnapshot child: task.getResult().getChildren()) {
+                        Course course = child.getValue(Course.class);
+                        allCourses.add(course);
+
+
+
+                    }}}
+
+
+            });
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -205,8 +233,60 @@ public class MainPageFragment extends Fragment {
         manageTimeline.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(MainPageFragment.this).navigate(R.id.action_SecondFragment_to_editCourseTimeline);
+                Dialog myDialog;
+                myDialog = new Dialog(getContext());
+                myDialog.setContentView(R.layout.fragment_edit_course_timeline);
+                WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+                lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+                lp.height = WindowManager.LayoutParams.MATCH_PARENT;
+                myDialog.show();
+                myDialog.getWindow().setAttributes(lp);
+
+                ListView course_available = myDialog.findViewById(R.id.courses_avaliable_list);
+                ListView courses_planned = myDialog.findViewById(R.id.selected_courses_list);
+
+                ArrayList<Course> course_planned_list = new ArrayList<>();
+                for (Course course : allCourses) {
+                    if (!(courses_codes.contains(course.code))) {
+                        courses_avaliable.add(course.code);
+                        course_planned_list.add(course);
+
+                    }
+                }
+                ArrayList <Course> planning_courses = new ArrayList<>();
+                ArrayAdapter<String> itemsAdapter2 = new ArrayAdapter<String>(getContext(),
+                        android.R.layout.simple_list_item_1, courses_avaliable);
+
+                course_available.setAdapter(itemsAdapter2);
+                course_available.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                            /*student.addCourseToPlanned(course_planned_list.get(i));*/
+                            courses_planned_to_take.add(courses_avaliable.get(i));
+
+                        ArrayAdapter<String> itemsAdapter3 = new ArrayAdapter<String>(getContext(),
+                                android.R.layout.simple_list_item_1, courses_planned_to_take);
+                        courses_planned.setAdapter(itemsAdapter3);
+                        courses_avaliable.remove(i);
+                        course_available.setAdapter(itemsAdapter2);
+
+                    }
+
+
+                });
+
+                /*planning_courses =student.coursesPlanned;
+
+                for(Course course : planning_courses){
+                    courses_planned_to_take.add(course.code);
+                    Log.d("Test",course.code);
+                }*/
+
             }
+
+
+
+
         });
     }
 
