@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/LightBlue"
+    android:background="@color/main_background_color_light_blue"
     tools:context=".MainPageFragment">
 
     <TextView
@@ -12,8 +12,8 @@
         android:layout_width="279dp"
         android:layout_height="77dp"
         android:fontFamily="sans-serif-black"
-        android:text="Welcome!"
-        android:textColor="@color/DarkBlue"
+        android:text="@string/welcome_exclamation_mark"
+        android:textColor="@color/main_text_color_dark_blue"
         android:textSize="60sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,23 +26,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/roundstyle"
-        android:backgroundTint="@color/MediumBlue"
+        android:backgroundTint="@color/main_button_medium_blue"
         android:padding="20dp"
         android:text="@string/logout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2"
-        app:layout_constraintVertical_bias="0.532" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.95" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/manage_courses_button"
         android:layout_width="299dp"
         android:layout_height="48dp"
         android:background="@drawable/roundstyle"
-        android:backgroundTint="@color/MediumBlue"
-        android:text="Manage Courses"
+        android:backgroundTint="@color/main_button_medium_blue"
+        android:text="@string/manage_courses"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,8 +54,8 @@
         android:layout_width="299dp"
         android:layout_height="48dp"
         android:background="@drawable/roundstyle"
-        android:backgroundTint="@color/MediumBlue"
-        android:text="Manage Course Timeline"
+        android:backgroundTint="@color/main_button_medium_blue"
+        android:text="@string/manage_course_timeline"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -68,7 +68,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
         android:text=""
-        android:textColor="@color/DarkBlue"
+        android:textColor="@color/main_text_color_dark_blue"
         android:textSize="35sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -81,9 +81,10 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Course Timeline:"
-        android:textColor="@color/BlueGrey"
-        android:textSize="30dp"
+        android:text="@string/course_timeline_dot_dot"
+        android:textColor="@color/dark_blue_grey"
+
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -93,17 +94,20 @@
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="384dp"
-        android:layout_height="234dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/button_logout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.592"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.217">
+        app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="360dp"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
@@ -125,20 +129,25 @@
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+
                         android:id = "@+id/header"
-                        android:background="@color/LightBlueGrey">
+                        android:background="@color/light_blue_grey">
+
+
+
 
                         <TextView
-                            android:layout_width="135dp"
+                            android:layout_width="140dp"
                             android:layout_height="wrap_content"
-                            android:text="Session"
-                            />
+                            android:text="@string/session"
+                            android:textSize="18sp" />
 
                         <TextView
                             android:id="@+id/textView2"
-                            android:layout_width="254dp"
-                            android:layout_height="match_parent"
-                            android:text="Course" />
+                            android:layout_width="220dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/course"
+                            android:textSize="18sp" />
 
                     </TableRow>
 

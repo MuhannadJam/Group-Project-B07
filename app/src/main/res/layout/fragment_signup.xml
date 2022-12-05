@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/LightBlue"
+    android:background="@color/main_background_color_light_blue"
     tools:context=".SignupFragment">
 
 
@@ -14,9 +14,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
-        android:text="Sign Up"
-        android:textColor="@color/DarkBlue"
-        android:textSize="50dp"
+        android:text="@string/sign_up"
+        android:textColor="@color/main_text_color_dark_blue"
+        android:textSize="50sp"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -29,9 +29,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/roundstyle"
-        android:backgroundTint="@color/MediumBlue"
+        android:backgroundTint="@color/main_button_medium_blue"
         android:padding="20dp"
-        android:text="Sign Up"
+        android:text="@string/sign_up"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,55 +44,58 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/roundstyle"
-        android:backgroundTint="@color/AlternateBlue"
+        android:backgroundTint="@color/alternate_blue"
         android:ems="11"
-        android:hint="Name"
+        android:hint="@string/name"
         android:inputType="textPersonName"
         android:padding="14dp"
         app:layout_constraintBottom_toTopOf="@+id/signup_email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signuptext" />
+        app:layout_constraintTop_toBottomOf="@+id/signuptext"
+        tools:ignore="Autofill" />
 
     <EditText
         android:id="@+id/signup_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/roundstyle"
-        android:backgroundTint="@color/AlternateBlue"
+        android:backgroundTint="@color/alternate_blue"
         android:ems="11"
-        android:hint="Email"
+        android:hint="@string/email"
         android:inputType="textPersonName"
 
         android:padding="14dp"
         app:layout_constraintBottom_toTopOf="@+id/signup_password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signup_name" />
+        app:layout_constraintTop_toBottomOf="@+id/signup_name"
+        tools:ignore="Autofill" />
 
     <EditText
         android:id="@+id/signup_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/roundstyle"
-        android:backgroundTint="@color/AlternateBlue"
+        android:backgroundTint="@color/alternate_blue"
         android:ems="11"
-        android:hint="Password"
+        android:hint="@string/password"
         android:inputType="textPassword"
         android:padding="14dp"
         app:layout_constraintBottom_toTopOf="@+id/signup_passwordconfirmation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signup_email" />
+        app:layout_constraintTop_toBottomOf="@+id/signup_email"
+        tools:ignore="Autofill" />
 
     <EditText
         android:id="@+id/signup_passwordconfirmation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/roundstyle"
-        android:backgroundTint="@color/AlternateBlue"
+        android:backgroundTint="@color/alternate_blue"
         android:ems="11"
-        android:hint="Confirm Password"
+        android:hint="@string/confirm_password"
 
         android:inputType="textPassword"
         android:padding="14dp"

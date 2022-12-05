@@ -14,7 +14,7 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="expected_course_timeline">Expected course timeline</string>
     <string name="add_course">Add course</string>
-    <string name="add">+add</string>
+    <string name="plus_add">+add</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="settings">Settings</string>
@@ -33,4 +33,27 @@
     <string name="winter">Winter</string>
     <string name="prerequisites">Prerequisites</string>
     <string name="previous_page">Previous page</string>
+    <string name="courses_taken">Courses Taken:</string>
+    <string name="add_courses">Add Courses:</string>
+    <string name="course_information">Course Information</string>
+    <string name="add">Add</string>
+    <string name="course_code_dot_dot">Course Code:</string>
+    <string name="course_name_dot_dot">Course Name:</string>
+    <string name="avaliable_sessions_dot_dot">Avaliable Sessions:</string>
+    <string name="textview">TextView</string>
+    <string name="prerequistes_dot_dot">Prerequistes:</string>
+    <string name="edit_course">Edit Course</string>
+    <string name="done">Done</string>
+    <string name="delete">Delete</string>
+    <string name="name">Name</string>
+    <string name="generate">Generate</string>
+    <string name="sign_up">Sign up</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="welcome_exclamation_mark">Welcome!</string>
+    <string name="manage_course_timeline">Manage Course Timeline</string>
+    <string name="manage_courses">Manage Courses</string>
+    <string name="course_timeline_dot_dot">Course Timeline:</string>
+    <string name="session">Session</string>
+    <string name="course">Course</string>
+    <string name="confirm_password">Confirm Password</string>
 </resources>
