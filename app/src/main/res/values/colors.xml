@@ -13,5 +13,7 @@
     <color name="AlternateBlue">#BCCBEE</color>
     <color name="BlueGrey">#5E6274</color>
     <color name="LightBlueGrey">#B1C0E1</color>
-    <color name="SelectedBlue">#063970</color>
+    <color name="SelectedBlue">#002B5A</color>
+    <color name="SelectedGrey">#676767</color>
+    <color name="PopUpLightBlue">#F1F2FF</color>
 </resources>
