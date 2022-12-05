@@ -129,18 +129,24 @@ public class AdminPageFragment extends Fragment {
                         fall_button.setBackgroundResource(R.drawable.roundstyle);
                         fall_button.setBackgroundTintList(getContext().getResources()
                                 .getColorStateList(R.color.SelectedBlue));
+                        fall_button.setTextColor(getContext().getResources()
+                                .getColorStateList(R.color.SelectedGrey));
                         fall_selected = true;
                     }
                     if (session.equals("Winter")) {
                         winter_button.setBackgroundResource(R.drawable.roundstyle);
                         winter_button.setBackgroundTintList(getContext().getResources()
                                 .getColorStateList(R.color.SelectedBlue));
+                        winter_button.setTextColor(getContext().getResources()
+                                .getColorStateList(R.color.SelectedGrey));
                         winter_selected = true;
                     }
                     if (session.equals("Summer")) {
                         summer_button.setBackgroundResource(R.drawable.roundstyle);
                         summer_button.setBackgroundTintList(getContext().getResources()
                                 .getColorStateList(R.color.SelectedBlue));
+                        summer_button.setTextColor(getContext().getResources()
+                                .getColorStateList(R.color.SelectedGrey));
                         summer_selected = true;
                     }
                 }
@@ -152,11 +158,15 @@ public class AdminPageFragment extends Fragment {
                             fall_button.setBackgroundResource(R.drawable.roundstyle);
                             fall_button.setBackgroundTintList(getContext().getResources()
                                     .getColorStateList(R.color.MediumBlue));
+                            fall_button.setTextColor(getContext().getResources()
+                                    .getColorStateList(R.color.black));
                             fall_selected= false;
                         } else {
                             fall_button.setBackgroundResource(R.drawable.roundstyle);
                             fall_button.setBackgroundTintList(getContext().getResources()
                                     .getColorStateList(R.color.SelectedBlue));
+                            fall_button.setTextColor(getContext().getResources()
+                                    .getColorStateList(R.color.SelectedGrey));
                             fall_selected = true;
                         }
                     }
@@ -169,11 +179,15 @@ public class AdminPageFragment extends Fragment {
                             winter_button.setBackgroundResource(R.drawable.roundstyle);
                             winter_button.setBackgroundTintList(getContext().getResources()
                                     .getColorStateList(R.color.MediumBlue));
+                            winter_button.setTextColor(getContext().getResources()
+                                    .getColorStateList(R.color.black));
                             winter_selected = false;
                         } else {
                             winter_button.setBackgroundResource(R.drawable.roundstyle);
                             winter_button.setBackgroundTintList(getContext().getResources()
                                     .getColorStateList(R.color.SelectedBlue));
+                            winter_button.setTextColor(getContext().getResources()
+                                    .getColorStateList(R.color.SelectedGrey));
                             winter_selected = true;
                         }
                     }
@@ -186,11 +200,15 @@ public class AdminPageFragment extends Fragment {
                             summer_button.setBackgroundResource(R.drawable.roundstyle);
                             summer_button.setBackgroundTintList(getContext().getResources()
                                     .getColorStateList(R.color.MediumBlue));
+                            summer_button.setTextColor(getContext().getResources()
+                                    .getColorStateList(R.color.black));
                             summer_selected = false;
                         } else {
                             summer_button.setBackgroundResource(R.drawable.roundstyle);
                             summer_button.setBackgroundTintList(getContext().getResources()
                                     .getColorStateList(R.color.SelectedBlue));
+                            summer_button.setTextColor(getContext().getResources()
+                                    .getColorStateList(R.color.SelectedGrey));
                             summer_selected = true;
                         }
                     }

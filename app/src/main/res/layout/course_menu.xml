@@ -12,60 +12,55 @@
         android:id="@+id/back_button"
         android:layout_width="38dp"
         android:layout_height="39dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="348dp"
         android:src="@drawable/back_arrow"
-        app:layout_constraintBottom_toTopOf="@+id/header"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.067"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.037" />
 
     <TextView
         android:id="@+id/header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="33dp"
-        android:layout_marginTop="65dp"
-        android:layout_marginEnd="34dp"
-        android:layout_marginBottom="590dp"
         android:fontFamily="sans-serif-black"
         android:text="@string/course_menu"
         android:textColor="@color/DarkBlue"
         android:textSize="57sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.07999998" />
 
     <TextView
         android:id="@+id/courses_taken_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="33dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="226dp"
         android:text="Courses Taken:"
         android:textColor="@color/DarkBlue"
-        android:textSize="24dp"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/header"
         app:layout_constraintTop_toBottomOf="@+id/header"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.04000002" />
 
     <LinearLayout
         android:id="@+id/course_menu_add_course_linearlayout"
         android:layout_width="334dp"
         android:layout_height="200dp"
-        android:layout_marginBottom="310dp"
+        android:layout_marginStart="5dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/courses_taken_text">
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/courses_taken_text"
+        app:layout_constraintTop_toBottomOf="@+id/courses_taken_text"
+        app:layout_constraintVertical_bias="0.029999971">
 
         <ListView
             android:id="@+id/course_taken_list"
@@ -79,29 +74,28 @@
         android:id="@+id/add_courses_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="33dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="113dp"
         android:text="Add Courses:"
-        android:textSize="22sp"
+        android:textColor="@color/DarkBlue"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/courses_taken_text"
         app:layout_constraintTop_toBottomOf="@+id/course_menu_add_course_linearlayout"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.060000002" />
 
     <LinearLayout
         android:id="@+id/course_menu_expected_course_linearlayout"
         android:layout_width="334dp"
         android:layout_height="200dp"
-        android:layout_marginBottom="32dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_courses_text">
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/add_courses_text"
+        app:layout_constraintTop_toBottomOf="@+id/add_courses_text"
+        app:layout_constraintVertical_bias="0.19">
 
         <ListView
             android:id="@+id/add_courses_list"

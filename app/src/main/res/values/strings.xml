@@ -18,4 +18,19 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="settings">Settings</string>
+    <string name="planned_courses">Planned Courses:</string>
+    <string name="add_planned_courses">Add Planned Courses:</string>
+    <string name="course_timeline">Course Timeline</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="welcome">Welcome!</string>
+    <string name="course_list">Course List:</string>
+    <string name="add_prereq">Add Prerequisites</string>
+    <string name="course_code">Course code</string>
+    <string name="fall">Fall</string>
+    <string name="course_name">Course name</string>
+    <string name="summer">Summer</string>
+    <string name="winter">Winter</string>
+    <string name="prerequisites">Prerequisites</string>
+    <string name="previous_page">Previous page</string>
 </resources>

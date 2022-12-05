@@ -21,22 +21,25 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.099" />
+        app:layout_constraintVertical_bias="0.08" />
 
     <EditText
         android:id="@+id/addcourse_code"
-        android:layout_width="250dp"
+        android:layout_width="270dp"
         android:layout_height="wrap_content"
         android:background="@drawable/roundstyle"
         android:backgroundTint="@color/AlternateBlue"
         android:ems="11"
-        android:hint="Course code"
+        android:hint="@string/course_code"
+        android:importantForAutofill="no"
+        android:inputType="textShortMessage"
         android:padding="14dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addcourse_name"
-        app:layout_constraintVertical_bias="0.01999998" />
+        app:layout_constraintVertical_bias="0.03000002"
+        tools:ignore="TextContrastCheck" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_admin_summer"
@@ -44,7 +47,7 @@
         android:layout_height="48dp"
         android:background="@drawable/roundstyle"
         android:backgroundTint="@color/MediumBlue"
-        android:text="Summer"
+        android:text="@string/summer"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/addcourse_code"
         app:layout_constraintHorizontal_bias="1.0"
@@ -58,6 +61,7 @@
         android:layout_height="53dp"
         android:background="@color/LightBlue"
         android:backgroundTint="@color/LightBlue"
+        android:contentDescription="@string/add_prereq"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/button_admin_summer"
         app:layout_constraintHorizontal_bias="1.0"
@@ -68,18 +72,21 @@
 
     <EditText
         android:id="@+id/addcourse_name"
-        android:layout_width="250dp"
+        android:layout_width="270dp"
         android:layout_height="wrap_content"
         android:background="@drawable/roundstyle"
         android:backgroundTint="@color/AlternateBlue"
         android:ems="11"
-        android:hint="Course name"
+        android:hint="@string/course_name"
+        android:importantForAutofill="no"
+        android:inputType="textLongMessage"
         android:padding="14dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_course"
-        app:layout_constraintVertical_bias="0.065" />
+        app:layout_constraintVertical_bias="0.04000002"
+        tools:ignore="TextContrastCheck" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_admin_fall"
@@ -87,7 +94,7 @@
         android:layout_height="48dp"
         android:background="@drawable/roundstyle"
         android:backgroundTint="@color/MediumBlue"
-        android:text="Fall"
+        android:text="@string/fall"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -106,8 +113,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        app:layout_constraintVertical_bias="0.29000002" />
+        app:layout_constraintTop_toBottomOf="@+id/addcourse_prereq"
+        app:layout_constraintVertical_bias="0.81"
+        tools:ignore="DuplicateSpeakableTextCheck" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_admin_winter"
@@ -115,7 +123,7 @@
         android:layout_height="48dp"
         android:background="@drawable/roundstyle"
         android:backgroundTint="@color/MediumBlue"
-        android:text="Winter"
+        android:text="@string/winter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button_admin_summer"
         app:layout_constraintStart_toEndOf="@+id/button_admin_fall"
@@ -124,35 +132,39 @@
 
     <EditText
         android:id="@+id/addcourse_prereq"
-        android:layout_width="174dp"
+        android:layout_width="0dp"
         android:layout_height="52dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/roundstyle"
         android:backgroundTint="@color/AlternateBlue"
         android:ems="11"
-        android:hint="Prerequisites"
+
+        android:hint="@string/prerequisites"
 
         android:inputType="textPersonName"
 
         android:padding="14dp"
 
         app:layout_constraintBottom_toBottomOf="parent"
-
         app:layout_constraintEnd_toStartOf="@+id/add_prereq_button"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/button_admin_fall"
         app:layout_constraintTop_toBottomOf="@+id/button_admin_winter"
-        app:layout_constraintVertical_bias="0.04000002" />
+        app:layout_constraintVertical_bias="0.050000012"
+        tools:ignore="TextContrastCheck"
+        android:importantForAutofill="no" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="250dp"
-        android:layout_height="120dp"
+        android:layout_width="270dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="24dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/button_add"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addcourse_prereq"
-        app:layout_constraintVertical_bias="0.060000002">
+        app:layout_constraintTop_toBottomOf="@+id/addcourse_prereq">
 
         <ListView
             android:id="@+id/prereq_list"
@@ -172,7 +184,8 @@
         app:layout_constraintHorizontal_bias="0.037"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
+        app:layout_constraintVertical_bias="0.023"
+        android:contentDescription="@string/previous_page" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

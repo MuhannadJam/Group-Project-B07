@@ -83,5 +83,9 @@
         android:id="@+id/editCourseTimeline"
         android:name="com.example.b07project.EditCourseTimeline"
         android:label="fragment_edit_course_timeline"
-        tools:layout="@layout/fragment_edit_course_timeline" />
+        tools:layout="@layout/fragment_edit_course_timeline" >
+        <action
+            android:id="@+id/action_editCourseTimeline_to_SecondFragment"
+            app:destination="@id/SecondFragment" />
+    </fragment>
 </navigation>

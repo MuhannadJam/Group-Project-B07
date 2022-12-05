@@ -15,13 +15,12 @@
         android:layout_height="wrap_content"
         android:text="Course Information"
         android:textColor="@color/DarkBlue"
-        android:textSize="40dp"
+        android:textSize="35sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.59"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.106" />
+        app:layout_constraintVertical_bias="0.110000014" />
 
 
     <androidx.appcompat.widget.AppCompatButton
@@ -29,14 +28,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/roundstyle"
-        android:backgroundTint="@color/LightBlue"
+        android:backgroundTint="@color/MediumBlue"
         android:text="Add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.931" />
+        app:layout_constraintTop_toBottomOf="@+id/prerequisites_name"
+        app:layout_constraintVertical_bias="0.73" />
 
     <TextView
         android:id="@+id/edit_course_course_code"
@@ -44,11 +42,11 @@
         android:layout_height="wrap_content"
         android:text="Course Code:"
         android:textColor="@color/DarkBlue"
-        android:textSize="25dp"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.149"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edit_course_text"
         app:layout_constraintTop_toBottomOf="@+id/edit_course_course_name"
         app:layout_constraintVertical_bias="0.13999999" />
 
@@ -58,25 +56,25 @@
         android:layout_height="wrap_content"
         android:text="Course Name:"
         android:textColor="@color/DarkBlue"
-        android:textSize="25dp"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.151"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edit_course_text"
         app:layout_constraintTop_toBottomOf="@+id/edit_course_text"
-        app:layout_constraintVertical_bias="0.062" />
+        app:layout_constraintVertical_bias="0.02" />
 
     <ImageView
         android:id="@+id/back_button"
-        android:layout_width="42dp"
-        android:layout_height="37dp"
+        android:layout_width="38dp"
+        android:layout_height="39dp"
         android:src="@drawable/back_arrow"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.105"
+        app:layout_constraintHorizontal_bias="0.067"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
+        app:layout_constraintVertical_bias="0.037" />
 
     <TextView
         android:id="@+id/Avaliable_sessions"
@@ -84,11 +82,11 @@
         android:layout_height="wrap_content"
         android:text="Avaliable Sessions:"
         android:textColor="@color/DarkBlue"
-        android:textSize="25dp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/done_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.197"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edit_course_text"
         app:layout_constraintTop_toBottomOf="@+id/edit_course_course_code"
         app:layout_constraintVertical_bias="0.24000001" />
 
@@ -96,14 +94,14 @@
         android:id="@+id/name_display"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:maxWidth="300sp"
+        android:maxHeight="60sp"
         android:text="TextView"
         android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/edit_course_course_code"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_course_course_name"
-        app:layout_constraintVertical_bias="0.344" />
+        app:layout_constraintEnd_toEndOf="@+id/edit_course_text"
+        app:layout_constraintStart_toStartOf="@+id/edit_course_text"
+        app:layout_constraintTop_toBottomOf="@+id/edit_course_course_name" />
 
     <TextView
         android:id="@+id/code_display"
@@ -112,11 +110,10 @@
         android:text="TextView"
         android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/Avaliable_sessions"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/edit_course_text"
         app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_course_course_code"
-        app:layout_constraintVertical_bias="0.375" />
+        app:layout_constraintStart_toStartOf="@+id/edit_course_text"
+        app:layout_constraintTop_toBottomOf="@+id/edit_course_course_code" />
 
     <TextView
         android:id="@+id/session_1"
@@ -124,11 +121,11 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         android:textSize="18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/prerequisites_name"
         app:layout_constraintEnd_toStartOf="@+id/session_2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.626" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/Avaliable_sessions"
+        app:layout_constraintTop_toBottomOf="@+id/Avaliable_sessions" />
 
     <TextView
         android:id="@+id/session_2"
@@ -136,12 +133,12 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         android:textSize="18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/prerequisites_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.626" />
+        app:layout_constraintTop_toTopOf="@+id/session_1"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/session_3"
@@ -149,12 +146,12 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         android:textSize="18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.542"
+        app:layout_constraintBottom_toTopOf="@+id/prerequisites_name"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout5"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/session_2"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.627" />
+        app:layout_constraintTop_toTopOf="@+id/session_1"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/prerequisites_name"
@@ -162,29 +159,32 @@
         android:layout_height="wrap_content"
         android:text="Prerequistes:"
         android:textColor="@color/DarkBlue"
-        android:textSize="25dp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.147"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edit_course_course_name"
         app:layout_constraintTop_toBottomOf="@+id/Avaliable_sessions"
         app:layout_constraintVertical_bias="0.264" />
 
     <LinearLayout
-        android:layout_width="324dp"
-        android:layout_height="79dp"
-        android:layout_marginBottom="104dp"
+        android:id="@+id/linearLayout5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/prerequisites_name">
+        app:layout_constraintBottom_toTopOf="@+id/done_button"
+        app:layout_constraintEnd_toEndOf="@+id/edit_course_text"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/prerequisites_name"
+        app:layout_constraintTop_toBottomOf="@+id/prerequisites_name"
+        app:layout_constraintVertical_bias="0.16000003">
 
         <ListView
             android:id="@+id/prereq"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/AlternateBlue" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
