@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -43,6 +44,7 @@ public class CourseMenuFragment extends Fragment {
     ArrayList <Course> coursesTaken;
     ArrayList <String> courseTakenDisplay;
     ArrayList <String> addCoursesDisplay;
+    ArrayList <String> prereqs;
 
     ArrayAdapter<String> itemsAdapter1;
     ArrayAdapter<String> itemsAdapter2;
@@ -193,8 +195,8 @@ public class CourseMenuFragment extends Fragment {
                             session_3.setText(course.session.get(2));
                         }
 
-                        ArrayList <Course> pre = allCourses.get(i).prereq;
-                        ArrayList <String> prereqs = new ArrayList<>();
+                        ArrayList <Course> pre = course.prereq;
+                        prereqs = new ArrayList<>();
                         for(Course c: pre) {
                             prereqs.add(c.code);
                         }
@@ -217,6 +219,11 @@ public class CourseMenuFragment extends Fragment {
                 bt.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        if (!canTake(courseTakenDisplay, prereqs)) {
+                            Toast.makeText(getContext(), "Not all Prerequisites taken",
+                                    Toast.LENGTH_SHORT).show();
+                            return;
+                        }
                         myDialog.dismiss();
                         courseTakenDisplay.add(addCoursesDisplay.get(i));
                         addCoursesDisplay.remove(addCoursesDisplay.get(i));
@@ -250,6 +257,8 @@ public class CourseMenuFragment extends Fragment {
                 lp.height = WindowManager.LayoutParams.MATCH_PARENT;
                 myDialog.show();
                 myDialog.getWindow().setAttributes(lp);
+
+                ListView prereq = (ListView) myDialog.findViewById(R.id.prereq);
 
                 Button bt = myDialog.findViewById(R.id.done_button);
                 ImageView back = myDialog.findViewById(R.id.back_button);
@@ -285,6 +294,17 @@ public class CourseMenuFragment extends Fragment {
                             session_2.setText(course.session.get(1));
                             session_3.setText(course.session.get(2));
                         }
+
+                        ArrayList <Course> pre = course.prereq;
+                        prereqs = new ArrayList<>();
+                        for(Course c: pre) {
+                            prereqs.add(c.code);
+                        }
+
+                        ArrayAdapter<String> itemsAdapter5 = new ArrayAdapter<String>(getContext(),
+                                android.R.layout.simple_list_item_1,prereqs);
+
+                        prereq.setAdapter(itemsAdapter5);
                     }
                 }
 
@@ -321,6 +341,16 @@ public class CourseMenuFragment extends Fragment {
 
             }
         });
+    }
+
+    public boolean canTake(ArrayList <String> coursesTaken, ArrayList <String> prereqs) {
+
+        for (String course: prereqs) {
+            if (!(coursesTaken.contains(course))) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public void updateDatabase() {

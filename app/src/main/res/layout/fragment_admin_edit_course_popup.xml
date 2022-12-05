@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/LightBlueGrey"
+    android:background="@color/LightBlue"
     tools:context=".admin_add_course_popup">
 
 
@@ -27,7 +27,7 @@
         android:layout_height="52dp"
         android:layout_marginTop="29dp"
         android:background="@drawable/roundstyle"
-        android:backgroundTint="@color/MediumBlue"
+        android:backgroundTint="@color/AlternateBlue"
         android:ems="11"
         android:hint="Prerequisites"
         android:inputType="textPersonName"
@@ -134,9 +134,8 @@
         android:id="@+id/prereq_list_layout"
         android:layout_width="240dp"
         android:layout_height="114dp"
-        android:layout_marginBottom="112dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/done_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.35"
         app:layout_constraintStart_toStartOf="parent"
@@ -146,7 +145,8 @@
         <ListView
             android:id="@+id/prereq_list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:background="@color/AlternateBlue" />
 
 
     </LinearLayout>
@@ -157,14 +157,14 @@
         android:layout_height="53dp"
         android:layout_marginTop="28dp"
         android:background="@color/LightBlue"
-        android:backgroundTint="@color/LightBlueGrey"
+        android:backgroundTint="@color/LightBlue"
         android:contentDescription="@string/app_name"
         app:layout_constraintBottom_toTopOf="@+id/prereq_list_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.653"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_admin_winter"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.012"
         app:srcCompat="@drawable/add_circle_logo" />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -178,8 +178,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.543"
         app:layout_constraintStart_toEndOf="@+id/done_button"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.945" />
+        app:layout_constraintTop_toBottomOf="@+id/addcourse_prereq"
+        app:layout_constraintVertical_bias="0.88" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/done_button"
@@ -192,8 +192,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.226"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.945" />
+        app:layout_constraintTop_toBottomOf="@+id/addcourse_prereq"
+        app:layout_constraintVertical_bias="0.88" />
 
     <EditText
         android:id="@+id/course_name_edit"

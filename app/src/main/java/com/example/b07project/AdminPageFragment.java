@@ -20,6 +20,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
@@ -43,6 +44,7 @@ public class AdminPageFragment extends Fragment {
     ArrayList <String> courseCode;
     ArrayList <Course> studentCourses = new ArrayList<Course>();
     ArrayList <Course> courses;
+    ArrayList <Course> pre;
 
     ListView listView;
 
@@ -82,7 +84,7 @@ public class AdminPageFragment extends Fragment {
                 myDialog.show();
                 myDialog.getWindow().setAttributes(lp);
 
-                ArrayList <Course> pre = courses.get(i).prereq;
+                pre = courses.get(i).prereq;
                 ArrayList <String> prereqs = new ArrayList<>();
                 for(Course c: pre) {
                     prereqs.add(c.code);
@@ -94,12 +96,13 @@ public class AdminPageFragment extends Fragment {
                         .findViewById(R.id.course_name_edit);
                 EditText code_edit = (EditText) myDialog
                         .findViewById(R.id.course_code_edit);
-                Button delete = myDialog.findViewById(R.id.delete_button);
-                Button bt = myDialog.findViewById(R.id.done_button);
+                EditText prereq_code = (EditText) myDialog.findViewById(R.id.addcourse_prereq);
+
                 ImageView back = myDialog.findViewById(R.id.back_button);
                 TextView course_code = myDialog.findViewById(R.id.edit_course_course_name);
                 TextView course_desc = myDialog.findViewById(R.id.edit_course_course_code);
                 ListView prereq = myDialog.findViewById(R.id.prereq_list);
+
                 ArrayAdapter<String> itemsAdapter3 = new ArrayAdapter<String>(getContext(),
                         android.R.layout.simple_list_item_1, prereqs);
                 prereq.setAdapter(itemsAdapter3);
@@ -113,6 +116,9 @@ public class AdminPageFragment extends Fragment {
                 Button fall_button = (Button) myDialog.findViewById(R.id.button_admin_fall);
                 Button winter_button = (Button) myDialog.findViewById(R.id.button_admin_winter);
                 Button summer_button = (Button) myDialog.findViewById(R.id.button_admin_summer);
+                Button delete = myDialog.findViewById(R.id.delete_button);
+                Button bt = myDialog.findViewById(R.id.done_button);
+                ImageButton add_prereq = (ImageButton)myDialog.findViewById(R.id.add_prereq_button);
 
                 fall_selected = false;
                 winter_selected = false;
@@ -190,7 +196,77 @@ public class AdminPageFragment extends Fragment {
                     }
                 });
 
+                add_prereq.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String pre_code = prereq_code.getText().toString().trim();
 
+                        if (code_edit.getText().toString().trim().equals("")) {
+                            prereq_code.setError("Course name and Code required");
+                            prereq_code.requestFocus();
+                            return;
+                        }
+                        if (pre_code.equals("")) {
+                            prereq_code.setError("Prerequisite Course Code required");
+                            prereq_code.requestFocus();
+                            return;
+                        }
+                        if (pre_code.equals(code_edit.getText().toString().trim())) {
+                            prereq_code.setError("Course cannot be prerequisite of itself");
+                            prereq_code.requestFocus();
+                            return;
+                        }
+                        if (prereqs.indexOf(pre_code) != -1) {
+                            prereq_code.setError("Prerequisite already added");
+                            prereq_code.requestFocus();
+                            return;
+                        }
+                        if (courseCode.indexOf(pre_code) != -1) {
+
+                            prereqs.add(pre_code);
+
+                            ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(getContext(),
+                                    android.R.layout.simple_list_item_1, prereqs);
+                            prereq.setAdapter(itemsAdapter);
+
+                            for (Course c: courses) {
+                                if (c.code.equals(pre_code)) {
+                                    pre.add(c);
+                                }
+                            }
+                        }
+                        else {
+                            prereq_code.setError("Course Code does not exist");
+                            prereq_code.requestFocus();
+                            return;
+                        }
+
+                        prereq_code.setText("");
+                    }
+                });
+
+                Course to_change = courses.get(i);
+
+                prereq.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int j, long l) {
+
+                        for (Course course: courses) {
+                            if (course.code.equals(prereqs.get(j))) {
+                                for (int n = 0; n < pre.size(); n++) {
+                                    if (pre.get(n).code.equals(prereqs.get(j))) {
+                                        pre.remove(n);
+                                    }
+                                }
+                            }
+                        }
+                        prereqs.remove(j);
+
+                        ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(getContext(),
+                                android.R.layout.simple_list_item_1, prereqs);
+                        prereq.setAdapter(itemsAdapter);
+                    }
+                });
 
 
 
@@ -198,6 +274,7 @@ public class AdminPageFragment extends Fragment {
                     @Override
                     public void onClick(View view) {
                         deleteStudentCourse(storedCode);
+                        deleteFromPrerequisites(storedCode);
                         ref.child(courses.get(i).code).removeValue();
                         readDatabase();
                         myDialog.dismiss();
@@ -247,8 +324,7 @@ public class AdminPageFragment extends Fragment {
                             sessions.add("Summer");
                         }
 
-                        Course updatedCourse = new Course(newName, newCode, sessions,
-                                courses.get(i).prereq);
+                        Course updatedCourse = new Course(newName, newCode, sessions, pre);
                         editStudentCourse(storedCode, updatedCourse);
                         ref.child(courses.get(i).code).removeValue();
                         ref.child(newCode).setValue(updatedCourse);
@@ -317,6 +393,17 @@ public class AdminPageFragment extends Fragment {
         return view;
 
     }
+    public void deleteFromPrerequisites(String code) {
+        for (Course course: courses) {
+            for (Course prereq: course.prereq) {
+                if (prereq.code.equals(code)) {
+                    course.prereq.remove(prereq);
+                    ref.child(course.code).child("prereq").setValue(course.prereq);
+                }
+            }
+        }
+    }
+
 
     public void editStudentCourse(String code, Course updated) {
         for (String student: students) {

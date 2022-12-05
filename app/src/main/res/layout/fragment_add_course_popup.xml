@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/LightBlueGrey"
+    android:background="@color/LightBlue"
     tools:context=".admin_add_course_popup">
 
 
@@ -50,13 +50,13 @@
         app:layout_constraintHorizontal_bias="0.149"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_course_course_name"
-        app:layout_constraintVertical_bias="0.135" />
+        app:layout_constraintVertical_bias="0.13999999" />
 
     <TextView
         android:id="@+id/edit_course_course_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Course name:"
+        android:text="Course Name:"
         android:textColor="@color/DarkBlue"
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -90,7 +90,7 @@
         app:layout_constraintHorizontal_bias="0.197"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_course_course_code"
-        app:layout_constraintVertical_bias="0.273" />
+        app:layout_constraintVertical_bias="0.24000001" />
 
     <TextView
         android:id="@+id/name_display"
@@ -184,6 +184,7 @@
         <ListView
             android:id="@+id/prereq"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:background="@color/AlternateBlue" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
