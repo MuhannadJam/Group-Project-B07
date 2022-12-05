@@ -5,13 +5,14 @@
     android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/LightBlue"
+    android:background="@color/main_background_color_light_blue"
     tools:context=".SignupFragment">
 
     <ImageView
         android:id="@+id/back_button"
         android:layout_width="38dp"
         android:layout_height="39dp"
+        android:contentDescription="@string/previous_page"
         android:src="@drawable/back_arrow"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,20 +27,20 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
         android:text="@string/course_menu"
-        android:textColor="@color/DarkBlue"
+        android:textColor="@color/main_text_color_dark_blue"
         android:textSize="57sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.07999998" />
+        app:layout_constraintVertical_bias="0.10" />
 
     <TextView
         android:id="@+id/courses_taken_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Courses Taken:"
-        android:textColor="@color/DarkBlue"
+        android:text="@string/courses_taken"
+        android:textColor="@color/main_text_color_dark_blue"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -47,7 +48,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/header"
         app:layout_constraintTop_toBottomOf="@+id/header"
-        app:layout_constraintVertical_bias="0.04000002" />
+        app:layout_constraintVertical_bias="0.025" />
 
     <LinearLayout
         android:id="@+id/course_menu_add_course_linearlayout"
@@ -66,7 +67,8 @@
             android:id="@+id/course_taken_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/AlternateBlue" />
+            android:background="@color/alternate_blue"
+            tools:ignore="DuplicateSpeakableTextCheck" />
 
     </LinearLayout>
 
@@ -74,8 +76,8 @@
         android:id="@+id/add_courses_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Courses:"
-        android:textColor="@color/DarkBlue"
+        android:text="@string/add_courses"
+        android:textColor="@color/main_text_color_dark_blue"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -101,7 +103,7 @@
             android:id="@+id/add_courses_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/AlternateBlue" />
+            android:background="@color/alternate_blue" />
     </LinearLayout>
 
 
