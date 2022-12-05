@@ -233,6 +233,7 @@ public class MainPageFragment extends Fragment {
         manageTimeline.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ArrayList <String> courses_planned_to_take = new ArrayList<>();
                 Dialog myDialog;
                 myDialog = new Dialog(getContext());
                 myDialog.setContentView(R.layout.fragment_edit_course_timeline);
