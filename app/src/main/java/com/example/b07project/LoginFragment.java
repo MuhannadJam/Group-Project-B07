@@ -35,6 +35,7 @@ public class LoginFragment extends Fragment {
     private View view;
     private ArrayList<String> admins = new ArrayList<>();
     private FirebaseAuth mAuth;
+    private Presenter presenter;
 
     @Override
     public View onCreateView(
@@ -50,19 +51,7 @@ public class LoginFragment extends Fragment {
 
         mAuth = FirebaseAuth.getInstance();
 
-        DatabaseReference ref = FirebaseDatabase
-                .getInstance("https://bo7-project-default-rtdb.firebaseio.com/")
-                .getReference("Admin");
-        ref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                for(DataSnapshot id: task.getResult().getChildren()) {
-                   admins.add(id.getValue().toString());
-                }
-            }
-        });
-
-
+        presenter = new Presenter(new Model(), this);
 
         return view;
 
@@ -92,38 +81,46 @@ public class LoginFragment extends Fragment {
 
     }
 
+    public String getEmail() {
+        return email.getText().toString().trim();
+    }
 
+    public String getPassword() {
+        return password.getText().toString().trim();
+    }
+
+    public void displayMessage(EditText field, String message) {
+        field.setError(message);
+        field.requestFocus();
+    }
+
+    public EditText getEmailField() {
+        return view.findViewById(R.id.emailInput);
+    }
+
+    public EditText getPasswordField() {
+        return view.findViewById(R.id.passwordInput);
+    }
+
+    public String getUID() {
+        return mAuth.getCurrentUser().getUid();
+    }
 
 
     public void loginUser() {
 
-        String login_email = email.getText().toString().trim();
-        String login_password = password.getText().toString().trim();
-
-        if (login_email.equals("")) {
-            email.setError("Email required");
-            email.requestFocus();
+        if (!presenter.checkEmail()) {
             return;
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(login_email).matches()) {
-            email.setError("Invalid Email");
-            email.requestFocus();
-            return;
-        } else if (login_password.equals("")) {
-            password.setError("Password required");
-            password.requestFocus();
+        } else if (!presenter.checkPassword()) {
             return;
         }
 
-        if (login_password.equals("admin") &&
-                password.getText().toString().equals("admin")) {
-            NavHostFragment.findNavController(LoginFragment.this)
-                    .navigate(R.id.action_FirstFragment_to_AdminFragment);
-        }
-        mAuth.signInWithEmailAndPassword(login_email, login_password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        mAuth.signInWithEmailAndPassword(getEmail(), getPassword())
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    if (admins.indexOf(mAuth.getCurrentUser().getUid()) != -1) {
+                    if (presenter.checkAdmin()) {
                         NavHostFragment.findNavController(LoginFragment.this)
                                 .navigate(R.id.action_FirstFragment_to_AdminFragment);
                     }
@@ -134,7 +131,7 @@ public class LoginFragment extends Fragment {
 
                 }
                 else{
-                    Snackbar.make(view, "Invalid Credentials!", Snackbar.LENGTH_SHORT).show();
+                    displayMessage(password, "Incorrect Password");
                 }
             }
         });
