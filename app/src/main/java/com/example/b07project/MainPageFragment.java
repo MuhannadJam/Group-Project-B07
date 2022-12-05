@@ -285,7 +285,6 @@ public class MainPageFragment extends Fragment {
                             }
                         }
                         for (Course c: student.coursesPlanned) {
-                            Log.i("Test", c.code);
                             courses_planned_to_take.add(c.code);
                             courses_avaliable.remove(c.code);
                         }
@@ -305,16 +304,13 @@ public class MainPageFragment extends Fragment {
                 generate_timeline.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        timetable = student.generateTimetable();
+                        student.generateTimetable();
                         myDialog.dismiss();
                     }
                 });
 
             }
-
-
-
-
+            
         });
     }
 
