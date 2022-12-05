@@ -26,3 +26,16 @@ public class EditCourseTimeline extends Fragment {
         return inflater.inflate(R.layout.fragment_edit_course_timeline, container, false);
     }
 }
+
+/*public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        ImageView backButton = view.findViewById(R.id.back_button);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v)
+                        .navigate(R.id.action_admin_page_to_admin_add_course2);
+            }
+        });
+    }*/
