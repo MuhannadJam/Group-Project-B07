@@ -27,14 +27,16 @@ public class Student {
         coursesPlanned.add(course);
         if (!(coursesTaken.containsAll(course.prereq))) {
             for (int k = 0; k < course.prereq.size(); k++) {
-                if ((!(coursesPlanned.contains(course.prereq.get(k)))) && !(coursesTaken.contains(course.prereq.get(k)))) {
+                if ((!(coursesPlanned.contains(course.prereq.get(k)))) &&
+                        !(coursesTaken.contains(course.prereq.get(k)))) {
                     coursesPlanned.add((course.prereq.get(k)));
                 }
             }
             for (int i = 0; i < coursesPlanned.size(); i++)
             {
                 for (int k = 0; k < course.prereq.size(); k++) {
-                    if ((!(coursesPlanned.contains(coursesPlanned.get(i).prereq.get(k)))) && !(coursesTaken.contains(coursesPlanned.get(i).prereq.get(k)))) {
+                    if ((!(coursesPlanned.contains(coursesPlanned.get(i).prereq.get(k))))
+                            && !(coursesTaken.contains(coursesPlanned.get(i).prereq.get(k)))) {
                         coursesPlanned.add((coursesPlanned.get(i).prereq.get(k)));
                     }
                 }
@@ -48,7 +50,11 @@ public class Student {
         int j = coursesPlanned.size();
         while (j > 0) {
             for (int i =0; i < coursesPlanned.size(); i++) {
-                if ((coursesPlanned.get(i).prereq.isEmpty() || coursesTaken.containsAll(coursesPlanned.get(i).prereq) ||  !(timetable.containsAll(coursesPlanned.get(i).prereq))) && (coursesPlanned.get(i).session.contains("F")) && !(timetable.contains(coursesPlanned.get(i)))) {
+                if ((coursesPlanned.get(i).prereq.isEmpty() ||
+                        coursesTaken.containsAll(coursesPlanned.get(i).prereq) ||
+                        !(timetable.containsAll(coursesPlanned.get(i).prereq))) &&
+                        (coursesPlanned.get(i).session.contains("F")) &&
+                        !(timetable.contains(coursesPlanned.get(i)))) {
                     //assume that user is making a timetable before Fall Session
                     timetable.add(coursesPlanned.get(i));
                     coursesPlanned.remove(coursesPlanned.get(i));
@@ -56,14 +62,22 @@ public class Student {
                 }
             }
             for (int i =0; i < coursesPlanned.size(); i++) {
-                if ((coursesPlanned.get(i).prereq.isEmpty() || coursesTaken.containsAll(coursesPlanned.get(i).prereq)  ||  !(timetable.containsAll(coursesPlanned.get(i).prereq))) && (coursesPlanned.get(i).session.contains("W"))  && !(timetable.contains(coursesPlanned.get(i)))) {
+                if ((coursesPlanned.get(i).prereq.isEmpty() ||
+                        coursesTaken.containsAll(coursesPlanned.get(i).prereq)  ||
+                        !(timetable.containsAll(coursesPlanned.get(i).prereq))) &&
+                        (coursesPlanned.get(i).session.contains("W"))  &&
+                        !(timetable.contains(coursesPlanned.get(i)))) {
                     timetable.add(coursesPlanned.get(i));
                     coursesPlanned.remove(coursesPlanned.get(i));
                     j--;
                 }
             }
             for (int i =0; i < coursesPlanned.size(); i++) {
-                if ((coursesPlanned.get(i).prereq.isEmpty() || coursesTaken.containsAll(coursesPlanned.get(i).prereq)  ||  !(timetable.containsAll(coursesPlanned.get(i).prereq))) && (coursesPlanned.get(i).session.contains("S"))  && !(timetable.contains(coursesPlanned.get(i)))) {
+                if ((coursesPlanned.get(i).prereq.isEmpty() ||
+                        coursesTaken.containsAll(coursesPlanned.get(i).prereq)  ||
+                        !(timetable.containsAll(coursesPlanned.get(i).prereq))) &&
+                        (coursesPlanned.get(i).session.contains("S"))  &&
+                        !(timetable.contains(coursesPlanned.get(i)))) {
                     timetable.add(coursesPlanned.get(i));
                     coursesPlanned.remove(coursesPlanned.get(i));
                     j--;

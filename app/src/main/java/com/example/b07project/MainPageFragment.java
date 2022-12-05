@@ -158,9 +158,10 @@ public class MainPageFragment extends Fragment {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if (task.isSuccessful()) {
-                    if(task.getResult().getValue() != null)
+                    if(task.getResult().getValue() != null) {
                         student = task.getResult().getValue(Student.class);
                         displayName.setText(student.name);
+                    }
                 }
             }
         });

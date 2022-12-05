@@ -107,8 +107,8 @@ public class SignupFragment extends Fragment {
                     Student student = new Student(name.getText().toString().trim(),
                             email.getText().toString().trim(), new ArrayList<>());
 
-                    FirebaseDatabase.getInstance().getReference("Students").child(FirebaseAuth.getInstance()
-                                    .getCurrentUser().getUid()).
+                    FirebaseDatabase.getInstance().getReference("Students")
+                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).
                             setValue(student).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {

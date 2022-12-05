@@ -237,11 +237,13 @@ public class AdminAddCourseFragment extends Fragment {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
-                                    NavHostFragment.findNavController(AdminAddCourseFragment.this)
+                                    NavHostFragment
+                                            .findNavController(AdminAddCourseFragment.this)
                                             .navigate(R.id.action_admin_add_course_to_admin_page);
                                 }
                                 else {
-                                    Toast.makeText(getContext(), "Failed to Add Course", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getContext(), "Failed to Add Course",
+                                            Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });

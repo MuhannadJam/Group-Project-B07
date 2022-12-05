@@ -364,7 +364,8 @@ public class AdminPageFragment extends Fragment {
                                 .navigate(R.id.action_admin_page_to_admin_add_course2);
                     }
                 });
-                view.findViewById(R.id.log_out_button_admin).setOnClickListener(new View.OnClickListener() {
+                view.findViewById(R.id.log_out_button_admin)
+                        .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
 
@@ -425,7 +426,8 @@ public class AdminPageFragment extends Fragment {
 
     public void editStudentCourse(String code, Course updated) {
         for (String student: students) {
-            sRef.child(student).child("coursesTaken").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            sRef.child(student).child("coursesTaken")
+                    .get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DataSnapshot> task) {
                     if (task.isSuccessful()) {
@@ -454,7 +456,8 @@ public class AdminPageFragment extends Fragment {
     public void deleteStudentCourse(String code) {
 
         for (String student: students) {
-            sRef.child(student).child("coursesTaken").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            sRef.child(student).child("coursesTaken")
+                    .get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DataSnapshot> task) {
                     if (task.isSuccessful()) {
