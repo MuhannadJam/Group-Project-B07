@@ -246,8 +246,9 @@ public class MainPageFragment extends Fragment {
                                 summer_courses.add(c.code);
                             }
                         }
-                        addtable();
-                        Log.i("Timeline", String.valueOf(student.timetable));
+                        if(!student.timetable.isEmpty()) {
+                            addtable();
+                        }
                         courses_planned_to_take = new ArrayList<>();
                         myDialog.dismiss();
                     }
