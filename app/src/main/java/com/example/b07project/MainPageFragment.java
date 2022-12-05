@@ -1,6 +1,7 @@
 package com.example.b07project;
 
 import android.app.Dialog;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -181,12 +183,15 @@ public class MainPageFragment extends Fragment {
                     for (Course c: coursesTaken) {
                         if (c.session.contains("Fall")) {
                             fall_courses.add(c.code);
+
+
                         }
                         if (c.session.contains("Winter")) {
                             winter_courses.add(c.code);
                         }
                         if (c.session.contains("Summer")) {
                             summer_courses.add(c.code);
+
                         }
                     }
                     addtable();
@@ -245,6 +250,13 @@ public class MainPageFragment extends Fragment {
 
                 ListView course_available = myDialog.findViewById(R.id.courses_avaliable_list);
                 ListView courses_planned = myDialog.findViewById(R.id.selected_courses_list);
+                ImageView bt = myDialog.findViewById(R.id.back_button);
+                bt.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        myDialog.dismiss();
+                    }
+                });
 
                 ArrayList<Course> course_planned_list = new ArrayList<>();
                 for (Course course : allCourses) {
