@@ -274,6 +274,7 @@ public class AdminPageFragment extends Fragment {
                     @Override
                     public void onClick(View view) {
                         deleteStudentCourse(storedCode);
+                        deleteFromPrerequisites(storedCode);
                         ref.child(courses.get(i).code).removeValue();
                         readDatabase();
                         myDialog.dismiss();
@@ -392,6 +393,17 @@ public class AdminPageFragment extends Fragment {
         return view;
 
     }
+    public void deleteFromPrerequisites(String code) {
+        for (Course course: courses) {
+            for (Course prereq: course.prereq) {
+                if (prereq.code.equals(code)) {
+                    course.prereq.remove(prereq);
+                    ref.child(course.code).child("prereq").setValue(course.prereq);
+                }
+            }
+        }
+    }
+
 
     public void editStudentCourse(String code, Course updated) {
         for (String student: students) {

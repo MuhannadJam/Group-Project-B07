@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -218,6 +219,11 @@ public class CourseMenuFragment extends Fragment {
                 bt.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        if (!canTake(courseTakenDisplay, prereqs)) {
+                            Toast.makeText(getContext(), "Not all Prerequisites taken",
+                                    Toast.LENGTH_SHORT).show();
+                            return;
+                        }
                         myDialog.dismiss();
                         courseTakenDisplay.add(addCoursesDisplay.get(i));
                         addCoursesDisplay.remove(addCoursesDisplay.get(i));
@@ -335,6 +341,16 @@ public class CourseMenuFragment extends Fragment {
 
             }
         });
+    }
+
+    public boolean canTake(ArrayList <String> coursesTaken, ArrayList <String> prereqs) {
+
+        for (String course: prereqs) {
+            if (!(coursesTaken.contains(course))) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public void updateDatabase() {
