@@ -279,25 +279,28 @@ public class MainPageFragment extends Fragment {
                 course_available.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                            /*student.addCourseToPlanned(course_planned_list.get(i));*/
-                            courses_planned_to_take.add(courses_avaliable.get(i));
+                        for (Course course: allCourses) {
+                            if (course.code .equals(courses_avaliable.get(i))) {
+                                student.addCourseToPlanned(course);
+                            }
+                        }
+                        for (Course c: student.coursesPlanned) {
+                            Log.i("Test", c.code);
+                            courses_planned_to_take.add(c.code);
+                            courses_avaliable.remove(c.code);
+                        }
 
+                        ArrayAdapter<String> itemsAdapter2 = new ArrayAdapter<String>(getContext(),
+                                android.R.layout.simple_list_item_1, courses_avaliable);
                         ArrayAdapter<String> itemsAdapter3 = new ArrayAdapter<String>(getContext(),
                                 android.R.layout.simple_list_item_1, courses_planned_to_take);
                         courses_planned.setAdapter(itemsAdapter3);
-                        courses_avaliable.remove(i);
                         course_available.setAdapter(itemsAdapter2);
 
                     }
 
                 });
 
-                /*planning_courses =student.coursesPlanned;
-
-                for(Course course : planning_courses){
-                    courses_planned_to_take.add(course.code);
-                    Log.d("Test",course.code);
-                }*/
 
                 generate_timeline.setOnClickListener(new View.OnClickListener() {
                     @Override
