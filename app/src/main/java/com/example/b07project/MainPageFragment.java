@@ -226,6 +226,8 @@ public class MainPageFragment extends Fragment {
                         courses_planned.setAdapter(itemsAdapter3);
                         course_available.setAdapter(itemsAdapter2);
 
+                        Log.i("Test", String.valueOf(student.coursesPlanned));
+
                     }
 
                 });
@@ -235,6 +237,7 @@ public class MainPageFragment extends Fragment {
                     @Override
                     public void onClick(View view) {
                         student.generateTimetable();
+                        //Log.i("Test" , String.valueOf(student.timetable));
                         for (Course c: student.timetable) {
                             if (c.session.contains("Fall")) {
                                 fall_courses.add(c.code);
@@ -360,9 +363,9 @@ public class MainPageFragment extends Fragment {
                 start = num_courses;
                 num_courses++;
                 session = nextAvailableSession(currentSem, year, studentTimetable.get(i));
+                Log.i("test", session);
                 currentSem = session.substring(0, session.indexOf(" "));
-                year = Integer.parseInt(session.substring(session.indexOf(" ") + 1),
-                        session.length() - 1);
+                year = Integer.parseInt(session.substring(session.indexOf(" ") + 1));
                 course = studentTimetable.get(i);
                 coursesList = course.code;
                 tbrow1 = new TableRow(getContext());

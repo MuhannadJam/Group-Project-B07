@@ -101,6 +101,8 @@ public class AdminAddCourseFragment extends Fragment {
                             .getColorStateList(selected_button_dark_blue));
                     fall_button.setTextColor(getContext().getResources()
                             .getColorStateList(R.color.selected_button_text_grey));
+                    fall_button.setTextColor(getContext().getResources()
+                            .getColorStateList(R.color.white));
                     fall_clicked = true;
                 }
             }
@@ -122,6 +124,8 @@ public class AdminAddCourseFragment extends Fragment {
                             .getColorStateList(selected_button_dark_blue));
                     winter_button.setTextColor(getContext().getResources()
                             .getColorStateList(R.color.selected_button_text_grey));
+                    winter_button.setTextColor(getContext().getResources()
+                            .getColorStateList(R.color.white));
                     winter_clicked = true;
                 }
             }
@@ -143,6 +147,8 @@ public class AdminAddCourseFragment extends Fragment {
                             .getColorStateList(selected_button_dark_blue));
                     summer_button.setTextColor(getContext().getResources()
                             .getColorStateList(R.color.selected_button_text_grey));
+                    summer_button.setTextColor(getContext().getResources()
+                            .getColorStateList(R.color.white));
                     summer_clicked = true;
                 }
             }
