@@ -38,7 +38,7 @@
         app:layout_constraintEnd_toStartOf="@+id/add_prereq_button"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/course_name_edit"
-        app:layout_constraintTop_toBottomOf="@+id/button_admin_fall"
+        app:layout_constraintTop_toBottomOf="@+id/button_admin_winter"
         app:layout_constraintVertical_bias="0.07999998"
         tools:ignore="Autofill" />
 
@@ -113,10 +113,10 @@
         android:textColor="@color/pop_up_text_dark_blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button_admin_summer"
+        app:layout_constraintHorizontal_bias="0.423"
         app:layout_constraintStart_toEndOf="@+id/button_admin_fall"
-        app:layout_constraintTop_toTopOf="@+id/button_admin_fall"
-        app:layout_constraintVertical_bias="0.0" />
-
+        app:layout_constraintTop_toBottomOf="@+id/course_code_edit"
+        app:layout_constraintVertical_bias="0.06" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_admin_summer"
@@ -176,10 +176,10 @@
         android:text="@string/delete"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/course_name_edit"
-        app:layout_constraintHorizontal_bias="0.88"
+        app:layout_constraintHorizontal_bias="0.901"
         app:layout_constraintStart_toStartOf="@+id/course_name_edit"
-        app:layout_constraintTop_toTopOf="@+id/done_button"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/addcourse_prereq"
+        app:layout_constraintVertical_bias="0.892" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/done_button"
@@ -190,10 +190,10 @@
         android:text="@string/done"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/course_name_edit"
-        app:layout_constraintHorizontal_bias="0.12"
+        app:layout_constraintHorizontal_bias="0.098"
         app:layout_constraintStart_toStartOf="@+id/course_name_edit"
-        app:layout_constraintTop_toBottomOf="@+id/prereq_list_layout"
-        app:layout_constraintVertical_bias="0.31" />
+        app:layout_constraintTop_toBottomOf="@+id/addcourse_prereq"
+        app:layout_constraintVertical_bias="0.888" />
 
     <EditText
         android:id="@+id/course_name_edit"
