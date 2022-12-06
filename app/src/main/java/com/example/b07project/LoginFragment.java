@@ -94,6 +94,11 @@ public class LoginFragment extends Fragment {
         field.requestFocus();
     }
 
+    public boolean checkPattern(String email) {
+        return Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
+
     public EditText getEmailField() {
         return view.findViewById(R.id.emailInput);
     }

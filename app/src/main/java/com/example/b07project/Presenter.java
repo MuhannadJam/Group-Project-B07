@@ -17,7 +17,7 @@ public class Presenter {
             view.displayMessage(view.getEmailField(), "Email Required");
             return false;
         }
-        else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+        else if (!view.checkPattern(email)) {
             view.displayMessage(view.getEmailField(), "Invalid Email");
             return false;
         }
