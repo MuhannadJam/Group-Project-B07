@@ -1,0 +1,49 @@
+Main Tasks:
+
+Muhannad Al-Jamali:
+
+- Setup user authentication to the database
+- Created login page functionality then refactored it to the MVP approach
+- Created and implemented the student class
+- Worked on popup functionality
+- Writing and reading student information to and from the database from the application
+- Writing and reading course information to and from the database from the application
+- Allowed admins to add courses and update the course database
+- Allowed admins to edit and delete courses which updates the course database and the student course database
+- Setup the course timeline generator methods and adding the timeline to a table
+
+
+Mohammed Al-Hosni:
+
+- Created login page functionality
+- Created signup page functionality
+- Created and implemented listviews to display courses on admin and student pages
+- Created popups for the student and admin pages and worked on their functionality
+- Worked on the frontend functionality of the student and admin pages
+- Created and designed the course timeline generator page
+- Created and implemented the table to display the course timeline
+
+Ethan Chan:
+
+- Setup the jira page
+- Worked on designing the login page UI
+- Worked on designing the sign up page UI
+- Created and designed the course selection page
+- Cleaned up the overall UI of the application
+- Created JUnit Mockito tests for the presenter class
+
+Caitlyn Niteisha:
+
+- Planned the design for the fragments of the application
+- Worked on designing the login page UI
+- Worked on designing the sign up page UI
+- Worked on designing the student main page UI
+- Worked on designing the admin edit course page
+- Worked on testing
+- Cleaned up the overall UI of the application
+
+Hamim Karim:
+
+- Attempted to setup firebase authentication
+- Created and implemented the course class
+- Attempted to make the course timeline generator method
